@@ -1,13 +1,13 @@
 <?php
-namespace view;
+namespace src\view\subview;
 
 
-class AuthenticatedView {
+class TitleView {
 
 }
 /**
  * Created by PhpStorm.
  * User: dav
  * Date: 2014-09-21
- * Time: 12:49
+ * Time: 13:17
  */

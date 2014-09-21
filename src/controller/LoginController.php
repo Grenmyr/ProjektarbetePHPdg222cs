@@ -10,4 +10,5 @@ class LoginController {
  * User: dav
  * Date: 2014-09-21
  * Time: 12:51
+ * Controller to handle if user is logged in or not.
  */

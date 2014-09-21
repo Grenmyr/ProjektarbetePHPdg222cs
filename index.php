@@ -1,15 +1,13 @@
 <?php
-require_once("common/HTMLView.php");
+require_once(__DIR__."/common/HTMLView.php");
+require_once(__DIR__."/src/controller/ViewController.php");
 
-class index {
+$htmlView = new common\HTMLView();
+$viewController = new controller\ViewController();
 
+$body = $viewController->bodyContent();
+$htmlView->echoHTML($body);
 
-$htmlView = new HTMLView();
-$lc = new LoginController();
-
-$loginContent = $lc->render();
-$htmlView->echoHTML($loginContent);
-}
 /**
  * Created by PhpStorm.
  * User: dav

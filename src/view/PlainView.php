@@ -1,8 +1,12 @@
 <?php
-namespace src\view;
+namespace view;
 
 
 class PlainView {
+    public function show (){
+        $test = "Tjohej";
+        return $test;
+    }
 
 }
 /**
