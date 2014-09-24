@@ -11,7 +11,7 @@ class HTMLView {
         <html>
         <head>
             <meta charset='UTF-8' />
-            <title>Laboration 2</title>
+            <title>Projekt PHP</title>
         </head>
         <body>
         <div class='content'>

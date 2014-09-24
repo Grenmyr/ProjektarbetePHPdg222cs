@@ -1,22 +1,30 @@
 <?php
 namespace controller;
+use view\GuestView;
 
-require_once(__DIR__."/../view/PlainView.php");
+require_once(__DIR__ . "/../view/GuestView.php");
 
 
 class ViewController {
-    private $plainView;
+    private $guestView;
 
     /**
      * Construct Creating Associations.
      */
     public function __construct(){
-        $this->plainView = new \view\PlainView();
+        $this->guestView = new GuestView();
     }
 
     public function bodyContent(){
-        return $this->plainView->show();
+        return $this->guestView->show();
     }
+    public function headContent(){
+        //Ask my Logincontroller for variable that containts headcontent depending on on registered or not.
+    }
+    public function subView(){
+        // Ask my LoginController for variable that contains subview depending on registered or not.
+    }
+
 
 }
 /**
