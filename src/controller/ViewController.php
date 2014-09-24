@@ -1,21 +1,38 @@
 <?php
 namespace controller;
+use model\UMLRepository;
 use view\GuestView;
 
 require_once(__DIR__ . "/../view/GuestView.php");
 
+require_once(__DIR__ . "/../model/UMLRepository.php");
+
 
 class ViewController {
     private $guestView;
+    private $umlRepository;
 
     /**
      * Construct Creating Associations.
      */
     public function __construct(){
         $this->guestView = new GuestView();
+        $this->umlRepository = new UMLRepository();
     }
 
-    public function bodyContent(){
+    /*
+     * Function that handle user Input.
+     */
+    public function input(){
+        if($this->guestView->userSubmit()){
+            $input = $this->guestView->GetInput();
+            $this->umlRepository->add($input);
+        }
+    }
+    /*
+     * Return GuestView Dom.
+     */
+    public function body(){
         return $this->guestView->show();
     }
     public function headContent(){

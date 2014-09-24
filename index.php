@@ -5,7 +5,8 @@ require_once(__DIR__."/src/controller/ViewController.php");
 $htmlView = new common\HTMLView();
 $viewController = new controller\ViewController();
 
-$body = $viewController->bodyContent();
+$viewController->input();
+$body = $viewController->body();
 $htmlView->echoHTML($body);
 
 /**
