@@ -1,5 +1,6 @@
 <?php
 namespace controller;
+use model\InterpretModel;
 use model\UMLRepository;
 use view\GuestView;
 
@@ -7,17 +8,23 @@ require_once(__DIR__ . "/../view/GuestView.php");
 
 require_once(__DIR__ . "/../model/UMLRepository.php");
 
+require_once(__DIR__ . "/../model/InterpretModel.php");
+
 
 class ViewController {
     private $guestView;
     private $umlRepository;
+    private $interpretModel;
+
 
     /**
      * Construct Creating Associations.
      */
     public function __construct(){
-        $this->guestView = new GuestView();
+        $this->interpretModel = new InterpretModel();
+        $this->guestView = new GuestView( $this->interpretModel);
         $this->umlRepository = new UMLRepository();
+
     }
 
     /*
@@ -25,8 +32,7 @@ class ViewController {
      */
     public function input(){
         if($this->guestView->userSubmit()){
-            $input = $this->guestView->GetInput();
-            $this->umlRepository->add($input);
+            $this->guestView->handleInput();
         }
     }
     /*

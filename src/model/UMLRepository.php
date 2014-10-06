@@ -12,7 +12,8 @@ class UMLRepository extends DataBaseConnection{
      */
     public function add($input)
     {
-        var_dump($input ."jag jobbar i UMLRepository.php");
+
+        var_dump($input);
     }
 }
 /**
