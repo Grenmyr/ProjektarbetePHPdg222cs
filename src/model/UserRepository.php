@@ -7,10 +7,10 @@ class UserRepository extends Repository {
     private static $userID="userID";
     private static $dbTable ='user';
 
-    public function add(UserModel $user) {
-        // If Empty user submit throw exception.
+    public function add(User $user) {
+        // If Empty user submit throw Exception.
         if($getUser = $this->getUserByUsername($user->GetUsername())){
-            throw new Exception();
+            throw new \src\Exception\DbUserExistException();
         }
 
         try {
@@ -20,7 +20,7 @@ class UserRepository extends Repository {
             $query = $db -> prepare($sql);
             $query -> execute($params);
         } catch (\PDOException $e) {
-            die('An unknown error have occured.');
+            //die('An unknown error have occured.');
         }
     }
     public function getUserByUsername($username) {
@@ -32,12 +32,11 @@ class UserRepository extends Repository {
             $query -> execute($params);
             $result = $query -> fetch();
         if($result){
-            $userModel = new UserModel();
-            //TODO Need to think about this.
-            $userModel->registerUser($result[self::$userName]);
-            $userModel->SetHash($result[self::$password]);
-            $userModel->SetUserID($result[self::$userID]);
-            return $userModel;
+            $user = new User();
+            $user->SetUsername($result[self::$userName]);
+            $user->SetHash($result[self::$password]);
+            $user->SetUserID($result[self::$userID]);
+            return $user;
         }
         else{
             return NULL;

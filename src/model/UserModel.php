@@ -1,6 +1,4 @@
 <?php
-require_once("./src/Exception/RegisterException.php");
-require_once("./src/Exception/RegexException.php");
 
 
 

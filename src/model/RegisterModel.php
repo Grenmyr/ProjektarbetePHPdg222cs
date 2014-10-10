@@ -1,4 +1,12 @@
 <?php
+
+namespace model;
+
+
+use src\Exception\RegisterException;
+use src\Exception\RegisterUsernameAndPasswordNullException;
+
+
 /**
  * Created by PhpStorm.
  * User: dav
@@ -15,10 +23,13 @@ class RegisterModel {
     const USERNAMEMINLENGTH = 3;
     const PASSWORDMINLENGTH = 6;
 
-    public function registerUser($userName){
+    public function SetUsername($userName){
         $this->sanitizeName($userName);
         if(strlen($userName) < self::USERNAMEMINLENGTH){
-            throw new \src\Exception\RegisterException("Användarnamnet har för få tecken. Minst 3 tecken");
+            if($this->validCredentials()){
+                throw new \src\Exception\RegisterUsernameLengthException($userName);
+            }
+                throw new RegisterUsernameAndPasswordNullException("Either Password is null");
         }
         else{
             $this->username = $userName;
@@ -34,13 +45,16 @@ class RegisterModel {
             throw new \src\Exception\RegexException($userName);
         }
     }
-    public function registerPassword($password){
+    public function hashPassword($password){
         if((strlen($password) < self::PASSWORDMINLENGTH) ) {
-            throw new \src\Exception\RegisterException("Lösenorden har för få tecken.Minst 6 tecken");
+            throw new RegisterException;
         }
-        $this->password = password_hash($password,PASSWORD_BCRYPT);
+        return  password_hash($password,PASSWORD_BCRYPT);
+        //$this->password = password_hash($password,PASSWORD_BCRYPT);
     }
-    public function isValid(){
+    public function validCredentials(){
         return ($this->password !== null && $this->username !== null);
     }
+
+
 } 

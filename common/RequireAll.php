@@ -29,7 +29,7 @@ require_once(__DIR__."/../src/model/DataBaseConnection.php");
 require_once(__DIR__ . "/../src/model/InterpretModel.php");
 require_once(__DIR__ . "/../src/model/UMLRepository.php");
 require_once(__DIR__ . "/../src/model/RegisterModel.php");
-require_once(__DIR__ . "/../src/model/user.php");
+require_once(__DIR__ . "/../src/model/User.php");
 require_once(__DIR__ . "/../src/model/userModel.php");
 require_once(__DIR__ . "/../src/model/SessionModel.php");
 require_once(__DIR__ . "/../src/model/userRepository.php");
@@ -41,7 +41,14 @@ require_once(__DIR__ . "/../src/model/objectModel/VariableModel.php");
 require_once(__DIR__ . "/../src/model/objectModel/FunctionModel.php");
 require_once(__DIR__ . "/../src/model/objectModel/ClassModel.php");
 
-//exceptions
+//RegisterModelExceptions
+require_once(__DIR__ . "/../src/Exception/RegisterModelExceptions/RegisterUsernameLengthException.php");
+require_once(__DIR__ . "/../src/Exception/RegisterModelExceptions/RegisterUsernameAndPasswordNullException.php");
+require_once(__DIR__ . "/../src/Exception/RegisterModelExceptions/DbUserExistException.php");
+require_once(__DIR__ . "/../src/Exception/RegisterModelExceptions/RegisterException.php");
+require_once(__DIR__ . "/../src/Exception/RegisterModelExceptions/RegexException.php");
+
+
 
 
 /**
