@@ -1,12 +1,13 @@
 <?php
 namespace model;
 
-require_once(__DIR__ . "/ClassModel.php");
-require_once(__DIR__ . "/RegexModel.php");
+use objectModel\ClassModel;
+
+//require_once(__DIR__ . "/objectModel/ClassModel.php");
 
 
-class InterpretModel extends RegexModel{
-    //Match "a-zA-Z0-9_|+()" in certain orders between square brackets.
+class InterpretModel {
+    //Match "a-z,A-Z,0-9,_,|,+,()" in certain orders between square brackets.
     //Each pair of square brackets represent a class.
     //TODO Fix regex so it does not matter which order variables and functions come in?
     const MATCHBETWEENSQUAREBRACKETS = '/\[(\w+)((?:\|\+?\w+)*)((?:\|\+?\w+\(\))*)\]/';
@@ -21,14 +22,18 @@ class InterpretModel extends RegexModel{
         foreach ($classArray as $class){
             $this->classArray[] = new ClassModel($class);
         }
-        return ($classArray);
+        return ($this->classArray);
     }
 
-
-
-    /*private function findClasses($regex,$string){
+    private function findClasses($regex,$string){
         preg_match_all($regex,$string,$classArray, PREG_SET_ORDER);
         return $classArray;
+    }
+    /*public function presentClass(){
+        $array = [];
+        $array["className"]= $this->classArray[0]->GetClassName();
+        $array["variables"] = $this->classArray[0]->GetVariables();
+        var_dump($array);
     }*/
 
 }

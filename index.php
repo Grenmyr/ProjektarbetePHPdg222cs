@@ -1,12 +1,13 @@
 <?php
-require_once(__DIR__."/common/HTMLView.php");
-require_once(__DIR__."/src/controller/ViewController.php");
+require_once(__DIR__."/common/RequireAll.php");
+
+
 
 $htmlView = new common\HTMLView();
-$viewController = new controller\ViewController();
 
-$viewController->input();
-$body = $viewController->body();
+$masterController = new \controller\MasterController();
+$body =$masterController->render();
+
 $htmlView->echoHTML($body);
 
 /**

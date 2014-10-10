@@ -2,7 +2,7 @@
 
 namespace model;
 
-require_once(__DIR__."/DataBaseConnection.php");
+//require_once(__DIR__."/DataBaseConnection.php");
 
 
 class UMLRepository extends DataBaseConnection{

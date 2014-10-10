@@ -1,13 +1,20 @@
 <?php
 namespace view;
 use model\InterpretModel;
+use src\view\nav\NavView;
 
-require_once(__DIR__ . "/../model/InterpretModel.php");
+//require_once(__DIR__ . "/../model/InterpretModel.php");
+//require_once(__DIR__ . "/../model/objectModel/ClassModel.php");
+
 
 class GuestView {
     private $message;
     private $input;
-    private $interpret = [];
+
+    /**
+     * @var ClassModels[]
+     */
+    private $classModels = [];
     /**
      * @var InterpretModel;
      */
@@ -27,13 +34,38 @@ class GuestView {
     }
     // Return output as string;
     public function handleInput(){
-        $this->interpret = $this->interpretModel->validate($this->input);
+        $this->classModels = $this->interpretModel->validate($this->input);
+    }
+    public function showVariables($variables){
+        $dom ='';
+        //var_dump($variables);
+        foreach ($variables as $key => $variable){
+            $private = $variable[$key]->GetPrivate();
+            $name =$variable[$key]->GetName();
+            if($private){
+                $dom .= 'Private ' .$name;
+            }
+            else{
+                $dom .= 'Public ' .$name;
+            }
+
+        }
+
+        return $dom;
     }
     public function showInterpret(){
         $dom = '';
-        if(is_array($this->interpret)){
-            foreach ($this->interpret as $value){
-                $dom .= "<p>$value</p>";
+        if(is_array($this->classModels)){
+            foreach ($this->classModels as $value){
+                $className = $value->GetClassName();
+                $variables[] = $value->GetVariables();
+
+                $variableString =$this->showVariables($variables);
+
+                $dom .= '<p>Class '.$className.' () </p> <p>'.$variableString.'</p>'
+
+                ;
+
             }
         }
         return $dom;
@@ -44,7 +76,8 @@ class GuestView {
         $result = $this->showInterpret();
 
         $string = "<h1>UML->Code</h1>
-<form enctype=multipart/form-data method=post action='?Guest'>
+    <form  method=post action='?action=" . NavView::$guestView . "'>
+     <a href='?action=" . NavView::$registerView . "'>Tillbaka</a>
     <fieldset>
         <legend>
             Write your UML here
@@ -55,7 +88,7 @@ class GuestView {
         <input type='submit' value='submit' name='submitButton'>
          <div> $result </div>
     </fieldset>
-</form>
+    </form>
         ";
         return $string;
     }

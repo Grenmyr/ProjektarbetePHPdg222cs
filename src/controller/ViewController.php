@@ -4,11 +4,11 @@ use model\InterpretModel;
 use model\UMLRepository;
 use view\GuestView;
 
-require_once(__DIR__ . "/../view/GuestView.php");
+//require_once(__DIR__ . "/../view/GuestView.php");
 
-require_once(__DIR__ . "/../model/UMLRepository.php");
+//require_once(__DIR__ . "/../model/UMLRepository.php");
 
-require_once(__DIR__ . "/../model/InterpretModel.php");
+//require_once(__DIR__ . "/../model/InterpretModel.php");
 
 
 class ViewController {
@@ -39,6 +39,7 @@ class ViewController {
      * Return GuestView Dom.
      */
     public function body(){
+        $this->input();
         return $this->guestView->show();
     }
     public function headContent(){
