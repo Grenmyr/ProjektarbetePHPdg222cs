@@ -2,10 +2,10 @@
 
 namespace model;
 
-//require_once(__DIR__."/DataBaseConnection.php");
 
+use Repository;
 
-class UMLRepository extends DataBaseConnection{
+class UMLRepository extends Repository{
 
     /*
      * Function that insert UML string to database.
