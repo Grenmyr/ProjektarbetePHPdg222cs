@@ -51,7 +51,8 @@ class RegisterView {
     Ej Inloggad, Registrerar användare
 </h2>
 <form enctype=multipart/form-data method=post action='?action=" . NavView::$registerView . "'>
-    <a href='?action=" . NavView::$guestView . "'>Tillbaka</a>
+    <a href='?action=" . NavView::$guestView . "'>Till UML->Code</a>
+    <a href='?action=" . NavView::$loginView . "'>Logga in.</a>
     <fieldset>
         <legend>
             Registrera ny användare -Skriv in användarnamn och lösenord

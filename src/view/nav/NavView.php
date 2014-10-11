@@ -9,6 +9,7 @@ class NavView {
 
     public static $guestView = "guestview";
     public static $registerView = "registerview";
+    public static $loginView = "loginview";
 
     public static function getAction(){
         if(isset($_GET[self::$action])){

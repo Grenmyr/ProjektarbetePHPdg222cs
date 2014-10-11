@@ -29,12 +29,6 @@ class InterpretModel {
         preg_match_all($regex,$string,$classArray, PREG_SET_ORDER);
         return $classArray;
     }
-    /*public function presentClass(){
-        $array = [];
-        $array["className"]= $this->classArray[0]->GetClassName();
-        $array["variables"] = $this->classArray[0]->GetVariables();
-        var_dump($array);
-    }*/
 
 }
 /**

@@ -7,17 +7,23 @@ require_once(__DIR__."/HTMLView.php");
 require_once(__DIR__."/../src/controller/ViewController.php");
 require_once(__DIR__."/../src/controller/MasterController.php");
 require_once(__DIR__."/../src/controller/RegisterController.php");
+require_once(__DIR__."/../src/controller/LoginController.php");
 
 
 //src/view
 require_once(__DIR__ . "/../src/view/GuestView.php");
 require_once(__DIR__ . "/../src/view/RegisterView.php");
+require_once(__DIR__ . "/../src/view/LoginView.php");
+require_once(__DIR__ . "/../src/view/MemberView.php");
 
 //src/view/subview
 require_once(__DIR__ . "/../src/View/subview/SweDateView.php");
 
 //src/view/nav
 require_once(__DIR__ . "/../src/view/nav/NavView.php");
+//src/view/cookies
+require_once(__DIR__ . "/../src/view/cookies/CookieView.php");
+
 
 
 
@@ -34,6 +40,7 @@ require_once(__DIR__ . "/../src/model/userModel.php");
 require_once(__DIR__ . "/../src/model/SessionModel.php");
 require_once(__DIR__ . "/../src/model/userRepository.php");
 require_once(__DIR__ . "/../src/model/Repository.php");
+require_once(__DIR__ . "/../src/model/LoginModel.php");
 
 
 //src/model/objectModel
@@ -41,7 +48,7 @@ require_once(__DIR__ . "/../src/model/objectModel/VariableModel.php");
 require_once(__DIR__ . "/../src/model/objectModel/FunctionModel.php");
 require_once(__DIR__ . "/../src/model/objectModel/ClassModel.php");
 
-//RegisterModelExceptions
+//src/Exception/RegisterModelExceptions
 require_once(__DIR__ . "/../src/Exception/RegisterModelExceptions/RegisterUsernameLengthException.php");
 require_once(__DIR__ . "/../src/Exception/RegisterModelExceptions/RegisterUsernameAndPasswordNullException.php");
 require_once(__DIR__ . "/../src/Exception/RegisterModelExceptions/DbUserExistException.php");

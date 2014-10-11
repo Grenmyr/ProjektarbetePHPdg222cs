@@ -15,7 +15,14 @@ class MasterController {
             case NavView::$registerView;
                 $controller = new RegisterController();
                 return $controller->body();
+            case NavView::$loginView;
+                $controller = new LoginController();
+                return $controller->body();
+            default:
+                $controller = new ViewController();
+                return $controller->body();
         }
+
 
     }
 

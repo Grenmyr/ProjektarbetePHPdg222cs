@@ -57,7 +57,6 @@ class RegisterController {
         $password2 = $this->registerView->GetPassword2();
         try{
             $user = new \User();
-            var_dump($username);
 
             if($password1 === $password2 ){
             $this->registerModel->SetUsername($username);

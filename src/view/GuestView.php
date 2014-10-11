@@ -1,5 +1,5 @@
 <?php
-namespace view;
+namespace src\view;
 use model\InterpretModel;
 use src\view\nav\NavView;
 
@@ -77,7 +77,8 @@ class GuestView {
 
         $string = "<h1>UML->Code</h1>
     <form  method=post action='?action=" . NavView::$guestView . "'>
-     <a href='?action=" . NavView::$registerView . "'>Tillbaka</a>
+     <a href='?action=" . NavView::$registerView . "'>Till Registrering av konto.</a>
+      <a href='?action=" . NavView::$loginView . "'>Logga in.</a>
     <fieldset>
         <legend>
             Write your UML here
