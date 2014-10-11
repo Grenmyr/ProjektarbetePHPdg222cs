@@ -24,23 +24,16 @@ require_once(__DIR__ . "/../src/view/nav/NavView.php");
 //src/view/cookies
 require_once(__DIR__ . "/../src/view/cookies/CookieView.php");
 
-
-
-
-
-
-
 //src/model
-require_once(__DIR__."/../src/model/DataBaseConnection.php");
 require_once(__DIR__ . "/../src/model/InterpretModel.php");
 require_once(__DIR__ . "/../src/model/UMLRepository.php");
 require_once(__DIR__ . "/../src/model/RegisterModel.php");
 require_once(__DIR__ . "/../src/model/User.php");
-require_once(__DIR__ . "/../src/model/userModel.php");
 require_once(__DIR__ . "/../src/model/SessionModel.php");
 require_once(__DIR__ . "/../src/model/userRepository.php");
 require_once(__DIR__ . "/../src/model/Repository.php");
 require_once(__DIR__ . "/../src/model/LoginModel.php");
+require_once(__DIR__ . "/../src/model/CookieRepository.php");
 
 
 //src/model/objectModel

@@ -34,7 +34,7 @@ class SessionModel {
         $_SESSION["agent"] = $agent;
     }
     // Remove session.
-    public function UnsetSession(){
+    public function logout(){
         unset($_SESSION['validSession']);
     }
 

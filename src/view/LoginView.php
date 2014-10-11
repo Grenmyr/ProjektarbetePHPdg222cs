@@ -69,8 +69,8 @@ class LoginView {
         return "
             <h1>Laborationskod dg222cs</h1>
             <h2>Ej Inloggad</h2>
-            <form enctype=multipart/form-data method=post action='" . NavView::$loginView . "'>
-                   <a href='" . NavView::$registerView . "'>Registrera ny användare</a>
+            <form enctype=multipart/form-data method=post action='?action=" . NavView::$loginView . "'>
+                   <a href='?action=" . NavView::$registerView . "'>Registrera ny användare</a>
                 <fieldset>
                     <legend>
                         Login - Skriv in användarnamn och lösenord

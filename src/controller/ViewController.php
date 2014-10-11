@@ -2,7 +2,7 @@
 namespace controller;
 use model\InterpretModel;
 use model\UMLRepository;
-use view\GuestView;
+use src\view\GuestView;
 
 //require_once(__DIR__ . "/../view/GuestView.php");
 

@@ -2,10 +2,12 @@
 namespace controller;
 
 use CookieView;
-use LoginModel;
+use model\CookieRepository;
+use model\LoginModel;
 use SessionModel;
 use src\view\LoginView;
 use src\view\MemberView;
+use src\view\nav\NavView;
 use SweDateView;
 use UserModel;
 
@@ -40,6 +42,8 @@ class LoginController {
 
     private $memberView;
 
+    private $loginModel;
+
 
     public  function __construct(){
         //$this->loggedInView = new LoggedInView($URLView);
@@ -48,7 +52,7 @@ class LoginController {
         $this->sweDateView = new SweDateView();
 
         $this->sessionModel = new SessionModel();
-        $this->userModel = new UserModel();
+        //$this->userModel = new UserModel();
         $this->loginModel = new LoginModel();
         $this->cookieView = new CookieView();
     }
@@ -56,14 +60,14 @@ class LoginController {
     public function body(){
         //Get Client agent,and if session does not exist. Then check if cookie exist, if exist try log in with cookie.
         $agent = $this->loginView->GetAgent();
-        if(!$this->userModel->IsAuthenticated($agent) && $this->cookieView->cookieExist()){
+        if(!$this->sessionModel->CheckValidSession($agent) && $this->cookieView->cookieExist()){
             $cookieString = $this->cookieView->load();
             // check userModel if cookie is a valid cookie, if valid cookie set session with user agent.
-            if($this->userModel->cookieLogin($cookieString,$agent)){
-                $userID =$this->userModel->GetUserID();
-                $userName = $this->userModel->getUsernameByUserID($userID);
+            if($this->loginModel->cookieLogin($cookieString,$agent)){
+                $userID = $this->loginModel->GetUserID();
+                $userName = $this->loginModel->getUsernameByUserID($userID);
                 $this->sessionModel->SetUser($userName);
-                $this->loggedInView->cookieLoginMSG();
+                //$this->loggedInView->cookieLoginMSG();
             }
             else{
                 $this->loginView->failedCookieMSG();
@@ -72,35 +76,37 @@ class LoginController {
         }
 
         // If authenticated user, check if user pressed Logout. Then logout and present log out message.
-        if($this->userModel->IsAuthenticated($agent)){
-            $this->loggedInView->presentUser($this->sessionModel->GetUser());
-            if($this->loggedInView->userLoggedOut()){
-                $this->userModel->logOut();
+        if($this->sessionModel->CheckValidSession($agent)){
+            $this->memberView->presentUser($this->sessionModel->GetUser());
+            if($this->memberView->userLoggedOut()){
+                $this->sessionModel->logOut();
                 $this->cookieView->deleteCookie();
-                $this->loginView->logoutMSG();
+                //$this->loginView->logoutMSG();
+
+                //TODO Redirect to LoginView using Navview from controller?
             }
         }
         else{
             // Else if logged out, check if user submit login. Then log in.
             if($this->loginView->userSubmit()){
-                // Retrieve username and password string from LoginView from user post..
+                // Retrieve username and password string from LoginView from user post.
                 $password = $this->loginView->GetPassword();
                 $username = $this->loginView->GetUsername();
                 $trueAgent = $this->loginView->GetAgent();
 
                 // Check userModel if user can log in.
-                if ($this->userModel->LogIn($username, $password,$trueAgent)) {
+                if ($this->loginModel->LogIn($username, $password,$trueAgent)) {
                     $this->sessionModel->SetUser($username);
-                    $this->loggedInView->successMSG();
-                    $this->loggedInView->presentUser($username);
+                    $this->memberView->presentUser($username);
 
                     // Create cookie if user clicked select box in login view.
                         if($this->loginView->wantCookie()){
-                            $uniqueString = $this->userModel->createUniqueKey();
+                            $uniqueString = $this->loginModel->createUniqueKey();
                             $cookieTime = $this->cookieView->save($uniqueString);
-                            $uniqueRepository = new UniqueRepository();
-                            $uniqueRepository->add($uniqueString,$cookieTime,$this->userModel);
-                            $this->loggedInView->cookieSuccessMSG();
+                            $cookieRepository = new CookieRepository();
+                            $userID = $this->loginModel->GetUserID();
+                            $cookieRepository->add($uniqueString,$cookieTime,$userID);
+                            $this->memberView->cookieSuccessMSG();
                         }
                     }
                 else{
@@ -111,16 +117,13 @@ class LoginController {
         }
 
        // After checking For user input previously, then either show login view or logout view.
-        if($this->userModel->IsAuthenticated($agent) ) {
-           return $this->loggedInView->show()
+        if($this->sessionModel->CheckValidSession($agent) ) {
+           return $this->memberView->show()
                   . $this->sweDateView->show();
         }
         else{
             return $this->loginView->show()  . $this->sweDateView->show();
         }
-    }
-    public function registrationMSG(){
-        $this->loginView->registrationMSG();
     }
 }
 
