@@ -3,8 +3,10 @@
 namespace model;
 
 
+use src\Exception\RegexException;
 use src\Exception\RegisterException;
 use src\Exception\RegisterUsernameAndPasswordNullException;
+use src\Exception\RegisterUsernameLengthException;
 
 
 /**
@@ -27,7 +29,7 @@ class RegisterModel {
         $this->sanitizeName($userName);
         if(strlen($userName) < self::USERNAMEMINLENGTH){
             if($this->validCredentials()){
-                throw new \src\Exception\RegisterUsernameLengthException($userName);
+                throw new RegisterUsernameLengthException($userName);
             }
                 throw new RegisterUsernameAndPasswordNullException("Either Password is null");
         }
@@ -42,7 +44,7 @@ class RegisterModel {
         }
         else{
             $userName = preg_replace(self::REGEX, '', $userName);
-            throw new \src\Exception\RegexException($userName);
+            throw new RegexException($userName);
         }
     }
     public function hashPassword($password){
@@ -50,7 +52,6 @@ class RegisterModel {
             throw new RegisterException;
         }
         return  password_hash($password,PASSWORD_BCRYPT);
-        //$this->password = password_hash($password,PASSWORD_BCRYPT);
     }
     public function validCredentials(){
         return ($this->password !== null && $this->username !== null);

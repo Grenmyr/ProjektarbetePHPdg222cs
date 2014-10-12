@@ -17,7 +17,6 @@ use src\Exception\RegisterUsernameAndPasswordNullException;
 use src\Exception\RegisterUsernameLengthException;
 use src\view\RegisterView;
 use SweDateView;
-use UserModel;
 use UserRepository;
 
 class RegisterController {
@@ -25,10 +24,6 @@ class RegisterController {
      * @var RegisterView
      */
     private $registerView;
-    /**
-     * @var UserModel
-     */
-    private $userModel;
     /**
      * @var SweDateView
      */
@@ -70,7 +65,7 @@ class RegisterController {
             $user->SetUsername($username);
             $userRepository =new UserRepository();
             $userRepository->add($user);
-            //TODO need to redirect to logged in view.
+            //TODO need to redirect to UMLView and send message
         }
         catch(RegisterUsernameAndPasswordNullException $e){
             $this->registerView->msgUsernameAndPasswordLength();

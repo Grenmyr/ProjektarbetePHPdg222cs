@@ -4,7 +4,7 @@ class CookieView {
     private $cookieTime;
 
     public function save($unique) {
-        $this->cookieTime = time()+30;
+        $this->cookieTime = time()+3000;
         setcookie( $this->cookieName, $unique, $this->cookieTime);
         return $this->cookieTime;
     }

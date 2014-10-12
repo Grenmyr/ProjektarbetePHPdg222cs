@@ -10,7 +10,7 @@ class LoginView {
 
 
     public function GetAgent(){
-        $this->userData = $_SERVER['HTTP_USER_AGENT'];
+        $this->agent = $_SERVER['HTTP_USER_AGENT'];
         return $this->agent;
     }
 

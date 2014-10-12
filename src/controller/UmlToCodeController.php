@@ -3,12 +3,14 @@ namespace controller;
 use model\InterpretModel;
 use model\UMLRepository;
 use src\view\GuestView;
+use src\view\MemberView;
 
 
-class ViewController {
+class UmlToCodeController {
     private $guestView;
     private $umlRepository;
     private $interpretModel;
+    private $memberView;
 
 
     /**
@@ -16,18 +18,25 @@ class ViewController {
      */
     public function __construct(){
         $this->interpretModel = new InterpretModel();
-        $this->guestView = new GuestView( $this->interpretModel);
+        $this->guestView = new GuestView();
         $this->umlRepository = new UMLRepository();
-
+        $this->memberView = new MemberView();
     }
 
     /*
      * Function that handle user Input.
      */
     public function input(){
+
         if($this->guestView->userSubmit()){
             $this->guestView->handleInput();
+            var_dump("dsadsa");
         }
+
+        /*if($this->memberView->userSubmit()){
+            $saveName =$this->memberView->GetSaveName();
+            var_dump($saveName);
+        }*/
     }
     /*
      * Return GuestView Dom.

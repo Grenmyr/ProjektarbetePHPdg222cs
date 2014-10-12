@@ -6,7 +6,7 @@ require_once(__DIR__ . "/../Settings.php");
 require_once(__DIR__."/HTMLView.php");
 
 //src/controller
-require_once(__DIR__."/../src/controller/ViewController.php");
+require_once(__DIR__ . "/../src/controller/UmlToCodeController.php");
 require_once(__DIR__."/../src/controller/MasterController.php");
 require_once(__DIR__."/../src/controller/RegisterController.php");
 require_once(__DIR__."/../src/controller/LoginController.php");

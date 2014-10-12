@@ -17,7 +17,10 @@ class LoginModel {
         $userRepository = new UserRepository();
         $dbUser =$userRepository->getUserByUsername($username);
         //if not dbUserModel is not null and verify match.
-        if ($this->verifyPassword($password,$dbUser->GetPassword())) {
+        if($dbUser === null){
+            return false;
+        }
+        if ($this->verifyPassword($password,$dbUser->GetPassword()) ) {
             $this->sessionModel->SetValidSession($agent);
             $this->SetUserID($dbUser->GetUserID());
             return true;

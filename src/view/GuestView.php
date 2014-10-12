@@ -1,18 +1,18 @@
 <?php
 namespace src\view;
 use model\InterpretModel;
+use objectModel\ClassModel;
 use src\view\nav\NavView;
-
-//require_once(__DIR__ . "/../model/InterpretModel.php");
-//require_once(__DIR__ . "/../model/objectModel/ClassModel.php");
-
 
 class GuestView {
     private $message;
     private $input;
 
+    private static $submitUMLButton = "submitumlbutton";
+    private static $textArea = "textarea";
+
     /**
-     * @var ClassModels[]
+     * @var ClassModel[]
      */
     private $classModels = [];
     /**
@@ -20,20 +20,24 @@ class GuestView {
      */
     private $interpretModel;
 
-    public function __construct($interpretModel){
-        $this->interpretModel= $interpretModel;
+    public function __construct(){
+        $this->interpretModel= new InterpretModel();
     }
 
     // Return true if submit.
     public function userSubmit(){
-       if (isset($_POST['submitButton'])){
-           $this->input = $_POST['textarea'];
+        var_dump(isset($_POST['submitumlbutton']));
+        //TODO FIX THIS AND MEMBERVIEW
+       if (isset($_POST[self::$submitUMLButton])){
+
+           $this->input = $_POST[self::$textArea];
            return true;
        };
         return false;
     }
     // Return output as string;
     public function handleInput(){
+        var_dump("handleInput");
         $this->classModels = $this->interpretModel->validate($this->input);
     }
     public function showVariables($variables){
@@ -59,13 +63,9 @@ class GuestView {
             foreach ($this->classModels as $value){
                 $className = $value->GetClassName();
                 $variables[] = $value->GetVariables();
-
                 $variableString =$this->showVariables($variables);
-
                 $dom .= '<p>Class '.$className.' () </p> <p>'.$variableString.'</p>'
-
                 ;
-
             }
         }
         return $dom;
@@ -76,21 +76,18 @@ class GuestView {
         $result = $this->showInterpret();
 
         $string = "<h1>UML->Code</h1>
-    <form  method=post action='?action=" . NavView::$guestView . "'>
-     <a href='?action=" . NavView::$registerView . "'>Till Registrering av konto.</a>
+    <form  method=post action='?action=" . NavView::$umlSubmit . "'>
     <fieldset>
         <legend>
             Write your UML here
         </legend>
         <p>$this->message<p>
         <label>Fill in existing domain model to textarea.</label>
-        <textarea cols='50' rows='5' name='textarea'>$this->input</textarea>
-        <input type='submit' value='submit' name='submitButton'>
+        <textarea cols='50' rows='5' name='" .self::$textArea. "'>$this->input</textarea>
+        <input type='submit' value='Get Code' name='submitumlbutton'>
          <div> $result </div>
     </fieldset>
     </form>
-
-
         ";
         return $string;
     }

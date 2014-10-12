@@ -7,7 +7,8 @@ namespace src\view\nav;
 class NavView {
     private static $action = "action";
 
-    public static $guestView = "guestview";
+    public static $umlSubmit = "umlsubmit";
+    public static $umlSave = "umlsave";
     public static $registerView = "registerview";
     public static $login = "login";
     public static $logoutView = "logoutview";
@@ -16,12 +17,19 @@ class NavView {
         if(isset($_GET[self::$action])){
             return $_GET[self::$action];
         }
-        return self::$guestView;
+        return self::$umlSubmit;
     }
 
     public static function redirectHome() {
         header('Location: /' . \Settings::$ROOT_PATH. '/');
     }
+
+    public static function redirectToUML() {
+        header('Location: /' . \Settings::$ROOT_PATH. '/?'.self::$action.'='.self::$umlSubmit );
+    }
+
+
+
 }
 /**
  * Created by PhpStorm.
