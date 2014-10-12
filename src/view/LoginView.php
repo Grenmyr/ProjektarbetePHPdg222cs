@@ -16,7 +16,7 @@ class LoginView {
 
     // Return true if submit.
     public function userSubmit(){
-        if  (isset($_POST['submitButton'])){
+        if  (isset($_POST['loginButton'])){
             return true;
         }
         return false;
@@ -67,9 +67,8 @@ class LoginView {
         $username = $this->GetUsername();
         $password = $this->GetPassword();
         return "
-            <h1>Laborationskod dg222cs</h1>
             <h2>Ej Inloggad</h2>
-            <form enctype=multipart/form-data method=post action='?action=" . NavView::$loginView . "'>
+            <form enctype=multipart/form-data method=post action='?action=" . NavView::$login . "'>
                    <a href='?action=" . NavView::$registerView . "'>Registrera ny användare</a>
                 <fieldset>
                     <legend>
@@ -84,7 +83,7 @@ class LoginView {
                     <input type='password' size='20' name='password' value='$password'>
                     <label>Håll mig inloggad</label>
                     <input type='checkbox' name='LoginView::Checked' id='AutologinID'/>
-                    <input type='submit' value='Logga in' name='submitButton'>
+                    <input type='submit' value='Logga in' name='loginButton'>
                 </fieldset>
             </form>
         ";

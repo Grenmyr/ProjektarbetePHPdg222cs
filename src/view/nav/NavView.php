@@ -9,14 +9,18 @@ class NavView {
 
     public static $guestView = "guestview";
     public static $registerView = "registerview";
-    public static $loginView = "loginview";
+    public static $login = "login";
     public static $logoutView = "logoutview";
 
     public static function getAction(){
         if(isset($_GET[self::$action])){
             return $_GET[self::$action];
         }
-        return self::$registerView;
+        return self::$guestView;
+    }
+
+    public static function redirectHome() {
+        header('Location: /' . \Settings::$ROOT_PATH. '/');
     }
 }
 /**

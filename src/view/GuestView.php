@@ -78,7 +78,6 @@ class GuestView {
         $string = "<h1>UML->Code</h1>
     <form  method=post action='?action=" . NavView::$guestView . "'>
      <a href='?action=" . NavView::$registerView . "'>Till Registrering av konto.</a>
-      <a href='?action=" . NavView::$loginView . "'>Logga in.</a>
     <fieldset>
         <legend>
             Write your UML here
@@ -90,6 +89,8 @@ class GuestView {
          <div> $result </div>
     </fieldset>
     </form>
+
+
         ";
         return $string;
     }

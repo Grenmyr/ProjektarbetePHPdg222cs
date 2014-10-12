@@ -4,12 +4,6 @@ use model\InterpretModel;
 use model\UMLRepository;
 use src\view\GuestView;
 
-//require_once(__DIR__ . "/../view/GuestView.php");
-
-//require_once(__DIR__ . "/../model/UMLRepository.php");
-
-//require_once(__DIR__ . "/../model/InterpretModel.php");
-
 
 class ViewController {
     private $guestView;
@@ -40,7 +34,7 @@ class ViewController {
      */
     public function body(){
         $this->input();
-        return $this->guestView->show();
+        return $this->guestView->show() ;
     }
     public function headContent(){
         //Ask my Logincontroller for variable that containts headcontent depending on on registered or not.

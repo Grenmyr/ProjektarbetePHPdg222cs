@@ -1,4 +1,6 @@
 <?php
+//rootpath
+require_once(__DIR__ . "/../Settings.php");
 
 //commmon
 require_once(__DIR__."/HTMLView.php");

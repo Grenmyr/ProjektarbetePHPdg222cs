@@ -6,21 +6,35 @@ use src\view\nav\NavView;
 
 class MasterController {
 
-
     public function render(){
         switch(NavView::getAction()){
-            case NavView::$guestView;
-                $controller = new ViewController();
-                return $controller->body();
+            /*case NavView::$guestView;
+                //$controller = new ViewController();
+                var_dump("case guestview");
+                $loginController = new LoginController();
+                //$controller->body() .
+                return $loginController->body();*/
             case NavView::$registerView;
+                var_dump("case registerview");
                 $controller = new RegisterController();
                 return $controller->body();
-            case NavView::$loginView;
+            case NavView::$login;
+                var_dump("case login");
                 $controller = new LoginController();
-                return $controller->body();
+
+                return $controller->login();
+            case NavView::$logoutView;
+                var_dump("case logoutview");
+                $controller = new LoginController();
+                 $controller->logout();
+                break;
             default:
-                $controller = new ViewController();
-                return $controller->body();
+                var_dump("case default");
+                //$controller = new ViewController();
+                $loginController = new LoginController();
+                /*$controller->body().*/
+                return $loginController->body();
+
         }
 
 

@@ -52,7 +52,7 @@ class RegisterView {
 </h2>
 <form enctype=multipart/form-data method=post action='?action=" . NavView::$registerView . "'>
     <a href='?action=" . NavView::$guestView . "'>Till UML->Code</a>
-    <a href='?action=" . NavView::$loginView . "'>Logga in.</a>
+    <a href='?action=" . NavView::$login . "'>Logga in.</a>
     <fieldset>
         <legend>
             Registrera ny användare -Skriv in användarnamn och lösenord

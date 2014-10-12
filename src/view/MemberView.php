@@ -31,7 +31,7 @@ class MemberView {
             <h1>Projekt UML->Code</h1>
             <h2>Välkommen $this->username! Du är inloggad.</h2>
             <p>$this->message<p>
-                   <a href='?action=" . NavView::$loginView . "'>Registrera ny användare ta bort sen</a>
+                   <a href='?action=" . NavView::$registerView . "'>Registrera ny användare ta bort sen</a>
                    <a href='?action=" . NavView::$logoutView . "'>Logga ut</a>
 
         ";
