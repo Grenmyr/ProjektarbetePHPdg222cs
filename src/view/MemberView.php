@@ -31,7 +31,7 @@ class MemberView  {
     }
 
     public function cookieSuccessMSG() {
-        $this->message = "Inloggningen lyckades och vi kommer ihåg dig i 7 dagar.";
+        $this->message = "Inloggningen lyckades och vi kommer ihåg dig i 7 dagar..";
     }
 
     public function presentUser($userName){
