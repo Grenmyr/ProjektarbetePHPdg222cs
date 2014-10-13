@@ -12,6 +12,8 @@ class ClassModel{
     const pipeOrPlusRegex = '/(\w+)|(\+\w+)/';
     const publicRegex = '/\+/';
 
+    const CHECKASSOCIATIONS ='/\[(\w+)((?:\|\+?\w+)*)((?:\|\+?\w+\(\))*)\]\-\[(\w+)((?:\|\+?\w+)*)((?:\|\+?\w+\(\))*)\]/';
+
     const namesPos = 0;
     const classNamePos = 1;
     const variableNamePos = 2;
@@ -27,9 +29,12 @@ class ClassModel{
      */
     private $functions = [];
 
-    public function __construct($classArray){
+    private $relations=[];
 
+    public function __construct($classArray){
         $this->className = $classArray[self::classNamePos];
+
+        var_dump($classArray);
 
         $variableNames =$this->findNames(self::pipeOrPlusRegex,$classArray[self::variableNamePos]);
         $functionNames = $this->findNames(self::pipeOrPlusRegex,$classArray[self::functionNamePos]);
@@ -45,10 +50,8 @@ class ClassModel{
             $this->functions[] = new FunctionModel($functionName);
         }
 
-        //var_dump($this->GetClassName());
-        //var_dump($this->GetVariables()[0]);
-        //var_dump($this->GetVariables()[1]);
-        //var_dump($this->functions[1]->GetIsPrivate());
+
+
 
     }
     private  function findNames($regex,$array){
@@ -61,26 +64,15 @@ class ClassModel{
     public function GetVariables(){
         return $this->variables;
     }
-    public function GetVariableNames(){
-        $array =[];
-        foreach ($this->variables as $variable){
-            $array[] = $variable->GetName();
-        }
-        var_dump($array[0]);
-        return $array;
-
-    }
-    public function GetVariablePrivate(){
-        $array =[];
-        foreach ($this->variables as $variable){
-            $array[] = $variable->GetName();
-        }
-        var_dump($array[0]);
-        return $array;
-
-    }
     public function GetFunctions(){
         return $this->functions;
+    }
+    public function SetRelations($relation){
+        $this->relations[]=$relation;
+    }
+    public function GetRelations(){
+        //var_dump($this->relations);
+        return $this->relations;
     }
 
 }

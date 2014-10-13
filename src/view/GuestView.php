@@ -2,6 +2,7 @@
 namespace src\view;
 use model\InterpretModel;
 use objectModel\ClassModel;
+use objectModel\FunctionModel;
 use objectModel\VariableModel;
 use src\view\nav\NavView;
 
@@ -59,6 +60,10 @@ class GuestView {
         return $dom;
     }
 
+    /**
+     * @param FunctionModel[] $functions
+     * @return string
+     */
     public function showFunctions($functions){
         $dom ='';
         //var_dump($variables);
@@ -66,15 +71,27 @@ class GuestView {
             $private = $function->GetPrivate();
             $name =$function->GetName();
             if($private){
-                $dom .="<p>Private ".$name." (){}<p>";
+                $dom .="<p>private function ".$name." (){}<p>";
             }
             else{
-                $dom .= "<p>Public ".$name." (){}<p>";
+                $dom .= "<p>public function ".$name." (){}<p>";
             }
         }
         return $dom;
     }
+    public function showRelations($relations){
+        $dom ='';
+        //var_dump($variables);
+        foreach ($relations as $relation){
+                $dom .="<p>NEW".$relation."<p>";
+        }
+        return $dom;
+    }
 
+    /**
+     *
+     * @return string
+     */
     public function showInterpret(){
         $dom = '';
         if(is_array($this->classModels)){
@@ -82,10 +99,13 @@ class GuestView {
                 $className = $value->GetClassName();
                 $variables = $value->GetVariables();
                 $functions = $value->GetFunctions();
+                $relations = $value->GetRelations();
                 $variableString =$this->showVariables($variables);
                 $functionString =$this->showFunctions($functions);
+                $relationString = $this->showRelations($relations);
+                //var_dump($relations);
 
-                $dom .= "<p>Public Class ".$className." (){ </p> <p>".$variableString."</p><p>".$functionString."}</p>"
+                $dom .= "<p>Public Class ".$className." (){</p> <p>".$relationString."<p> <p>".$variableString."</p><p>".$functionString."}</p>"
                 ;
             }
         }

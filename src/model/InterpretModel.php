@@ -9,23 +9,45 @@ use objectModel\ClassModel;
 class InterpretModel {
     //Match "a-z,A-Z,0-9,_,|,+,()" in certain orders between square brackets.
     //Each pair of square brackets represent a class.
-    //TODO Fix regex so it does not matter which order variables and functions come in?
     const MATCHBETWEENSQUAREBRACKETS = '/\[(\w+)((?:\|\+?\w+)*)((?:\|\+?\w+\(\))*)\]/';
-
+    // only match 1 time atm.
+    const CHECKASSOCIATIONS ='/\[(\w+)((?:\|\+?\w+)*)((?:\|\+?\w+\(\))*)\]\-\[(\w+)((?:\|\+?\w+)*)((?:\|\+?\w+\(\))*)\]/';
     private $inputString ='';
+    /**
+     * @var ClassModel[]
+     */
     private $classArray =[];
 
     public function validate($string){
         $this->inputString = $string;
 
-        $classArray = $this->findClasses(self::MATCHBETWEENSQUAREBRACKETS,$string);
+        $classArray = $this->find(self::MATCHBETWEENSQUAREBRACKETS,$string);
+        $relations = $this->find(self::CHECKASSOCIATIONS,$string);
         foreach ($classArray as $class){
-            $this->classArray[] = new ClassModel($class);
+            $eachClass = new ClassModel($class);
+            if (!$this->getClassByName($eachClass->GetClassName())) {
+                $this->classArray[] = $eachClass;
+            }
+        }
+        foreach ($relations as $relation){
+            var_dump('From '.$relation[1].' to '.$relation[4]);
+            $class = $this->getClassByName($relation[1]);
+            if ($class) {
+                $class->SetRelations($relation[4]);
+            }
         }
         return ($this->classArray);
     }
+    private function getClassByName($className){
+        foreach ($this->classArray as $class){
+            if ($class->GetClassName() === $className) {
+                return $class;
+            }
+        }
+        return null;
+    }
 
-    private function findClasses($regex,$string){
+    private function find($regex,$string){
         preg_match_all($regex,$string,$classArray, PREG_SET_ORDER);
         return $classArray;
     }
