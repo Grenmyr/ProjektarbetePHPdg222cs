@@ -51,8 +51,8 @@ class MemberView  {
             Type name to save Uml->Code project.
         </legend>
         <label></label>
-         <input type='text' size='20'  name=" .self::$saveName."'>
-        <input type='submit' value='Save Uml->Code model' name=" .self::$saveUmlButton."'>
+         <input type='text' size='20'  name='" .self::$saveName."'>
+        <input type='submit' value='Save Uml->Code model' name='" .self::$saveUmlButton."'>
     </fieldset>
     </form>
                    <a href='?action=" . NavView::$logoutView . "'>Logga ut</a>

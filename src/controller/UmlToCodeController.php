@@ -30,13 +30,12 @@ class UmlToCodeController {
 
         if($this->guestView->userSubmit()){
             $this->guestView->handleInput();
-            var_dump("dsadsa");
         }
 
-        /*if($this->memberView->userSubmit()){
+        if($this->memberView->userSubmit()){
             $saveName =$this->memberView->GetSaveName();
             var_dump($saveName);
-        }*/
+        }
     }
     /*
      * Return GuestView Dom.

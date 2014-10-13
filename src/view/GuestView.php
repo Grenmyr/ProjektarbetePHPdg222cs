@@ -2,6 +2,7 @@
 namespace src\view;
 use model\InterpretModel;
 use objectModel\ClassModel;
+use objectModel\VariableModel;
 use src\view\nav\NavView;
 
 class GuestView {
@@ -26,8 +27,6 @@ class GuestView {
 
     // Return true if submit.
     public function userSubmit(){
-        var_dump(isset($_POST['submitumlbutton']));
-        //TODO FIX THIS AND MEMBERVIEW
        if (isset($_POST[self::$submitUMLButton])){
 
            $this->input = $_POST[self::$textArea];
@@ -37,34 +36,56 @@ class GuestView {
     }
     // Return output as string;
     public function handleInput(){
-        var_dump("handleInput");
         $this->classModels = $this->interpretModel->validate($this->input);
     }
+
+    /**
+     * @param VariableModel[] $variables
+     * @return string
+     */
     public function showVariables($variables){
         $dom ='';
         //var_dump($variables);
-        foreach ($variables as $key => $variable){
-            $private = $variable[$key]->GetPrivate();
-            $name =$variable[$key]->GetName();
+        foreach ($variables as $variable){
+            $private = $variable->GetPrivate();
+            $name =$variable->GetName();
             if($private){
-                $dom .= 'Private ' .$name;
+                $dom .= "<p>Private ".$name."<p>";
             }
             else{
-                $dom .= 'Public ' .$name;
+                $dom .= "<p>Public ".$name."<p>";
             }
-
         }
-
         return $dom;
     }
+
+    public function showFunctions($functions){
+        $dom ='';
+        //var_dump($variables);
+        foreach ($functions as $function){
+            $private = $function->GetPrivate();
+            $name =$function->GetName();
+            if($private){
+                $dom .="<p>Private ".$name." (){}<p>";
+            }
+            else{
+                $dom .= "<p>Public ".$name." (){}<p>";
+            }
+        }
+        return $dom;
+    }
+
     public function showInterpret(){
         $dom = '';
         if(is_array($this->classModels)){
             foreach ($this->classModels as $value){
                 $className = $value->GetClassName();
-                $variables[] = $value->GetVariables();
+                $variables = $value->GetVariables();
+                $functions = $value->GetFunctions();
                 $variableString =$this->showVariables($variables);
-                $dom .= '<p>Class '.$className.' () </p> <p>'.$variableString.'</p>'
+                $functionString =$this->showFunctions($functions);
+
+                $dom .= "<p>Public Class ".$className." (){ </p> <p>".$variableString."</p><p>".$functionString."}</p>"
                 ;
             }
         }
@@ -84,7 +105,7 @@ class GuestView {
         <p>$this->message<p>
         <label>Fill in existing domain model to textarea.</label>
         <textarea cols='50' rows='5' name='" .self::$textArea. "'>$this->input</textarea>
-        <input type='submit' value='Get Code' name='submitumlbutton'>
+        <input type='submit' value='Get Code' name='" .self::$submitUMLButton. "'>
          <div> $result </div>
     </fieldset>
     </form>

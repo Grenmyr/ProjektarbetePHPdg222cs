@@ -44,11 +44,11 @@ require_once(__DIR__ . "/../src/model/objectModel/FunctionModel.php");
 require_once(__DIR__ . "/../src/model/objectModel/ClassModel.php");
 
 //src/Exception/RegisterModelExceptions
-require_once(__DIR__ . "/../src/Exception/RegisterModelExceptions/RegisterUsernameLengthException.php");
-require_once(__DIR__ . "/../src/Exception/RegisterModelExceptions/RegisterUsernameAndPasswordNullException.php");
-require_once(__DIR__ . "/../src/Exception/RegisterModelExceptions/DbUserExistException.php");
-require_once(__DIR__ . "/../src/Exception/RegisterModelExceptions/RegisterException.php");
-require_once(__DIR__ . "/../src/Exception/RegisterModelExceptions/RegexException.php");
+require_once(__DIR__ . "/../src/exceptions/registercontrollerexceptions/RegisterUsernameLengthException.php");
+require_once(__DIR__ . "/../src/exceptions/registercontrollerexceptions/RegisterUsernameAndPasswordNullException.php");
+require_once(__DIR__ . "/../src/exceptions/registercontrollerexceptions/DbUserExistException.php");
+require_once(__DIR__ . "/../src/exceptions/registercontrollerexceptions/RegisterException.php");
+require_once(__DIR__ . "/../src/exceptions/registercontrollerexceptions/RegexException.php");
 
 
 
