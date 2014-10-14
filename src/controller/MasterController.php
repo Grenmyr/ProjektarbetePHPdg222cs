@@ -2,20 +2,30 @@
 
 namespace controller;
 
+use model\InterpretModel;
+use SessionModel;
 use src\view\nav\NavView;
 
 class MasterController {
 
     public function render(){
+        $sessionModel = New SessionModel();
+        $loginController = new LoginController($sessionModel);
+
         switch(NavView::getAction()){
             case NavView::$umlSubmit;
                 $umlToCodeController = new UmlToCodeController();
-                var_dump("case umlSubmit");
-                $loginController = new LoginController();
-                return  $loginController->checkLogin(). $umlToCodeController->body();
+                if($loginController->checkLogin()){
+                    return $umlToCodeController->showMemberView($sessionModel);
+                }
+                else
+                {
+                    return  $umlToCodeController->showGuestView();
+                }
             case NavView::$umlSave;
                 var_dump("case umlSave");
                 $umlToCodeController = new UmlToCodeController();
+                $umlToCodeController->saveUML();
                 break;
 
             case NavView::$registerView;
@@ -24,22 +34,24 @@ class MasterController {
                 return $registerController->body();
             case NavView::$login;
                 var_dump("case login");
-                $loginController = new LoginController();
                 return $loginController->login();
             case NavView::$logoutView;
                 var_dump("case logoutview");
-                $loginController = new LoginController();
                 $loginController->logout();
                 break;
             default:
                 var_dump("case default");
                 $umlToCodeController = new UmlToCodeController();
-                $loginController = new LoginController();
-                return  $loginController->checkLogin(). $umlToCodeController->body();
-
+                if($loginController->checkLogin()){
+                    return $umlToCodeController->showMemberView($sessionModel);
+                }
+                else
+                {
+                    return  $umlToCodeController->showGuestView();
+                }
         }
 
-
+        return "error";
     }
 
 

@@ -12,6 +12,7 @@ class InterpretModel {
     const MATCHBETWEENSQUAREBRACKETS = '/\[(\w+)((?:\|\+?\w+)*)((?:\|\+?\w+\(\))*)\]/';
     // only match 1 time atm.
     const CHECKASSOCIATIONS ='/\[(\w+)((?:\|\+?\w+)*)((?:\|\+?\w+\(\))*)\]\-\[(\w+)((?:\|\+?\w+)*)((?:\|\+?\w+\(\))*)\]/';
+
     private $inputString ='';
     /**
      * @var ClassModel[]
@@ -30,7 +31,7 @@ class InterpretModel {
             }
         }
         foreach ($relations as $relation){
-            var_dump('From '.$relation[1].' to '.$relation[4]);
+            //var_dump('From '.$relation[1].' to '.$relation[4]);
             $class = $this->getClassByName($relation[1]);
             if ($class) {
                 $class->SetRelations($relation[4]);

@@ -36,6 +36,9 @@ require_once(__DIR__ . "/../src/model/SessionModel.php");
 require_once(__DIR__ . "/../src/model/repository/UserRepository.php");
 require_once(__DIR__ . "/../src/model/LoginModel.php");
 require_once(__DIR__ . "/../src/model/repository/CookieRepository.php");
+require_once(__DIR__ . "/../src/model/UML.php");
+require_once(__DIR__ . "/../src/model/UmlToCodeModel.php");
+
 
 
 //src/model/objectModel
@@ -43,14 +46,17 @@ require_once(__DIR__ . "/../src/model/objectModel/VariableModel.php");
 require_once(__DIR__ . "/../src/model/objectModel/FunctionModel.php");
 require_once(__DIR__ . "/../src/model/objectModel/ClassModel.php");
 
-//src/Exception/RegisterModelExceptions
+//src/exceptions/registercontrollerexceptions
 require_once(__DIR__ . "/../src/exceptions/registercontrollerexceptions/RegisterUsernameLengthException.php");
 require_once(__DIR__ . "/../src/exceptions/registercontrollerexceptions/RegisterUsernameAndPasswordNullException.php");
 require_once(__DIR__ . "/../src/exceptions/registercontrollerexceptions/DbUserExistException.php");
 require_once(__DIR__ . "/../src/exceptions/registercontrollerexceptions/RegisterException.php");
 require_once(__DIR__ . "/../src/exceptions/registercontrollerexceptions/RegexException.php");
 
-
+//src/exceptions/umltocodecontrollerexceptions
+require_once(__DIR__ . "/../src/exceptions/umltocodecontrollerexceptions/RegexSaveNameException.php");
+require_once(__DIR__ . "/../src/exceptions/umltocodecontrollerexceptions/RegexUmlStringException.php");
+;
 
 
 /**

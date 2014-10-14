@@ -7,30 +7,32 @@ use objectModel\VariableModel;
 use src\view\nav\NavView;
 
 class GuestView {
-    private $message;
-    private $input;
+    protected  $message;
+    protected  $input;
 
-    private static $submitUMLButton = "submitumlbutton";
-    private static $textArea = "textarea";
+    protected  static $submitUMLButton = "submitumlbutton";
+    protected  static $textArea = "textarea";
 
     /**
      * @var ClassModel[]
      */
-    private $classModels = [];
+    protected  $classModels = [];
     /**
      * @var InterpretModel;
      */
-    private $interpretModel;
+    protected  $interpretModel;
 
     public function __construct(){
         $this->interpretModel= new InterpretModel();
     }
-
+    public function SetInputValue($post){
+        $this->input= $post;
+    }
     // Return true if submit.
     public function userSubmit(){
        if (isset($_POST[self::$submitUMLButton])){
 
-           $this->input = $_POST[self::$textArea];
+           $this->SetInputValue($_POST[self::$textArea]);
            return true;
        };
         return false;
@@ -46,7 +48,6 @@ class GuestView {
      */
     public function showVariables($variables){
         $dom ='';
-        //var_dump($variables);
         foreach ($variables as $variable){
             $private = $variable->GetPrivate();
             $name =$variable->GetName();
@@ -117,6 +118,8 @@ class GuestView {
         $result = $this->showInterpret();
 
         $string = "<h1>UML->Code</h1>
+        <a href='?action=" . NavView::$login . "'>Logga in</a>
+         <a href='?action=" . NavView::$registerView . "'>Registrera</a>
     <form  method=post action='?action=" . NavView::$umlSubmit . "'>
     <fieldset>
         <legend>
@@ -128,6 +131,7 @@ class GuestView {
         <input type='submit' value='Get Code' name='" .self::$submitUMLButton. "'>
          <div> $result </div>
     </fieldset>
+
     </form>
         ";
         return $string;

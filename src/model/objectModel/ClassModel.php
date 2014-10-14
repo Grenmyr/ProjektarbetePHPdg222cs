@@ -34,8 +34,6 @@ class ClassModel{
     public function __construct($classArray){
         $this->className = $classArray[self::classNamePos];
 
-        var_dump($classArray);
-
         $variableNames =$this->findNames(self::pipeOrPlusRegex,$classArray[self::variableNamePos]);
         $functionNames = $this->findNames(self::pipeOrPlusRegex,$classArray[self::functionNamePos]);
 
@@ -44,15 +42,10 @@ class ClassModel{
             $this->variables[] = new VariableModel($variableName);
         }
 
-
         foreach ($functionNames as $name){
             $functionName = $name[self::namesPos];
             $this->functions[] = new FunctionModel($functionName);
         }
-
-
-
-
     }
     private  function findNames($regex,$array){
         preg_match_all($regex,$array,$classArray, PREG_SET_ORDER);

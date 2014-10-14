@@ -40,16 +40,20 @@ class LoginController {
 
     private $guestView;
 
-    public  function __construct(){
+
+    public  function __construct($sessionModel){
+
         $this->memberView = new MemberView();
         $this->loginView = new LoginView();
         $this->sweDateView = new SweDateView();
         $this->guestView = new GuestView();
 
-        $this->sessionModel = new SessionModel();
+        $this->sessionModel = $sessionModel;
+
         $this->loginModel = new LoginModel();
         $this->cookieView = new CookieView();
     }
+
     public function logout(){
         $this->sessionModel->logOut();
         $this->cookieView->deleteCookie();
@@ -60,12 +64,10 @@ class LoginController {
         $agent = $this->loginView->GetAgent();
         $this->cookieLogin($agent);
         if($this->sessionModel->CheckValidSession($agent) ) {
-            $username = $this->sessionModel->GetUser();
-            $this->memberView->presentUser($username);
-            return $this->memberView->showMemberContent() . $this->sweDateView->show();
+            return true;
         }
         else{
-            return  $this->loginView->show() . $this->sweDateView->show();
+            return false;
         }
     }
 
@@ -97,15 +99,11 @@ class LoginController {
 
             // Check userModel if user can log in.
             if ($this->loginModel->LogIn($username, $password,$trueAgent)) {
-                //$this->sessionModel->SetUser($username);
-                $this->memberView->presentUser($username);
-
                 // Create cookie if user clicked select box in login view.
                 if($this->loginView->wantCookie()){
                     $this->setCookie();
                 }
                 $this->sessionModel->SetUser($username);
-                // TODO send message with redirect or sesssion.
                 NavView::redirectToUML();
             }
             else{
@@ -113,7 +111,7 @@ class LoginController {
                 $this->loginView->FailedMSG($username,$password);
             }
         }
-        return  $this->loginView->show(). $this->guestView->show()  . $this->sweDateView->show();
+        return   $this->loginView->show()  . $this->sweDateView->show();
     }
     public function setCookie(){
         $uniqueString = $this->loginModel->createUniqueKey();
@@ -123,6 +121,8 @@ class LoginController {
         $cookieRepository->add($uniqueString,$cookieTime,$userID);
         $this->memberView->cookieSuccessMSG();
     }
+
+
 
 
 }
