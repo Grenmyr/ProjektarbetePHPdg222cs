@@ -21,7 +21,6 @@ class VariableModel {
             $this->private = true;
             $this->name = $name;
         }
-        //var_dump($this->name);
     }
     public function GetPrivate(){
         return $this->private;

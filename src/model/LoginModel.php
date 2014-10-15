@@ -1,8 +1,11 @@
 <?php
 namespace model;
 
-use SessionModel;
-use UserRepository;
+
+
+
+use model\repository\CookieRepository;
+use model\repository\UserRepository;
 
 class LoginModel {
     private $sessionModel;

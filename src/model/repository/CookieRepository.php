@@ -1,9 +1,11 @@
 <?php
-namespace model;
+namespace model\repository;
 
 
-use Repository;
-use User;
+
+
+
+use model\User;
 
 class CookieRepository extends Repository{
     private static $userID="userID";

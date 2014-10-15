@@ -1,4 +1,5 @@
 <?php
+namespace model\repository;
 abstract class Repository {
     protected $dbUsername = 'root';
     protected $dbPassword = '';

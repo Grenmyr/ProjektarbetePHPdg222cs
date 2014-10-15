@@ -2,8 +2,7 @@
 
 namespace controller;
 
-use model\InterpretModel;
-use SessionModel;
+use model\SessionModel;
 use src\view\nav\NavView;
 
 class MasterController {
@@ -24,10 +23,29 @@ class MasterController {
                 }
             case NavView::$umlSave;
                 var_dump("case umlSave");
-                $umlToCodeController = new UmlToCodeController();
-                $umlToCodeController->saveUML();
+                //TODO redirect here on save and konkatinera?
                 break;
-
+            case NavView::$umlGetLists;
+                var_dump("case umlGetLists");
+                //TODO redirect here on Get List and konkatinera?
+                $umlToCodeController = new UmlToCodeController();
+                if($loginController->checkLogin()){
+                    return $umlToCodeController->showMemberView($sessionModel) .$umlToCodeController->projectsView();
+                }
+                else
+                {
+                    return  $umlToCodeController->showGuestView();
+                }
+            case NavView::$showProject;
+                var_dump("case showproject");
+                $umlToCodeController = new UmlToCodeController();
+                if($loginController->checkLogin()){
+                    return $umlToCodeController->showMemberView($sessionModel) .$umlToCodeController->getUmlProject();
+                }
+                else
+                {
+                    return  $umlToCodeController->showGuestView();
+                }
             case NavView::$registerView;
                 var_dump("case registerview");
                 $registerController = new RegisterController();

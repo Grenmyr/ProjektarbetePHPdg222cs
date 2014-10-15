@@ -10,14 +10,16 @@ namespace controller;
 
 
 use model\RegisterModel;
+use model\repository\UserRepository;
+use model\User;
 use src\Exception\DbUserExistException;
 use src\Exception\RegexException;
 use src\Exception\RegisterException;
 use src\Exception\RegisterUsernameAndPasswordNullException;
 use src\Exception\RegisterUsernameLengthException;
+use src\view\nav\NavView;
 use src\view\RegisterView;
 use SweDateView;
-use UserRepository;
 
 class RegisterController {
     /**
@@ -51,7 +53,7 @@ class RegisterController {
         $password1 = $this->registerView->GetPassword1();
         $password2 = $this->registerView->GetPassword2();
         try{
-            $user = new \User();
+            $user = new User();
 
             if($password1 === $password2 ){
             $this->registerModel->SetUsername($username);
@@ -65,7 +67,7 @@ class RegisterController {
             $user->SetUsername($username);
             $userRepository =new UserRepository();
             $userRepository->add($user);
-            //TODO need to redirect to UMLView and send message
+            NavView::$umlSubmit;
         }
         catch(RegisterUsernameAndPasswordNullException $e){
             $this->registerView->msgUsernameAndPasswordLength();

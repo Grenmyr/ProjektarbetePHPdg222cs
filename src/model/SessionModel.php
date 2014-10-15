@@ -1,4 +1,5 @@
 <?php
+namespace model;
 class SessionModel {
    // Set a new session.
    public function __construct(){

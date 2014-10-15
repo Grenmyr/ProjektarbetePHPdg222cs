@@ -12,27 +12,27 @@ use src\view\nav\NavView;
 class MemberView extends GuestView {
     private $username;
     private $saveNameValue;
+    private static $welcome="welcome";
 
     private static $saveUmlButton = "saveumlbutton";
     private static $saveName = "savename";
-    // new
 
-
-    public function userLoggedOut(){
-        if(NavView::getAction() == NavView::$logoutView){
-            return true;
-        }
-        return false;
-    }
     private function SetSaveNameValue($saveName){
         $this->saveNameValue = $saveName;
     }
 
-    public function userSubmitSave(){
+    public function setMessage(){
+        if(isset($_GET[self::$welcome])){
+            $this->message[] = "Välkommen tillbaka " .$_GET[self::$welcome]." !";
+        }
+        return False;
+    }
+
+    public function userPostSave(){
         if(isset($_POST[self::$saveUmlButton])){
             $this->SetInputValue($_POST[self::$textArea]);
             $this->SetSaveNameValue($_POST[self::$saveName]);
-            return $_POST[self::$textArea];
+            return true;
         }
         return false;
     }
@@ -65,6 +65,7 @@ class MemberView extends GuestView {
 
         $string = "<h1>UML->Code</h1>
         <a href='?action=" . NavView::$logoutView . "'>Logga ut</a>
+        <a href='?action=" . NavView::$umlGetLists . "'>Hämta sparade projekt</a>
             <h2>$this->username är inloggad.</h2>
             <p>$message<p>
              <form  method=post action='?action=" . NavView::$umlSubmit . "'>
@@ -116,6 +117,16 @@ class MemberView extends GuestView {
     {
         $this->message[] = "Modell texten är för kort, minst tre tecken behövs. ";
     }
+
+    public function LoginMSG()
+    {
+        $this->message[] = "Välkommen!";
+    }
+
+    /*public function emtyTextInputMSG()
+    {
+        $this->message[] = "Modell texten kan inte vara tom.";
+    }*/
 }
 
 

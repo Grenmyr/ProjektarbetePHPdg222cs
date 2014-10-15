@@ -1,5 +1,5 @@
 <?php
-
+namespace model;
 
 use src\exceptions\umltocodecontrollerexceptions\RegexSaveNameException;
 use src\exceptions\umltocodecontrollerexceptions\RegexUmlStringException;
@@ -62,6 +62,9 @@ class UML {
     }
     public function GetSaveName(){
         return  $this->saveName;
+    }
+    public function GetUserID(){
+        return  $this->userID;
     }
 
 

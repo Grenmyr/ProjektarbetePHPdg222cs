@@ -2,10 +2,9 @@
 namespace controller;
 
 use CookieView;
-use model\CookieRepository;
-use model\InterpretModel;
 use model\LoginModel;
-use SessionModel;
+use model\repository\CookieRepository;
+use model\SessionModel;
 use src\view\GuestView;
 use src\view\LoginView;
 use src\view\MemberView;
@@ -104,7 +103,7 @@ class LoginController {
                     $this->setCookie();
                 }
                 $this->sessionModel->SetUser($username);
-                NavView::redirectToUML();
+                NavView::redirectToUMLMSG($username);
             }
             else{
                 //Present error msg if failed login.
@@ -121,10 +120,6 @@ class LoginController {
         $cookieRepository->add($uniqueString,$cookieTime,$userID);
         $this->memberView->cookieSuccessMSG();
     }
-
-
-
-
 }
 /**
  * Created by PhpStorm.

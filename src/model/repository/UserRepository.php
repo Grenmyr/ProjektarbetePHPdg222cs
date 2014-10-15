@@ -1,4 +1,7 @@
 <?php
+namespace model\repository;
+
+use model\User;
 
 class UserRepository extends Repository {
     private static $userName="username";

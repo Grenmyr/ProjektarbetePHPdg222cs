@@ -26,6 +26,10 @@ require_once(__DIR__ . "/../src/view/nav/NavView.php");
 //src/view/cookies
 require_once(__DIR__ . "/../src/view/cookies/CookieView.php");
 
+//src/view/subview
+require_once(__DIR__ . "/../src/view/subview/ProdjectsView.php");
+
+
 //src/model
 require_once(__DIR__ . "/../src/model/repository/Repository.php");
 require_once(__DIR__ . "/../src/model/InterpretModel.php");

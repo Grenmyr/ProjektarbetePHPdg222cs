@@ -1,14 +1,17 @@
 <?php
+namespace model;
 
-
-use src\Exception\RegexException;
+use model\repository\UMLRepository;
 
 class UmlToCodeModel {
     public function validate($saveName,$umlString,$username){
+
         $uml = new UML();
         $uml->SetSaveName($saveName);
         $uml->SetUmlString($umlString);
         $uml->SetUsername($username);
+        $umlRepository = New UMLRepository();
+        $umlRepository->add($uml);
     }
 }
 /**

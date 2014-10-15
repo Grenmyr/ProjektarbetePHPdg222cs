@@ -1,16 +1,17 @@
 <?php
 namespace controller;
 use model\InterpretModel;
-use model\UMLRepository;
-use src\Exception\RegexException;
+use model\repository\UMLRepository;
+use model\repository\UserRepository;
+use model\SessionModel;
+use model\UmlToCodeModel;
 use src\exceptions\umltocodecontrollerexceptions\RegexSaveNameException;
 use src\exceptions\umltocodecontrollerexceptions\RegexUmlStringException;
 use src\exceptions\umltocodecontrollerexceptions\SaveNameLengthException;
 use src\exceptions\umltocodecontrollerexceptions\UmlLengthException;
 use src\view\GuestView;
 use src\view\MemberView;
-use UML;
-use UmlToCodeModel;
+use src\view\subview\ProdjectsView;
 
 
 class UmlToCodeController {
@@ -37,16 +38,21 @@ class UmlToCodeController {
         return $this->guestView->show() ;
     }
 
-
+    /**
+     * @param SessionModel $sessionModel
+     * @return string
+     */
     public function showMemberView($sessionModel){
         $this->memberView->SetUser($sessionModel->GetUser());
+        $this->memberView->setMessage();
 
 
         if($this->memberView->userSubmit()){
+
             $this->memberView->handleInput();
         }
-        if($this->memberView->userSubmitSave()){
-           $this->saveUML();
+        if($this->memberView->userPostSave()){
+                $this->saveUML();
         }
         return $this->memberView->showMemberContents();
     }
@@ -54,7 +60,6 @@ class UmlToCodeController {
         $saveName = $this->memberView->GetSaveName();
         $umlString = $this->memberView->GetTextInput();
         $username = $this->memberView->GetUser();
-        var_dump($saveName);
         try{
         $this->umlToCodeModel->validate($saveName,$umlString,$username);
         }
@@ -70,9 +75,27 @@ class UmlToCodeController {
             $this->memberView->saveNameLengthMSG();
         }
         catch(UmlLengthException $e){
-            $string  = $e->getMessage();
             $this->memberView->umlLengthMSG();
         }
+    }
+
+    public function projectsView()
+    {
+        $projectView = New ProdjectsView();
+        $userName = $this->memberView->GetUser();
+        $userRepository = New UserRepository();
+        $dbUser = $userRepository->getUserByUsername($userName);
+        $umlArray =$this->umlRepository->getProjectsByUserID($dbUser->GetUserID());
+        return $projectView->Show($umlArray);
+
+
+    }
+
+    public  function getUmlProject(){
+        $projectView = New ProdjectsView();
+        $UmlName = $projectView->GetProjectName();
+        $userID = $projectView->GetUserID();
+        $projectView->Getstuff();
     }
 
 

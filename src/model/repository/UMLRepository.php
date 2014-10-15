@@ -1,12 +1,12 @@
 <?php
 
-namespace model;
+namespace model\repository;
 
 
-use Repository;
+
+use model\UML;
 use src\Exception\DbUserExistException;
-use UML;
-use UserRepository;
+
 
 class UMLRepository extends Repository{
 
@@ -35,6 +35,35 @@ class UMLRepository extends Repository{
             $query -> execute($params);
         } catch (\PDOException $e) {
              die('An unknown error have occured.');
+        }
+    }
+
+    public function getProjectsByUserID($userID)
+    {
+        try {
+            $db = $this -> connection();
+            $sql = "SELECT * FROM " . self::$dbTable . " WHERE " . self::$userID . " = ?";
+            $params = array($userID);
+            $query = $db -> prepare($sql);
+            $query -> execute($params);
+            $result = $query -> fetchAll();
+            if($result){
+                $umlArray = [];
+                foreach($result as $project){
+                    $uml= new UML();
+                    $uml->SetUmlString($project[self::$projectString]);
+                    $uml->SetSaveName($project[self::$projectName]);
+                    $uml->SetUserID($project[self::$userID]);
+                 $umlArray []= $uml;
+                }
+                return $umlArray;
+
+            }
+            else{
+                return NULL;
+            }
+        } catch (\PDOException $e) {
+            die('An unknown error have occured.');
         }
     }
 
