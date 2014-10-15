@@ -56,6 +56,8 @@ require_once(__DIR__ . "/../src/exceptions/registercontrollerexceptions/RegexExc
 //src/exceptions/umltocodecontrollerexceptions
 require_once(__DIR__ . "/../src/exceptions/umltocodecontrollerexceptions/RegexSaveNameException.php");
 require_once(__DIR__ . "/../src/exceptions/umltocodecontrollerexceptions/RegexUmlStringException.php");
+require_once(__DIR__ . "/../src/exceptions/umltocodecontrollerexceptions/SaveNameLengthException.php");
+require_once(__DIR__ . "/../src/exceptions/umltocodecontrollerexceptions/UmlLengthException.php");
 ;
 
 

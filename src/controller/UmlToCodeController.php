@@ -5,6 +5,8 @@ use model\UMLRepository;
 use src\Exception\RegexException;
 use src\exceptions\umltocodecontrollerexceptions\RegexSaveNameException;
 use src\exceptions\umltocodecontrollerexceptions\RegexUmlStringException;
+use src\exceptions\umltocodecontrollerexceptions\SaveNameLengthException;
+use src\exceptions\umltocodecontrollerexceptions\UmlLengthException;
 use src\view\GuestView;
 use src\view\MemberView;
 use UML;
@@ -52,16 +54,24 @@ class UmlToCodeController {
         $saveName = $this->memberView->GetSaveName();
         $umlString = $this->memberView->GetTextInput();
         $username = $this->memberView->GetUser();
+        var_dump($saveName);
         try{
         $this->umlToCodeModel->validate($saveName,$umlString,$username);
         }
         catch(RegexSaveNameException $e){
             $string  = $e->getMessage();
-            $this->memberView->badCharSaveNameValue($string);
+            $this->memberView->badCharSaveNameValueMSG($string);
         }
         catch(RegexUmlStringException $e){
             $string  = $e->getMessage();
-            $this->memberView->badCharInputValue($string);
+            $this->memberView->badCharInputValueMSG($string);
+        }
+        catch(SaveNameLengthException $e){
+            $this->memberView->saveNameLengthMSG();
+        }
+        catch(UmlLengthException $e){
+            $string  = $e->getMessage();
+            $this->memberView->umlLengthMSG();
         }
     }
 

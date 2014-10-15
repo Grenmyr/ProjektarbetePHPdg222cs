@@ -3,6 +3,8 @@
 
 use src\exceptions\umltocodecontrollerexceptions\RegexSaveNameException;
 use src\exceptions\umltocodecontrollerexceptions\RegexUmlStringException;
+use src\exceptions\umltocodecontrollerexceptions\SaveNameLengthException;
+use src\exceptions\umltocodecontrollerexceptions\UmlLengthException;
 
 class UML {
     private $saveName;
@@ -10,7 +12,10 @@ class UML {
     private $userID;
     private $username;
 
-    const  REGEX = '/[^a-z0-9\-\+\|\[\]\(\)]+/i';
+    const SAVENAMEMINLENGTH = 2;
+    const UMLSTRINGMINLENGTH = 3;
+    const  UMLSTRINGREGEX = '/[^a-z0-9\-\+\|\[\]\(\)]+/i';
+    const  SAVENAMEREGEX = '/[^a-z0-9\-]+/i';
 
 
     public function SetUserID($userID){
@@ -24,21 +29,27 @@ class UML {
     }
     public function SetSaveName($saveName){
 
-        if(!preg_match(self::REGEX, "$saveName" )){
+        if(!preg_match(self::SAVENAMEREGEX, "$saveName" )){
+            if(strlen($saveName) < self::SAVENAMEMINLENGTH){
+                throw new SaveNameLengthException("Savename är för kort, måste vara minst 2 tecken.");
+            }
             $this->saveName = $saveName;
         }
         else{
-            $saveName = preg_replace(self::REGEX, '', $saveName);
+            $saveName = preg_replace(self::UMLSTRINGREGEX, '', $saveName);
             var_dump($saveName);
             throw new RegexSaveNameException($saveName);
         }
     }
     public function SetUmlString($umlString){
-        if(!preg_match(self::REGEX, "$umlString" )){
+        if(!preg_match(self::UMLSTRINGREGEX, "$umlString" )){
+            if(strlen($umlString) < self::UMLSTRINGMINLENGTH){
+                throw new UmlLengthException("Din UML modell är för kort, måste vara minst 3 tecken.");
+            }
         $this->umlString = $umlString;
         }
         else{
-                $umlString = preg_replace(self::REGEX, '', $umlString);
+                $umlString = preg_replace(self::UMLSTRINGREGEX, '', $umlString);
                 throw new RegexUmlStringException($umlString);
             }
     }

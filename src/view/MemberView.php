@@ -50,7 +50,7 @@ class MemberView extends GuestView {
     }
 
     public function cookieSuccessMSG() {
-        $this->message = "Inloggningen lyckades och vi kommer ihåg dig i 7 dagar..";
+        $this->message = "Inloggningen lyckades och vi kommer ihåg dig i 7 dagar.";
     }
 
     public function SetUser($userName){
@@ -89,11 +89,11 @@ class MemberView extends GuestView {
         ";
         return $string;
     }
-    public function badCharInputValue($value){
+    public function badCharInputValueMSG($value){
         $this->SetInputValue($value);
-        $this->message[] = " Inputvalue $value innehöll tidigare ogiltiga tecken, dom är nu borttagna.";
+        $this->message[] = " Modell texten $value innehöll tidigare ogiltiga tecken, dom är nu borttagna.";
     }
-    public function badCharSaveNameValue($value){
+    public function badCharSaveNameValueMSG($value){
         $this->SetSaveNameValue($value);
         $this->message[] = " SaveName $value innehöll tidigare ogiltiga tecken, dom är nu borttagna.";
     }
@@ -105,6 +105,16 @@ class MemberView extends GuestView {
             }
         }
         return $dom;
+    }
+
+    public function saveNameLengthMSG()
+    {
+        $this->message[] = " Savename är för kort, minst två tecken behövs. ";
+    }
+
+    public function umlLengthMSG()
+    {
+        $this->message[] = "Modell texten är för kort, minst tre tecken behövs. ";
     }
 }
 
