@@ -4,6 +4,7 @@ use model\InterpretModel;
 use model\repository\UMLRepository;
 use model\repository\UserRepository;
 use model\SessionModel;
+use model\UML;
 use model\UmlToCodeModel;
 use src\exceptions\umltocodecontrollerexceptions\RegexSaveNameException;
 use src\exceptions\umltocodecontrollerexceptions\RegexUmlStringException;
@@ -64,6 +65,7 @@ class UmlToCodeController {
         $username = $this->memberView->GetUser();
         try{
         $this->umlToCodeModel->validate($saveName,$umlString,$username);
+            $this->memberView->SaveMSG($saveName);
         }
         catch(RegexSaveNameException $e){
             $string  = $e->getMessage();
@@ -79,7 +81,6 @@ class UmlToCodeController {
         }
         catch(UmlLengthException $e){
             $message = $e->getMessage();
-            var_dump($message);
             $this->memberView->SetMSG($message);
         }
     }
@@ -92,15 +93,32 @@ class UmlToCodeController {
         $dbUser = $userRepository->getUserByUsername($userName);
         $umlArray =$this->umlRepository->getProjectsByUserID($dbUser->GetUserID());
         return $projectView->Show($umlArray);
-
-
     }
+
 
     public  function getUmlProject(){
         $projectView = New ProdjectsView();
-        $UmlName = $projectView->GetProjectName();
-        $userID = $projectView->GetUserID();
-        $projectView->Getstuff();
+        //$UmlName = $projectView->GetProjectName();
+        //var_dump($UmlName);
+        //$userID = $projectView->GetUserID();
+        $dbUml = null;
+        if($data = $projectView->GetStuff()){
+            $uml = New UML();
+            $uml->SetSaveName($data[1]);
+            $uml->SetUserID($data[0]);
+
+            $dbUml = $this->umlRepository->getProject($uml);
+        }
+
+        if($dbUml === null){
+            $this->memberView->projectNotExistMSG();
+        }
+        else{
+            $this->memberView->SetInputValue($dbUml->GetUmlString());
+            $this->memberView->loadedProjectMSG();
+        }
+
+
     }
 
 

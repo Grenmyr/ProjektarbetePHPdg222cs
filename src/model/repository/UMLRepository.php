@@ -6,6 +6,7 @@ namespace model\repository;
 
 use model\UML;
 use src\Exception\DbUserExistException;
+use src\exceptions\umltocodecontrollerexceptions\ProjectExistException;
 
 
 class UMLRepository extends Repository{
@@ -22,25 +23,38 @@ class UMLRepository extends Repository{
     }
 
     public function add(UML $uml) {
+
         // If Empty user submit throw Exception.
         $dbUser = $this->userRepository->getUserByUsername($uml->GetUsername());
         if($dbUser === null){
             throw new DbUserExistException();
         }
-        try {
+        $userProjects = $this->getProjectsByUserID($dbUser->GetUserID());
+
+        foreach($userProjects as $projects){
+            //TODO här är jag, ska ta hand om undantag härnäst.
+            if( $uml->GetSaveName() === $projects->GetSaveName()){
+                throw new ProjectExistException();
+            }
+        }
+
+
+
+       // try {
             $db = $this -> connection();
             $sql = "INSERT INTO  " . self::$dbTable . "  (" . self::$userID . ", " . self::$projectString . ",". self::$projectName .") VALUES (?, ?,?)";
             $params = array($dbUser->GetUserID(), $uml->GetUmlString(), $uml->GetSaveName());
             $query = $db -> prepare($sql);
             $query -> execute($params);
-        } catch (\PDOException $e) {
-             die('An unknown error have occured.');
-        }
+        //} catch (\PDOException $e) {
+          //   die('An unknown error have occured.');
+      //  }
     }
 
     public function getProjectsByUserID($userID)
     {
-        try {
+        var_dump($userID);
+       // try {
 
             $db = $this -> connection();
             $sql = "SELECT * FROM " . self::$dbTable . " WHERE " . self::$userID . " = ?";
@@ -63,9 +77,30 @@ class UMLRepository extends Repository{
             else{
                 return NULL;
             }
-        } catch (\PDOException $e) {
-            die('An unknown error have occured.');
+       // } catch (\PDOException $e) {
+        //    die('An unknown error have occured.');
+      //  }
+    }
+
+    public function getProject(UML $uml)
+    {
+        $db = $this -> connection();
+        $sql = "SELECT * FROM " . self::$dbTable . " WHERE " . self::$userID . " = ? AND ". self::$projectName ." = ?";
+        $params = array($uml->GetUserID(),$uml->GetSaveName());
+        $query = $db -> prepare($sql);
+        $query -> execute($params);
+        $result = $query -> fetch();
+        if($result){
+                $uml= new UML();
+                $uml->SetUmlString($result[self::$projectString]);
+                $uml->SetSaveName($result[self::$projectName]);
+                $uml->SetUserID($result[self::$userID]);
+            return $uml;
         }
+        else{
+            return NULL;
+        }
+
     }
 
 }

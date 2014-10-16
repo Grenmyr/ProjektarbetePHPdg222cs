@@ -28,17 +28,17 @@ class MasterController {
                 var_dump("case umlGetLists");
                 $umlToCodeController = new UmlToCodeController();
                 if($loginController->checkLogin()){
-                    return $umlToCodeController->showMemberView($sessionModel) .$umlToCodeController->projectsView();
+                    return $umlToCodeController->showMemberView($sessionModel) . $umlToCodeController->projectsView()   ;
                 }
                 else
                 {
                     return  $umlToCodeController->showGuestView() .$loginController->login();
                 }
             case NavView::$showProject;
-                var_dump("case showproject");
+               var_dump("case showproject");
                 $umlToCodeController = new UmlToCodeController();
                 if($loginController->checkLogin()){
-                    return $umlToCodeController->showMemberView($sessionModel) .$umlToCodeController->getUmlProject();
+                    return $umlToCodeController->getUmlProject() . $umlToCodeController->showMemberView($sessionModel)  ;
                 }
                 else
                 {
@@ -49,7 +49,7 @@ class MasterController {
                 $registerController = new RegisterController();
                 return $registerController->body();
             case NavView::$login;
-                var_dump("case login");
+               var_dump("case login");
                 return $loginController->login();
             case NavView::$logoutView;
                 var_dump("case logoutview");

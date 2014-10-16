@@ -57,7 +57,7 @@ class UML {
         }
         else{
                 $umlString = preg_replace(self::UMLSTRINGREGEX, '', $umlString);
-                throw new RegexUmlStringException($umlString);
+               throw new RegexUmlStringException($umlString);
             }
     }
 

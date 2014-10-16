@@ -130,6 +130,22 @@ class MemberView extends GuestView {
     {
         $this->message[] = "Välkommen!";
     }
+
+    public function SaveMSG( $savename)
+    {
+        $this->message[] = "UML koden har sparats i databasen under namnet $savename";
+    }
+    public function projectNotExistMSG()
+    {
+        $this->message[] = "Projektet existerar inte";
+    }
+
+    public function loadedProjectMSG()
+    {
+        $this->message[] = "Laddning av projektet lyckades.";
+    }
+
+
 }
 
 

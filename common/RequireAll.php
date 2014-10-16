@@ -19,7 +19,7 @@ require_once(__DIR__ . "/../src/view/LoginView.php");
 require_once(__DIR__ . "/../src/view/MemberView.php");
 
 //src/view/subview
-require_once(__DIR__ . "/../src/View/subview/SweDateView.php");
+require_once(__DIR__ . "/../src/view/subview/SweDateView.php");
 
 //src/view/nav
 require_once(__DIR__ . "/../src/view/nav/NavView.php");

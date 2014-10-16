@@ -15,18 +15,18 @@ class UserRepository extends Repository {
             throw new \src\Exception\DbUserExistException();
         }
 
-        try {
+        //try {
             $db = $this -> connection();
             $sql = "INSERT INTO " . self::$dbTable ." (" . self::$userName . ", " . self::$password . ") VALUES (?, ?)";
             $params = array($user -> GetUsername(), $user -> GetPassword());
             $query = $db -> prepare($sql);
             $query -> execute($params);
-        } catch (\PDOException $e) {
+        //} catch (\PDOException $e) {
             //die('An unknown error have occured.');
-        }
+        //}
     }
     public function getUserByUsername($username) {
-        try {
+        //try {
             $db = $this -> connection();
             $sql = "SELECT * FROM " . self::$dbTable . " WHERE " . self::$userName . " = ?";
             $params = array($username);
@@ -43,12 +43,12 @@ class UserRepository extends Repository {
         else{
             return NULL;
         }
-        } catch (\PDOException $e) {
-            die('An unknown error have occured.');
-        }
+        //} catch (\PDOException $e) {
+            //die('An unknown error have occured.');
+       // }
     }
     public function getUsernameByUserID($userID) {
-        try {
+       // try {
         $db = $this -> connection();
         $sql = "SELECT * FROM " . self::$dbTable . " WHERE " . self::$userID . " = ?";
         $params = array($userID);
@@ -61,9 +61,9 @@ class UserRepository extends Repository {
         else{
             return NULL;
         }
-        } catch (\PDOException $e) {
-           die('An unknown error have occured.');
-        }
+       // } catch (\PDOException $e) {
+          // die('An unknown error have occured.');
+        //}
     }
 }
 /**

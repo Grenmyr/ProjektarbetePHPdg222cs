@@ -84,7 +84,7 @@ class GuestView {
         $dom ='';
         //var_dump($variables);
         foreach ($relations as $relation){
-                $dom .="<p>NEW".$relation."<p>";
+                $dom .="<p>NEW (".$relation. ")<p>";
         }
         return $dom;
     }
@@ -110,7 +110,7 @@ class GuestView {
                 $relationString = $this->showRelations($relations);
                 //var_dump($relations);
 
-                $dom .= "<p>Public Class ".$className." (){</p> <p>".$relationString."<p> <p>".$variableString."</p><p>".$functionString."}</p>"
+                $dom .= "<p> class ".$className." (){</p> <p>".$relationString."<p> <p>".$variableString."</p><p>".$functionString."}</p>"
                 ;
             }
         }
