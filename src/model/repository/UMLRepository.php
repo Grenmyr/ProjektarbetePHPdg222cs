@@ -6,6 +6,7 @@ namespace model\repository;
 
 use model\UML;
 use src\Exception\DbUserExistException;
+use src\exceptions\umltocodecontrollerexceptions\DeleteProjextException;
 use src\exceptions\umltocodecontrollerexceptions\ProjectExistException;
 
 
@@ -32,7 +33,6 @@ class UMLRepository extends Repository{
         $userProjects = $this->getProjectsByUserID($dbUser->GetUserID());
 
         foreach($userProjects as $projects){
-            //TODO här är jag, ska ta hand om undantag härnäst.
             if( $uml->GetSaveName() === $projects->GetSaveName()){
                 throw new ProjectExistException();
             }
@@ -53,7 +53,6 @@ class UMLRepository extends Repository{
 
     public function getProjectsByUserID($userID)
     {
-        var_dump($userID);
        // try {
 
             $db = $this -> connection();
@@ -101,6 +100,19 @@ class UMLRepository extends Repository{
             return NULL;
         }
 
+    }
+    public function deleteProject(UML $uml)
+    {
+        try{
+        $db = $this -> connection();
+        $sql = "DELETE FROM " . self::$dbTable . " WHERE " . self::$userID . " = ? AND ". self::$projectName ." = ?";
+        $params = array($uml->GetUserID(),$uml->GetSaveName());
+        $query = $db -> prepare($sql);
+        $query -> execute($params);
+        }
+        catch(\PDOException $e){
+            throw new DeleteProjextException();
+        }
     }
 
 }

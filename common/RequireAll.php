@@ -62,7 +62,9 @@ require_once(__DIR__ . "/../src/exceptions/umltocodecontrollerexceptions/RegexSa
 require_once(__DIR__ . "/../src/exceptions/umltocodecontrollerexceptions/RegexUmlStringException.php");
 require_once(__DIR__ . "/../src/exceptions/umltocodecontrollerexceptions/SaveNameLengthException.php");
 require_once(__DIR__ . "/../src/exceptions/umltocodecontrollerexceptions/UmlLengthException.php");
-;
+require_once(__DIR__ . "/../src/exceptions/umltocodecontrollerexceptions/ProjectExistException.php");
+require_once(__DIR__ . "/../src/exceptions/umltocodecontrollerexceptions/DeleteProjextException.php");
+
 
 
 /**

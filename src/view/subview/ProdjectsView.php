@@ -13,11 +13,11 @@ use model\UML;
 use src\view\nav\NavView;
 class ProdjectsView {
 
-    private $message = [];
 
-    public function GetStuff(){
+    public function GetProjectData(){
         $urlString =$_SERVER['REQUEST_URI'];
         $data = [];
+
         if(preg_match('/id=(\d+)/',$urlString, $ID)&& preg_match('/name=(\w+)/',$urlString, $saveName)){
             $data[]= $ID[1];
             $data[] = $saveName[1];
@@ -38,7 +38,11 @@ class ProdjectsView {
         $dom ="<ul>";
         foreach ($umlArray as $uml){
                 $dom .="<li><h4> Namn:  ".$uml->GetSaveName()."</h4>"
-                ."<a href='?action=".NavView::$showProject."&name=".$uml->GetSaveName()."&id=".$uml->GetUserID()."'>".$uml->GetUmlString()."</a>"."</li>";
+                ."<a href='?action=".NavView::$showProject."&name=".$uml->GetSaveName()."&id=".$uml->GetUserID()."'>".$uml->GetUmlString()."</a>"
+                    ."<li>"    ."<a href='?action=".NavView::$deleteProject."&name=".$uml->GetSaveName()."&id=".$uml->GetUserID()."'>Ta bort?</a>"."</li>"
+                    ."</li>"
+
+                ;
             }
         $dom .="</ul>";
        return $dom;

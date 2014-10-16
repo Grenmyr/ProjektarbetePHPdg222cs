@@ -6,6 +6,8 @@ use model\repository\UserRepository;
 use model\SessionModel;
 use model\UML;
 use model\UmlToCodeModel;
+use src\exceptions\umltocodecontrollerexceptions\DeleteProjextException;
+use src\exceptions\umltocodecontrollerexceptions\ProjectExistException;
 use src\exceptions\umltocodecontrollerexceptions\RegexSaveNameException;
 use src\exceptions\umltocodecontrollerexceptions\RegexUmlStringException;
 use src\exceptions\umltocodecontrollerexceptions\SaveNameLengthException;
@@ -34,11 +36,10 @@ class UmlToCodeController {
         $this->umlToCodeModel = new UmlToCodeModel();
     }
     public function showGuestView(){
-        $loginView = new LoginView();
         if($this->guestView->userSubmit()){
             $this->guestView->handleInput();
         }
-        return $this->guestView->show() .$loginView->show() ;
+        return $this->guestView->show() ;
     }
 
     /**
@@ -83,6 +84,9 @@ class UmlToCodeController {
             $message = $e->getMessage();
             $this->memberView->SetMSG($message);
         }
+        catch(ProjectExistException $e){
+            $this->memberView->projectExistMSG();
+        }
     }
 
     public function projectsView()
@@ -98,11 +102,8 @@ class UmlToCodeController {
 
     public  function getUmlProject(){
         $projectView = New ProdjectsView();
-        //$UmlName = $projectView->GetProjectName();
-        //var_dump($UmlName);
-        //$userID = $projectView->GetUserID();
         $dbUml = null;
-        if($data = $projectView->GetStuff()){
+        if($data = $projectView->GetProjectData()){
             $uml = New UML();
             $uml->SetSaveName($data[1]);
             $uml->SetUserID($data[0]);
@@ -115,12 +116,27 @@ class UmlToCodeController {
         }
         else{
             $this->memberView->SetInputValue($dbUml->GetUmlString());
+            $this->memberView->SetSaveNameValue($dbUml->GetSaveName());
             $this->memberView->loadedProjectMSG();
         }
-
-
     }
 
+    public function deleteUmlProject(){
+        $projectView = New ProdjectsView();
+
+        if($data =$projectView->GetProjectData() ){
+            try{
+            $uml = New UML();
+            $uml->SetSaveName($data[1]);
+            $uml->SetUserID($data[0]);
+            $this->umlRepository->deleteProject($uml);
+            $this->memberView->deleteMSG($uml->GetSaveName());
+            }
+            catch(DeleteProjextException $e){
+                $this->memberView->errorDeleteMSG();
+            }
+    }
+    }
 
 }
 /**

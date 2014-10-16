@@ -18,7 +18,7 @@ class MemberView extends GuestView {
     private static $saveUmlButton = "saveumlbutton";
     private static $saveName = "savename";
 
-    private function SetSaveNameValue($saveName){
+    public  function SetSaveNameValue($saveName){
         $this->saveNameValue = $saveName;
     }
 
@@ -31,7 +31,7 @@ class MemberView extends GuestView {
 
     public function registerWelcome(){
         if(isset($_GET[self::$register])){
-            $this->message[] = "Registreringen av användarnamnet " .$_GET[self::$register]." lyckades  !";
+            $this->message[] = "Registreringen av användarnamnet " .$_GET[self::$register]." lyckades !";
         }
         return False;
     }
@@ -145,7 +145,20 @@ class MemberView extends GuestView {
         $this->message[] = "Laddning av projektet lyckades.";
     }
 
+    public function projectExistMSG()
+    {
+        $this->message[] = "Ett projekt med detta namnet existerar redan, byt namn och försök igen.";
+    }
 
+    public function errorDeleteMSG()
+    {
+        $this->message[] = "Ett oväntat fel inträffade när projektet skulle tas bort, försöt igen.";
+    }
+
+    public function deleteMSG($name)
+    {
+        $this->message[] = "Projektet $name togs bort.";
+    }
 }
 
 

@@ -11,6 +11,7 @@ class NavView {
     public static $umlSave = "umlsave";
     public static $umlGetLists = "umlgetlists";
     public static $showProject = "showproject";
+    public static $deleteProject = "deleteproject";
     public static $registerView = "registerview";
     public static $login = "login";
     public static $logoutView = "logoutview";

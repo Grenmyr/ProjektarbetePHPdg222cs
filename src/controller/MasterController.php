@@ -44,13 +44,24 @@ class MasterController {
                 {
                     return  $umlToCodeController->showGuestView();
                 }
+            case NavView::$deleteProject;
+                var_dump("case deleteproject");
+                $umlToCodeController = new UmlToCodeController();
+                if($loginController->checkLogin()){
+                    return $umlToCodeController->deleteUmlProject().  $umlToCodeController->showMemberView($sessionModel)  ;
+                }
+                else
+                {
+                    return  $umlToCodeController->showGuestView();
+                }
             case NavView::$registerView;
                 var_dump("case registerview");
                 $registerController = new RegisterController();
                 return $registerController->body();
             case NavView::$login;
                var_dump("case login");
-                return $loginController->login();
+                $umlToCodeController = new UmlToCodeController();
+                return  $loginController->login() . $umlToCodeController->showGuestView();
             case NavView::$logoutView;
                 var_dump("case logoutview");
                 $loginController->logout();
