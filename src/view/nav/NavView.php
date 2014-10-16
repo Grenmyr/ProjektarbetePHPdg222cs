@@ -26,17 +26,13 @@ class NavView {
         header('Location: /' . \Settings::$ROOT_PATH. '/');
     }
 
-    /*public static function redirectToUML() {
-        header('Location: /' . \Settings::$ROOT_PATH. '/?'.self::$action.'='.self::$umlSubmit );
-    }*/
-
     public static function redirectToUMLMSG($string) {
         header('Location: /' . \Settings::$ROOT_PATH. '/?'.self::$action.'='.self::$umlSubmit.'&welcome='.$string);
     }
-
-    public static function redirectToList($string) {
-        header('Location: /' . \Settings::$ROOT_PATH. '/?'.self::$action.'='.self::$umlSubmit.'&welcome='.$string);
+    public static function redirectToUMLRegisterMSG($string) {
+        header('Location: /' . \Settings::$ROOT_PATH. '/?'.self::$action.'='.self::$umlSubmit.'&register='.$string);
     }
+
 
 
 

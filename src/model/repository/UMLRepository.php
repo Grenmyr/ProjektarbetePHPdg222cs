@@ -41,6 +41,7 @@ class UMLRepository extends Repository{
     public function getProjectsByUserID($userID)
     {
         try {
+
             $db = $this -> connection();
             $sql = "SELECT * FROM " . self::$dbTable . " WHERE " . self::$userID . " = ?";
             $params = array($userID);

@@ -23,18 +23,16 @@ class MasterController {
                 }
             case NavView::$umlSave;
                 var_dump("case umlSave");
-                //TODO redirect here on save and konkatinera?
                 break;
             case NavView::$umlGetLists;
                 var_dump("case umlGetLists");
-                //TODO redirect here on Get List and konkatinera?
                 $umlToCodeController = new UmlToCodeController();
                 if($loginController->checkLogin()){
                     return $umlToCodeController->showMemberView($sessionModel) .$umlToCodeController->projectsView();
                 }
                 else
                 {
-                    return  $umlToCodeController->showGuestView();
+                    return  $umlToCodeController->showGuestView() .$loginController->login();
                 }
             case NavView::$showProject;
                 var_dump("case showproject");

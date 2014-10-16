@@ -13,6 +13,7 @@ class MemberView extends GuestView {
     private $username;
     private $saveNameValue;
     private static $welcome="welcome";
+    private static $register="register";
 
     private static $saveUmlButton = "saveumlbutton";
     private static $saveName = "savename";
@@ -21,9 +22,16 @@ class MemberView extends GuestView {
         $this->saveNameValue = $saveName;
     }
 
-    public function setMessage(){
+    public function loginWelcome(){
         if(isset($_GET[self::$welcome])){
             $this->message[] = "Välkommen tillbaka " .$_GET[self::$welcome]." !";
+        }
+        return False;
+    }
+
+    public function registerWelcome(){
+        if(isset($_GET[self::$register])){
+            $this->message[] = "Registreringen av användarnamnet " .$_GET[self::$register]." lyckades  !";
         }
         return False;
     }
@@ -108,7 +116,7 @@ class MemberView extends GuestView {
         return $dom;
     }
 
-    public function saveNameLengthMSG()
+    public function saveNameLengthMSG($message)
     {
         $this->message[] = " Savename är för kort, minst två tecken behövs. ";
     }
@@ -122,11 +130,6 @@ class MemberView extends GuestView {
     {
         $this->message[] = "Välkommen!";
     }
-
-    /*public function emtyTextInputMSG()
-    {
-        $this->message[] = "Modell texten kan inte vara tom.";
-    }*/
 }
 
 

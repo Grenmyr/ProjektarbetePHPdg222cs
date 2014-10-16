@@ -13,7 +13,9 @@ class UML {
     private $username;
 
     const SAVENAMEMINLENGTH = 2;
+    const SAVENAMEMAXLENGTH = 20;
     const UMLSTRINGMINLENGTH = 3;
+    const UMLSTRINGMAXLENGTH = 250;
     const  UMLSTRINGREGEX = '/[^a-z0-9\-\+\|\[\]\(\)]+/i';
     const  SAVENAMEREGEX = '/[^a-z0-9\-]+/i';
 
@@ -33,11 +35,13 @@ class UML {
             if(strlen($saveName) < self::SAVENAMEMINLENGTH){
                 throw new SaveNameLengthException("Savename är för kort, måste vara minst 2 tecken.");
             }
+            else if(strlen($saveName) > self::SAVENAMEMAXLENGTH){
+                throw new SaveNameLengthException("Savename är för långt, får ej vara mer än 20 tecken.");
+            }
             $this->saveName = $saveName;
         }
         else{
             $saveName = preg_replace(self::UMLSTRINGREGEX, '', $saveName);
-            var_dump($saveName);
             throw new RegexSaveNameException($saveName);
         }
     }
@@ -45,6 +49,9 @@ class UML {
         if(!preg_match(self::UMLSTRINGREGEX, "$umlString" )){
             if(strlen($umlString) < self::UMLSTRINGMINLENGTH){
                 throw new UmlLengthException("Din UML modell är för kort, måste vara minst 3 tecken.");
+            }
+            else if(strlen($umlString) > self::UMLSTRINGMAXLENGTH){
+                throw new UmlLengthException("Umlmodell är för lång, får ej vara mer än 250 tecken.");
             }
         $this->umlString = $umlString;
         }

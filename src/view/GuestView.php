@@ -89,6 +89,10 @@ class GuestView {
         return $dom;
     }
 
+    public function SetMSG($message){
+        $this->message[] = $message;
+    }
+
     /**
      *
      * @return string

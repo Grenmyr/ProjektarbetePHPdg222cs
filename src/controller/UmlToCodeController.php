@@ -10,6 +10,7 @@ use src\exceptions\umltocodecontrollerexceptions\RegexUmlStringException;
 use src\exceptions\umltocodecontrollerexceptions\SaveNameLengthException;
 use src\exceptions\umltocodecontrollerexceptions\UmlLengthException;
 use src\view\GuestView;
+use src\view\LoginView;
 use src\view\MemberView;
 use src\view\subview\ProdjectsView;
 
@@ -32,10 +33,11 @@ class UmlToCodeController {
         $this->umlToCodeModel = new UmlToCodeModel();
     }
     public function showGuestView(){
+        $loginView = new LoginView();
         if($this->guestView->userSubmit()){
             $this->guestView->handleInput();
         }
-        return $this->guestView->show() ;
+        return $this->guestView->show() .$loginView->show() ;
     }
 
     /**
@@ -44,8 +46,8 @@ class UmlToCodeController {
      */
     public function showMemberView($sessionModel){
         $this->memberView->SetUser($sessionModel->GetUser());
-        $this->memberView->setMessage();
-
+        $this->memberView->loginWelcome();
+        $this->memberView->registerWelcome();
 
         if($this->memberView->userSubmit()){
 
@@ -72,10 +74,13 @@ class UmlToCodeController {
             $this->memberView->badCharInputValueMSG($string);
         }
         catch(SaveNameLengthException $e){
-            $this->memberView->saveNameLengthMSG();
+            $message= $e->getMessage();
+            $this->memberView->SetMSG($message);
         }
         catch(UmlLengthException $e){
-            $this->memberView->umlLengthMSG();
+            $message = $e->getMessage();
+            var_dump($message);
+            $this->memberView->SetMSG($message);
         }
     }
 

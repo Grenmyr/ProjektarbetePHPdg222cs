@@ -9,14 +9,17 @@
 namespace controller;
 
 
+use CookieView;
 use model\RegisterModel;
 use model\repository\UserRepository;
+use model\SessionModel;
 use model\User;
 use src\Exception\DbUserExistException;
 use src\Exception\RegexException;
 use src\Exception\RegisterException;
 use src\Exception\RegisterUsernameAndPasswordNullException;
 use src\Exception\RegisterUsernameLengthException;
+use src\view\LoginView;
 use src\view\nav\NavView;
 use src\view\RegisterView;
 use SweDateView;
@@ -35,6 +38,7 @@ class RegisterController {
      * @var RegisterModel
      */
     private $registerModel;
+
 
     public function __construct(){
         $this->registerModel = new RegisterModel();
@@ -65,9 +69,17 @@ class RegisterController {
                 return;
             }
             $user->SetUsername($username);
+
             $userRepository =new UserRepository();
             $userRepository->add($user);
-            NavView::$umlSubmit;
+
+            $loginView = new LoginView();
+            $agent = $loginView->GetAgent();
+
+            $sessionModel = new SessionModel();
+            $sessionModel->SetValidSession($agent);
+            $sessionModel->SetUser($username);
+            NavView::redirectToUMLRegisterMSG($username);
         }
         catch(RegisterUsernameAndPasswordNullException $e){
             $this->registerView->msgUsernameAndPasswordLength();

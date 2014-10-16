@@ -28,8 +28,8 @@ class ProdjectsView {
 
     public function Getstuff(){
         $urlString =$_SERVER['REQUEST_URI'];
-        $newstring = explode("/",$urlString);
-        $end = end($newstring);
+        //$newstring = explode("/",$urlString);
+        //$end = end($newstring);
         preg_match('/id=(\d+)/',$urlString, $ID);
         preg_match('/name=(\w+)/',$urlString, $saveName);
         $id = $ID[1];
@@ -47,7 +47,6 @@ class ProdjectsView {
     {
         //TODO HASH ID?
         $dom ='<ul>';
-        //var_dump($variables);
         foreach ($umlArray as $uml){
                 $dom .="<li><h4> Namn:  ".$uml->GetSaveName()."</h4>"
                 ."<a href='?action=".NavView::$showProject."&name=".$uml->GetSaveName()."&id=".$uml->GetUserID()."'>".$uml->GetUmlString()."</a>"."</li>";

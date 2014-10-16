@@ -7,7 +7,6 @@ use objectModel\ClassModel;
 
 
 class InterpretModel {
-    //Match "a-z,A-Z,0-9,_,|,+,()" in certain orders between square brackets.
     //Each pair of square brackets represent a class.
     const MATCHBETWEENSQUAREBRACKETS = '/\[(\w+)((?:\|\+?\w+)*)((?:\|\+?\w+\(\))*)\]/';
     // only match 1 time atm.
