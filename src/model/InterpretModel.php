@@ -52,6 +52,10 @@ class InterpretModel {
         return $classArray;
     }
 
+    public function GetClassArray(){
+        return $this->inputString;
+    }
+
 }
 /**
  * Created by PhpStorm.

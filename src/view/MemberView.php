@@ -15,8 +15,9 @@ class MemberView extends GuestView {
     private static $welcome="welcome";
     private static $register="register";
 
-    private static $saveUmlButton = "saveumlbutton";
+    private static $saveToDatabaseButton = "savetodatabase";
     private static $saveName = "savename";
+    private static $saveToZip = "savetozip";
 
     public  function SetSaveNameValue($saveName){
         $this->saveNameValue = $saveName;
@@ -36,11 +37,17 @@ class MemberView extends GuestView {
         return False;
     }
 
-    public function userPostSave(){
-        if(isset($_POST[self::$saveUmlButton])){
+    public function userSaveToServer(){
+        if(isset($_POST[self::$saveToDatabaseButton])){
             $this->SetInputValue($_POST[self::$textArea]);
             $this->SetSaveNameValue($_POST[self::$saveName]);
             return true;
+        }
+        return false;
+    }
+    public function userSaveToZip(){
+        if(isset($_POST[self::$saveToZip])){
+            return $_POST[self::$textArea];
         }
         return false;
     }
@@ -79,19 +86,20 @@ class MemberView extends GuestView {
              <form  method=post action='?action=" . NavView::$umlSubmit . "'>
     <fieldset>
         <legend>
-            Type name to save Uml->Code project.
+            Fyll i namn för spara UML->Code projekt på server.
         </legend>
         <label></label>
          <input type='text' size='20' value='$this->saveNameValue' name='" .self::$saveName."'>
-        <input type='submit' value='Save Uml->Code model' name='" .self::$saveUmlButton."'>
+        <input type='submit' value='Spara project server' name='" .self::$saveToDatabaseButton."'>
     </fieldset>
     <fieldset>
         <legend>
-            Write your UML here
+        Fyll i domän modellen i textfält under.
         </legend>
-        <label>Fill in existing domain model to textarea.</label>
+        <label></label>
         <textarea cols='50' rows='5' name='" .self::$textArea. "'>$this->input</textarea>
-        <input type='submit' value='Get Code' name='" .self::$submitUMLButton. "'>
+        <input type='submit' value='Rendera kod' name='" .self::$submitUMLButton. "'>
+        <input type='submit' value='Spara till Zip' name='" .self::$saveToZip. "'>
          <div> $result </div>
     </fieldset>
     </form>

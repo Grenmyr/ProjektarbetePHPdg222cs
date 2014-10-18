@@ -4,6 +4,7 @@
 namespace src\view\nav;
 
 
+
 class NavView {
     private static $action = "action";
 
@@ -12,6 +13,8 @@ class NavView {
     public static $umlGetLists = "umlgetlists";
     public static $showProject = "showproject";
     public static $deleteProject = "deleteproject";
+    public static $saveToDisk = "savetodisk";
+
     public static $registerView = "registerview";
     public static $login = "login";
     public static $logoutView = "logoutview";

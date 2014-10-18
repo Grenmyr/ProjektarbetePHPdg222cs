@@ -28,6 +28,8 @@ require_once(__DIR__ . "/../src/view/cookies/CookieView.php");
 
 //src/view/subview
 require_once(__DIR__ . "/../src/view/subview/ProdjectsView.php");
+require_once(__DIR__ . "/../src/view/subview/SaveToZipView.php");
+require_once(__DIR__ . "/../src/view/subview/PHPFactory.php");
 
 
 //src/model

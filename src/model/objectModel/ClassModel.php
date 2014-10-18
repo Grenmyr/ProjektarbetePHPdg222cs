@@ -64,7 +64,6 @@ class ClassModel{
         $this->relations[]=$relation;
     }
     public function GetRelations(){
-        //var_dump($this->relations);
         return $this->relations;
     }
 

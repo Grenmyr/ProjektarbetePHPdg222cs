@@ -54,6 +54,16 @@ class MasterController {
                 {
                     return  $umlToCodeController->showGuestView();
                 }
+            case NavView::$saveToDisk;
+                var_dump("case savetodisk");
+                $umlToCodeController = new UmlToCodeController();
+                if($loginController->checkLogin()){
+                    return $umlToCodeController->deleteUmlProject().  $umlToCodeController->showMemberView($sessionModel)  ;
+                }
+                else
+                {
+                    return  $umlToCodeController->showGuestView();
+                }
             case NavView::$registerView;
                 var_dump("case registerview");
                 $registerController = new RegisterController();

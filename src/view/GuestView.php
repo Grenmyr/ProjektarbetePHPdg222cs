@@ -5,10 +5,13 @@ use objectModel\ClassModel;
 use objectModel\FunctionModel;
 use objectModel\VariableModel;
 use src\view\nav\NavView;
+use src\view\subview\BaseInterpretView;
+use src\view\subview\PHPFactory;
 
 class GuestView {
     protected  $message;
     protected  $input;
+    protected  $phpFactory;
 
     protected  static $submitUMLButton = "submitumlbutton";
     protected  static $textArea = "textarea";
@@ -24,12 +27,13 @@ class GuestView {
 
     public function __construct(){
         $this->interpretModel= new InterpretModel();
+        $this->phpFactory = new PHPFactory();
     }
     public function SetInputValue($post){
         $this->input= $post;
     }
     // Return true if submit.
-    public function userSubmit(){
+    public function userSubmitUml(){
        if (isset($_POST[self::$submitUMLButton])){
 
            $this->SetInputValue($_POST[self::$textArea]);
@@ -46,7 +50,7 @@ class GuestView {
      * @param VariableModel[] $variables
      * @return string
      */
-    public function showVariables($variables){
+    /*public function showVariables($variables){
         $dom ='';
         foreach ($variables as $variable){
             $private = $variable->GetPrivate();
@@ -59,13 +63,13 @@ class GuestView {
             }
         }
         return $dom;
-    }
+    }*/
 
     /**
      * @param FunctionModel[] $functions
      * @return string
      */
-    public function showFunctions($functions){
+    /*public function showFunctions($functions){
         $dom ='';
         //var_dump($variables);
         foreach ($functions as $function){
@@ -79,38 +83,64 @@ class GuestView {
             }
         }
         return $dom;
-    }
-    public function showRelations($relations){
+    }*/
+    /*public function showRelations($relations){
         $dom ='';
         //var_dump($variables);
         foreach ($relations as $relation){
                 $dom .="<p>NEW (".$relation. ")<p>";
         }
         return $dom;
-    }
+    }*/
 
     public function SetMSG($message){
         $this->message[] = $message;
     }
 
     /**
-     *
      * @return string
      */
     public function showInterpret(){
         $dom = '';
         if(is_array($this->classModels)){
             foreach ($this->classModels as $value){
-                $className = $value->GetClassName();
-                $variables = $value->GetVariables();
-                $functions = $value->GetFunctions();
-                $relations = $value->GetRelations();
-                $variableString =$this->showVariables($variables);
-                $functionString =$this->showFunctions($functions);
-                $relationString = $this->showRelations($relations);
-                //var_dump($relations);
 
-                $dom .= "<p> class ".$className." (){</p> <p>".$relationString."<p> <p>".$variableString."</p><p>".$functionString."}</p>"
+                $className = $value->GetClassName();
+                $phpClass =$this->phpFactory->GetClassNameSyntax($className);
+
+                $variables = $value->GetVariables();
+                $phpVariables="";
+                foreach ($variables  as $functionObject){
+                $phpVariables .= "<p>".$this->phpFactory->GetVariableSyntax($functionObject)."</p>";
+                }
+
+                $functions = $value->GetFunctions();
+                $phpFunctions="";
+                foreach ($functions  as $functionObject){
+                    $phpFunctions .= "<p>".$this->phpFactory->GetFunctionSyntax($functionObject)."</p>";
+                }
+
+                $relations = $value->GetRelations();
+                $phpRelations="";
+
+                if(count($relations)>0){
+                    $phpRelations .= "<p>".$this->phpFactory->GetEmptyConstruct()."</p>";
+                    foreach ($relations  as $relation){
+                       $phpRelations .= "<p>".$this->phpFactory->GetRelationSyntax($relation)."</p>";
+                    }
+                    $phpRelations .= "<p>".$this->phpFactory->GetEndBracket()."</p>";
+                }
+
+
+
+
+
+
+                //$variableString =$this->showVariables($variables);
+                //$functionString =$this->showFunctions($functions);
+                //$relationString = $this->showRelations($relations);
+
+                $dom .= "<p>$phpClass</p> <p>".$phpRelations."</p> <p>".$phpVariables."</p><p>".$phpFunctions."}</p>"
                 ;
             }
         }

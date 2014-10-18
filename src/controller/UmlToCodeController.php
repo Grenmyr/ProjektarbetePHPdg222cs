@@ -16,6 +16,7 @@ use src\view\GuestView;
 use src\view\LoginView;
 use src\view\MemberView;
 use src\view\subview\ProdjectsView;
+use src\view\subview\SaveToZipView;
 
 
 class UmlToCodeController {
@@ -36,7 +37,7 @@ class UmlToCodeController {
         $this->umlToCodeModel = new UmlToCodeModel();
     }
     public function showGuestView(){
-        if($this->guestView->userSubmit()){
+        if($this->guestView->userSubmitUml()){
             $this->guestView->handleInput();
         }
         return $this->guestView->show() ;
@@ -51,13 +52,18 @@ class UmlToCodeController {
         $this->memberView->loginWelcome();
         $this->memberView->registerWelcome();
 
-        if($this->memberView->userSubmit()){
-
+        if($this->memberView->userSubmitUml()){
             $this->memberView->handleInput();
         }
-        if($this->memberView->userPostSave()){
+        else if($this->memberView->userSaveToServer()){
                 $this->saveUML();
         }
+        else if($umlPost = $this->memberView->userSaveToZip()){
+            $classArray = $this->interpretModel->validate($umlPost);
+            $saveToZipView = New SaveToZipView($classArray);
+
+        }
+
         return $this->memberView->showMemberContents();
     }
     public function saveUML(){
@@ -135,8 +141,12 @@ class UmlToCodeController {
             catch(DeleteProjextException $e){
                 $this->memberView->errorDeleteMSG();
             }
+        }
     }
+    public function saveToDisk(){
+
     }
+
 
 }
 /**

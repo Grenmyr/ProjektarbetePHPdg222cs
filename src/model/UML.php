@@ -30,7 +30,7 @@ class UML {
         $this->username = $username;
     }
     public function SetSaveName($saveName){
-
+        //TODO Write exceptions without message
         if(!preg_match(self::SAVENAMEREGEX, "$saveName" )){
             if(strlen($saveName) < self::SAVENAMEMINLENGTH){
                 throw new SaveNameLengthException("Savename är för kort, måste vara minst 2 tecken.");
