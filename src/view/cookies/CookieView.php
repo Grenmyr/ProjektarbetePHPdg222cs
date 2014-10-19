@@ -1,6 +1,6 @@
 <?php
 class CookieView {
-    private $cookieName = "uniqueString";
+    private $cookieName = "Umltocodecookie";
     private $cookieTime;
 
     public function save($unique) {

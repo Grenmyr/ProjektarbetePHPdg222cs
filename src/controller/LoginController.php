@@ -28,19 +28,19 @@ class LoginController {
      */
     private $sessionModel;
 
-    private $memberView;
+    //private $memberView;
 
     private $loginModel;
 
 
-    private $guestView;
+    //private $guestView;
 
 
     public  function __construct($sessionModel){
 
-        $this->memberView = new MemberView();
+        //$this->memberView = new MemberView();
         $this->loginView = new LoginView();
-        $this->guestView = new GuestView();
+        //$this->guestView = new GuestView();
 
         $this->sessionModel = $sessionModel;
 
@@ -115,7 +115,6 @@ class LoginController {
         $cookieRepository = new CookieRepository();
         $userID = $this->loginModel->GetUserID();
         $cookieRepository->add($uniqueString,$cookieTime,$userID);
-        $this->memberView->cookieSuccessMSG();
     }
 }
 /**

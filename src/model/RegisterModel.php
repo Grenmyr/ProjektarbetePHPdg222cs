@@ -28,23 +28,20 @@ class RegisterModel {
     public function SetUsername($userName){
         $this->sanitizeName($userName);
         if(strlen($userName) < self::USERNAMEMINLENGTH){
-            if($this->validCredentials()){
-                throw new RegisterUsernameLengthException($userName);
-            }
-                throw new RegisterUsernameAndPasswordNullException("Either Password is null");
+                throw new RegisterUsernameLengthException();
         }
         else{
             $this->username = $userName;
         }
     }
-    public function sanitizeName($userName){
+    public function sanitizeName($string){
         //http://stackoverflow.com/questions/3022185/regular-expression-sanitize-php
-        if(!preg_match(self::REGEX, "$userName" )){
+        if(!preg_match(self::REGEX, "$string" )){
             return true;
         }
         else{
-            $userName = preg_replace(self::REGEX, '', $userName);
-            throw new RegexException($userName);
+            $string = preg_replace(self::REGEX, '', $string);
+            throw new RegexException($string);
         }
     }
     public function hashPassword($password){
@@ -53,9 +50,4 @@ class RegisterModel {
         }
         return  password_hash($password,PASSWORD_BCRYPT);
     }
-    public function validCredentials(){
-        return ($this->password !== null && $this->username !== null);
-    }
-
-
 } 

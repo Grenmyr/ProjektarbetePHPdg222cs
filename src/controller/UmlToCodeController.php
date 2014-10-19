@@ -12,7 +12,10 @@ use src\exceptions\umltocodecontrollerexceptions\ProjectExistException;
 use src\exceptions\umltocodecontrollerexceptions\RegexSaveNameException;
 use src\exceptions\umltocodecontrollerexceptions\RegexUmlStringException;
 use src\exceptions\umltocodecontrollerexceptions\SaveNameLengthException;
+use src\exceptions\umltocodecontrollerexceptions\SaveNameMaxLengthException;
 use src\exceptions\umltocodecontrollerexceptions\UmlLengthException;
+use src\exceptions\umltocodecontrollerexceptions\UmlMaxLengthException;
+use src\exceptions\umltocodecontrollerexceptions\UmlStringToShortException;
 use src\view\GuestView;
 use src\view\LoginView;
 use src\view\MemberView;
@@ -29,19 +32,25 @@ class UmlToCodeController {
     /**
      * Construct Creating Associations.
      */
-    public function __construct(){
-        $this->interpretModel = new InterpretModel();
-        $this->guestView = new GuestView();
+    public function __construct($interpretModel){
+        $this->interpretModel = $interpretModel;
+        $this->guestView = new GuestView($interpretModel);
         $this->umlRepository = new UMLRepository();
-        $this->memberView = new MemberView();
+        $this->memberView = new MemberView($interpretModel);
 
         $this->umlToCodeModel = new UmlToCodeModel();
     }
 
 
     public function showGuestView(){
+        try{
         if($this->guestView->userSubmitUml()){
+
             $this->guestView->handleInput();
+        }
+        }
+        catch(UmlStringToShortException $e){
+            $this->guestView->umlToShortMSG();
         }
         return $this->guestView->show() ;
     }
@@ -52,7 +61,10 @@ class UmlToCodeController {
      * @return string
      */
     public function showMemberView($sessionModel){
+        // Get agent from session and set to view.
         $this->memberView->SetUser($sessionModel->GetUser());
+
+        // If user created cookie,logged in or registered, show messages.
         $cookieView = New CookieView();
         if($cookieView->cookieExist()){
             $this->memberView->cookieWelcome();
@@ -68,9 +80,14 @@ class UmlToCodeController {
         }
         else if($umlPost = $this->memberView->userSaveToZip()){
             $classArray = $this->interpretModel->validate($umlPost);
-            $saveToZipView = New SaveToZipView($classArray);
-            $this->memberView->savedZipMSG();
-
+            if( $classArray === null){
+                $this->guestView->toLongInputMSG();
+            }
+            else{
+                New SaveToZipView($classArray);
+                $this->memberView->savedZipMSG();
+                $this->memberView->errorInterpretMSG();
+            }
         }
         return $this->memberView->showMemberContents();
     }
@@ -83,20 +100,24 @@ class UmlToCodeController {
             $this->memberView->SaveMSG($saveName);
         }
         catch(RegexSaveNameException $e){
-            $string  = $e->getMessage();
-            $this->memberView->badCharSaveNameValueMSG($string);
+            $savename  = $e->getMessage();
+            $this->memberView->badCharSaveNameValueMSG($savename);
         }
         catch(RegexUmlStringException $e){
-            $string  = $e->getMessage();
-            $this->memberView->badCharInputValueMSG($string);
+            $savename  = $e->getMessage();
+            $this->memberView->badCharInputValueMSG($savename);
         }
         catch(SaveNameLengthException $e){
-            $message= $e->getMessage();
-            $this->memberView->SetMSG($message);
+            $this->memberView->saveNameLengthMSG();
+        }
+        catch(SaveNameMaxLengthException $e){
+            $this->memberView->saveNameMaxLengthMSG();
         }
         catch(UmlLengthException $e){
-            $message = $e->getMessage();
-            $this->memberView->SetMSG($message);
+            $this->memberView->umlLengthExceptionMSG();
+        }
+        catch(UmlMaxLengthException $e){
+            $this->memberView->UmlMaxLengthExceptionMSG();
         }
         catch(ProjectExistException $e){
             $this->memberView->projectExistMSG();
@@ -152,11 +173,6 @@ class UmlToCodeController {
             }
         }
     }
-    public function saveToDisk(){
-
-    }
-
-
 }
 /**
  * Created by PhpStorm.

@@ -54,7 +54,6 @@ require_once(__DIR__ . "/../src/model/objectModel/ClassModel.php");
 
 //src/exceptions/registercontrollerexceptions
 require_once(__DIR__ . "/../src/exceptions/registercontrollerexceptions/RegisterUsernameLengthException.php");
-require_once(__DIR__ . "/../src/exceptions/registercontrollerexceptions/RegisterUsernameAndPasswordNullException.php");
 require_once(__DIR__ . "/../src/exceptions/registercontrollerexceptions/DbUserExistException.php");
 require_once(__DIR__ . "/../src/exceptions/registercontrollerexceptions/RegisterException.php");
 require_once(__DIR__ . "/../src/exceptions/registercontrollerexceptions/RegexException.php");
@@ -66,6 +65,8 @@ require_once(__DIR__ . "/../src/exceptions/umltocodecontrollerexceptions/SaveNam
 require_once(__DIR__ . "/../src/exceptions/umltocodecontrollerexceptions/UmlLengthException.php");
 require_once(__DIR__ . "/../src/exceptions/umltocodecontrollerexceptions/ProjectExistException.php");
 require_once(__DIR__ . "/../src/exceptions/umltocodecontrollerexceptions/DeleteProjextException.php");
+require_once(__DIR__ . "/../src/exceptions/umltocodecontrollerexceptions/SaveNameMaxLengthException.php");
+require_once(__DIR__ . "/../src/exceptions/umltocodecontrollerexceptions/UmlMaxLengthException.php");
 
 
 

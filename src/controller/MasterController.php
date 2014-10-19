@@ -2,6 +2,7 @@
 
 namespace controller;
 
+use model\InterpretModel;
 use model\SessionModel;
 use src\view\nav\NavView;
 use SweDateView;
@@ -12,7 +13,7 @@ class MasterController {
         $sessionModel = New SessionModel();
         $loginController = new LoginController($sessionModel);
         $isLoggedIn = $loginController->checkLogin();
-        $umlToCodeController = new UmlToCodeController();
+        $umlToCodeController = new UmlToCodeController(new InterpretModel());
         $sweDateView = new SweDateView();
 
         switch(NavView::getAction()){

@@ -84,6 +84,7 @@ class MemberView extends GuestView {
     }
     public function showMemberContents (){
         $result = $this->showInterpret();
+
         $message = $this->renderMessages();
 
         $string = "<h1>UML->Code</h1>
@@ -137,9 +138,13 @@ class MemberView extends GuestView {
         return $dom;
     }
 
-    public function saveNameLengthMSG($message)
+    public function saveNameLengthMSG()
     {
         $this->message[] = " Savename är för kort, minst två tecken behövs. ";
+    }
+    public function saveNameMaxLengthMSG()
+    {
+        $this->message[] = " Savename är för långt, max 20 tecken tillåts. ";
     }
 
     public function umlLengthMSG()
@@ -183,7 +188,17 @@ class MemberView extends GuestView {
 
     public function savedZipMSG()
     {
-        $this->message = "Det gick bra att skapa filer, nedladdning startar strax.";
+        $this->message[] = "Det gick bra att skapa filer av tolkningsbar UML, nedladdning startar strax.";
+    }
+
+    public function umlLengthExceptionMSG()
+    {
+        $this->message[] = "Din UML modell är för kort, måste vara minst 3 tecken.";
+    }
+
+    public function UmlMaxLengthExceptionMSG()
+    {
+        $this->message[] = "Umlmodell är för lång, får ej vara mer än 1000 tecken.";
     }
 }
 

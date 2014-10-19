@@ -77,8 +77,8 @@ class RegisterView {
     public function msgUsernameAndPasswordLength(){
         $this->message[] = "Användarnamn och lösenord måste ha minst 3 respektive sex tecken.";
     }
-    public function msgUsernameLength($name){
-        $this->message[] = "Användarnamnet  $name  har för få tecken. Minst 3 tecken";
+    public function msgUsernameLength(){
+        $this->message[] = "Användarnamnet har för få tecken. Minst 3 tecken";
     }
     public function msgUsernameWrongChar($name){
         $this->message[] = " Användarnamnet $name innehöll tidigare ogiltiga tecken, dom är nu borttagna.";

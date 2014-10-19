@@ -4,7 +4,9 @@ namespace model;
 use src\exceptions\umltocodecontrollerexceptions\RegexSaveNameException;
 use src\exceptions\umltocodecontrollerexceptions\RegexUmlStringException;
 use src\exceptions\umltocodecontrollerexceptions\SaveNameLengthException;
+use src\exceptions\umltocodecontrollerexceptions\SaveNameMaxLengthException;
 use src\exceptions\umltocodecontrollerexceptions\UmlLengthException;
+use src\exceptions\umltocodecontrollerexceptions\UmlMaxLengthException;
 
 class UML {
     private $saveName;
@@ -15,7 +17,7 @@ class UML {
     const SAVENAMEMINLENGTH = 2;
     const SAVENAMEMAXLENGTH = 20;
     const UMLSTRINGMINLENGTH = 3;
-    const UMLSTRINGMAXLENGTH = 250;
+    const UMLSTRINGMAXLENGTH = 1000;
     const  UMLSTRINGREGEX = '/[^a-z0-9\-\+\|\[\]\(\)]+/i';
     const  SAVENAMEREGEX = '/[^a-z0-9\-]+/i';
 
@@ -30,13 +32,12 @@ class UML {
         $this->username = $username;
     }
     public function SetSaveName($saveName){
-        //TODO Write exceptions without message
         if(!preg_match(self::SAVENAMEREGEX, "$saveName" )){
             if(strlen($saveName) < self::SAVENAMEMINLENGTH){
-                throw new SaveNameLengthException("Savename är för kort, måste vara minst 2 tecken.");
+                throw new SaveNameLengthException();
             }
             else if(strlen($saveName) > self::SAVENAMEMAXLENGTH){
-                throw new SaveNameLengthException("Savename är för långt, får ej vara mer än 20 tecken.");
+                throw new SaveNameMaxLengthException();
             }
             $this->saveName = $saveName;
         }
@@ -48,10 +49,10 @@ class UML {
     public function SetUmlString($umlString){
         if(!preg_match(self::UMLSTRINGREGEX, "$umlString" )){
             if(strlen($umlString) < self::UMLSTRINGMINLENGTH){
-                throw new UmlLengthException("Din UML modell är för kort, måste vara minst 3 tecken.");
+                throw new UmlLengthException();
             }
             else if(strlen($umlString) > self::UMLSTRINGMAXLENGTH){
-                throw new UmlLengthException("Umlmodell är för lång, får ej vara mer än 250 tecken.");
+                throw new UmlMaxLengthException();
             }
         $this->umlString = $umlString;
         }

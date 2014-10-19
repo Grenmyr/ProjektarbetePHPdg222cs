@@ -2,23 +2,37 @@
 namespace model;
 
 use objectModel\ClassModel;
+use src\exceptions\umltocodecontrollerexceptions\UmlStringToShortException;
 
 class InterpretModel {
     //Each valid signs in certain order between pair of square brackets give match and represent a class.
     const MATCHBETWEENSQUAREBRACKETS = '/\[(\w+)((?:\|\+?\w+)*)((?:\|\+?\w+\(\))*)\]/';
     // Match for associations between classes.
     const CHECKASSOCIATIONS ='/\[(\w+)((?:\|\+?\w+)*)((?:\|\+?\w+\(\))*)\]\-\[(\w+)((?:\|\+?\w+)*)((?:\|\+?\w+\(\))*)\]/';
+    const WHITESPACE = '/\s+/';
+
 
     const CLASSNAMEPOS = 1;
     const RELATIONPOS = 4;
-//    private $inputString ='';
+    private $inputString ='';
     /**
      * @var ClassModel[]
      */
     private $classArray =[];
 
-    public function validate($string){
-//        $this->inputString = $string;
+   public function validate($string){
+
+       if(strlen($string)>1000){
+           return null;
+       }
+       if(strlen($string)< 3){
+           throw new UmlStringToShortException();
+       }
+
+       // Remove all whitespace.
+       $string = preg_replace(self::WHITESPACE, '', $string);
+
+       $this->inputString = $string;
 
         // Compare string to the 2 regex and save a class/relation for each match.
         $classArray = $this->findMatch(self::MATCHBETWEENSQUAREBRACKETS,$string);
@@ -38,7 +52,7 @@ class InterpretModel {
                 $class->SetRelations($relation[self::RELATIONPOS]);
             }
         }
-        return ($this->classArray);
+        return $this->classArray;
     }
     private function GetClassByName($className){
         foreach ($this->classArray as $class){
@@ -52,8 +66,13 @@ class InterpretModel {
     private function findMatch($regex,$string){
         preg_match_all($regex,$string,$classArray, PREG_SET_ORDER);
         return $classArray;
+        }
+    
+    // used to present string with errors to view.
+    public function errors(){
+        $invalidChars = preg_replace(self::CHECKASSOCIATIONS,'',$this->inputString);
+        return $invalidChars;
     }
-
 }
 /**
  * Created by PhpStorm.

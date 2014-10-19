@@ -76,12 +76,8 @@ class RegisterController {
             $sessionModel->SetUser($username);
             NavView::redirectToUMLRegisterMSG($username);
         }
-        catch(RegisterUsernameAndPasswordNullException $e){
-            $this->registerView->msgUsernameAndPasswordLength();
-        }
         catch(RegisterUsernameLengthException $e){
-            $name = $e->getMessage();
-            $this->registerView->msgUsernameLength($name);
+            $this->registerView->msgUsernameLength();
         }
         catch(RegexException $e){
             $name  = $e->getMessage();
