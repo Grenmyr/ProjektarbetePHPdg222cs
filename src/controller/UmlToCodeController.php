@@ -1,7 +1,6 @@
 <?php
 namespace controller;
 use CookieView;
-use model\InterpretModel;
 use model\repository\UMLRepository;
 use model\repository\UserRepository;
 use model\SessionModel;

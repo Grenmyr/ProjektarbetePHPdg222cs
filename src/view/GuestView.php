@@ -2,10 +2,7 @@
 namespace src\view;
 use model\InterpretModel;
 use objectModel\ClassModel;
-use objectModel\FunctionModel;
-use objectModel\VariableModel;
 use src\view\nav\NavView;
-use src\view\subview\BaseInterpretView;
 use src\view\subview\PHPFactory;
 
 class GuestView {

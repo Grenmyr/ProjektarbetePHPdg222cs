@@ -7,7 +7,7 @@
  */
 
 class DeleteProjectView {
-
+    //TODO REMOVE?
     public function show(){
 
             $dom ="<ul>";

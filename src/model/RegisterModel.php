@@ -5,7 +5,6 @@ namespace model;
 
 use src\Exception\RegexException;
 use src\Exception\RegisterException;
-use src\Exception\RegisterUsernameAndPasswordNullException;
 use src\Exception\RegisterUsernameLengthException;
 
 

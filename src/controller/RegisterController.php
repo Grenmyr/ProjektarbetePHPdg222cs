@@ -17,7 +17,6 @@ use model\User;
 use src\Exception\DbUserExistException;
 use src\Exception\RegexException;
 use src\Exception\RegisterException;
-use src\Exception\RegisterUsernameAndPasswordNullException;
 use src\Exception\RegisterUsernameLengthException;
 use src\view\LoginView;
 use src\view\nav\NavView;

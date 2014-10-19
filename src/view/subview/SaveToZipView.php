@@ -1,6 +1,5 @@
 <?php
 namespace src\view\subview;
-use objectModel\FunctionModel;
 
 /**
  * Created by PhpStorm.

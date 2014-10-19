@@ -2,6 +2,7 @@
 namespace model\repository;
 
 use model\User;
+use src\Exception\DbUserExistException;
 
 class UserRepository extends Repository {
     private static $userName="username";
@@ -12,7 +13,7 @@ class UserRepository extends Repository {
     public function add(User $user) {
         // If Empty user submit throw Exception.
         if($getUser = $this->getUserByUsername($user->GetUsername())){
-            throw new \src\Exception\DbUserExistException();
+            throw new DbUserExistException();
         }
 
         //try {
