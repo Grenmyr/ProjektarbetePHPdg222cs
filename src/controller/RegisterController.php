@@ -29,10 +29,6 @@ class RegisterController {
      * @var RegisterView
      */
     private $registerView;
-    /**
-     * @var SweDateView
-     */
-    private $sweDateView;
 
     /**
      * @var RegisterModel
@@ -43,14 +39,13 @@ class RegisterController {
     public function __construct(){
         $this->registerModel = new RegisterModel();
         $this->registerView = new RegisterView( $this->registerModel);
-        $this->sweDateView = new SweDateView();
     }
 
     public function body(){
         if($this->registerView->submit()){
             $this->onSubmit();
         }
-        return $this->registerView->show() . $this->sweDateView->show();
+        return $this->registerView->show();
     }
     private function onSubmit(){
         $username = $this->registerView->GetUsername();

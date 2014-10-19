@@ -1,18 +1,8 @@
 <?php
 namespace objectModel;
 
-
-
-
-
-//require_once(__DIR__ . "/VariableModel.php");
-//require_once(__DIR__ . "/FunctionModel.php");
-
 class ClassModel{
     const pipeOrPlusRegex = '/(\w+)|(\+\w+)/';
-    const publicRegex = '/\+/';
-
-    const CHECKASSOCIATIONS ='/\[(\w+)((?:\|\+?\w+)*)((?:\|\+?\w+\(\))*)\]\-\[(\w+)((?:\|\+?\w+)*)((?:\|\+?\w+\(\))*)\]/';
 
     const namesPos = 0;
     const classNamePos = 1;
@@ -31,17 +21,17 @@ class ClassModel{
 
     private $relations=[];
 
+    // Set classname,variables,functions by dependency injection from interpretmodel.
     public function __construct($classArray){
         $this->className = $classArray[self::classNamePos];
 
         $variableNames =$this->findNames(self::pipeOrPlusRegex,$classArray[self::variableNamePos]);
-        $functionNames = $this->findNames(self::pipeOrPlusRegex,$classArray[self::functionNamePos]);
-
         foreach ($variableNames as $name) {
             $variableName = $name[self::namesPos];
             $this->variables[] = new VariableModel($variableName);
         }
 
+        $functionNames = $this->findNames(self::pipeOrPlusRegex,$classArray[self::functionNamePos]);
         foreach ($functionNames as $name){
             $functionName = $name[self::namesPos];
             $this->functions[] = new FunctionModel($functionName);

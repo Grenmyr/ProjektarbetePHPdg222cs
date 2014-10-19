@@ -29,13 +29,12 @@ class GuestView {
         $this->interpretModel= new InterpretModel();
         $this->phpFactory = new PHPFactory();
     }
-    public function SetInputValue($post){
-        $this->input= $post;
+    public function SetInputValue($string){
+            $this->input= $string;
     }
     // Return true if submit.
     public function userSubmitUml(){
        if (isset($_POST[self::$submitUMLButton])){
-
            $this->SetInputValue($_POST[self::$textArea]);
            return true;
        };
@@ -131,15 +130,6 @@ class GuestView {
                     $phpRelations .= "<p>".$this->phpFactory->GetEndBracket()."</p>";
                 }
 
-
-
-
-
-
-                //$variableString =$this->showVariables($variables);
-                //$functionString =$this->showFunctions($functions);
-                //$relationString = $this->showRelations($relations);
-
                 $dom .= "<p>$phpClass</p> <p>".$phpRelations."</p> <p>".$phpVariables."</p><p>".$phpFunctions."}</p>"
                 ;
             }
@@ -150,9 +140,7 @@ class GuestView {
     // Render dom from for guestView. Also Form to submit post from user.
     public function show (){
         $result = $this->showInterpret();
-
         $string = "<h1>UML->Code</h1>
-        <a href='?action=" . NavView::$login . "'>Logga in</a>
          <a href='?action=" . NavView::$registerView . "'>Registrera</a>
     <form  method=post action='?action=" . NavView::$umlSubmit . "'>
     <fieldset>

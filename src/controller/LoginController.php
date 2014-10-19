@@ -17,10 +17,6 @@ class LoginController {
      * @var LoginView
      */
     private $loginView;
-    /**
-     * @var SweDateView
-     */
-    private $sweDateView;
 
     /**
      * @var CookieView
@@ -44,7 +40,6 @@ class LoginController {
 
         $this->memberView = new MemberView();
         $this->loginView = new LoginView();
-        $this->sweDateView = new SweDateView();
         $this->guestView = new GuestView();
 
         $this->sessionModel = $sessionModel;
@@ -54,9 +49,10 @@ class LoginController {
     }
 
     public function logout(){
+        $user = $this->sessionModel->GetUser();
         $this->sessionModel->logOut();
         $this->cookieView->deleteCookie();
-        NavView::redirectHome();
+        NavView::redirectHome($user);
     }
     public function checkLogin(){
         // get client details.
@@ -89,7 +85,7 @@ class LoginController {
 
 
     public function login(){
-        // Else if logged out, check if user submit login. Then log in.
+        // If user submit login. Then log in.
         if($this->loginView->userSubmit()){
             // Retrieve username and password string from LoginView from user post.
             $password = $this->loginView->GetPassword();
@@ -99,10 +95,11 @@ class LoginController {
             // Check userModel if user can log in.
             if ($this->loginModel->LogIn($username, $password,$trueAgent)) {
                 // Create cookie if user clicked select box in login view.
+                $this->sessionModel->SetUser($username);
                 if($this->loginView->wantCookie()){
                     $this->setCookie();
+                    NavView::redirectToUMLMSG($username);
                 }
-                $this->sessionModel->SetUser($username);
                 NavView::redirectToUMLMSG($username);
             }
             else{
@@ -110,7 +107,7 @@ class LoginController {
                 $this->loginView->FailedMSG($username,$password);
             }
         }
-        return   $this->loginView->show()  . $this->sweDateView->show();
+        return   $this->loginView->show();
     }
     public function setCookie(){
         $uniqueString = $this->loginModel->createUniqueKey();

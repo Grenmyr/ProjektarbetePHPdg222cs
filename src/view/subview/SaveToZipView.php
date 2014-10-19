@@ -1,5 +1,6 @@
 <?php
 namespace src\view\subview;
+use objectModel\FunctionModel;
 
 /**
  * Created by PhpStorm.
@@ -57,30 +58,8 @@ class SaveToZipView {
                 }
                 $classContent .="}";
                 file_put_contents("".self::$path."".$className.".php","$classContent");
-        }
+            }
         }
     }
-
-   /* private function CreatePHPFiles($classes)
-    {
-        file_put_contents('test.txt','data');
-        function file_force_contents($dir, $content){
-            $parts = explode('/', $dir);
-            $file = array_pop($parts);
-            $dir = '';
-            foreach($parts as $part)
-                if(!is_dir($dir .= "/$part")) mkdir($dir);
-            file_put_contents("$dir/$file", $content);
-        }
-        foreach($classes as $class){
-            $className = $class->GetClassName();
-            $variables = $class->GetVariables();
-            $functions = $class->GetFunctions();
-            $relations = $class->GetRelations();
-
-
-        }
-        var_dump($classes);
-    }*/
 
 } 

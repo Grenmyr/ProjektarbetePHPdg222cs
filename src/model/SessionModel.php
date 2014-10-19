@@ -40,13 +40,12 @@ class SessionModel {
     }
 
    // Not implemented in application
-   public function SaveMessage($string){
-       $_SESSION["message"]= $string;
+   public function SetUMLText($string){
+       $_SESSION["model"]= $string;
    }
     // Not implemented in application
-    public function GetMessage(){
-        $ret = $_SESSION["message"];
-        return $ret;
+    public function GetUMLText(){
+        return $_SESSION["model"];
     }
 }
 /**

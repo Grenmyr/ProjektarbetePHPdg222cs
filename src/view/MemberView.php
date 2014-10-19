@@ -19,20 +19,31 @@ class MemberView extends GuestView {
     private static $saveName = "savename";
     private static $saveToZip = "savetozip";
 
+    private static $exampleUML = "[Domain|name|+surname|stair()|+wood()]-[Line][Domain]-[Chair|leg|+backSeat()]-[Pair]
+    [Another|+plastic|kitchen()]-[LastClassExample][Domain|name|+surname|stair()|+wood()]-[road]";
+
     public  function SetSaveNameValue($saveName){
         $this->saveNameValue = $saveName;
     }
 
     public function loginWelcome(){
         if(isset($_GET[self::$welcome])){
+            $this->SetInputValue(self::$exampleUML);
             $this->message[] = "Välkommen tillbaka " .$_GET[self::$welcome]." !";
+        }
+        return False;
+    }
+    public function cookieWelcome(){
+        if(isset($_GET[self::$welcome])){
+            $this->message[] = "Du valde att spara cookie och kommer automatiskt loggas in  i 7 dagar.";
         }
         return False;
     }
 
     public function registerWelcome(){
         if(isset($_GET[self::$register])){
-            $this->message[] = "Registreringen av användarnamnet " .$_GET[self::$register]." lyckades !";
+            $this->SetInputValue(self::$exampleUML);
+            $this->message[] = "Registreringen av användarnamnet " .$_GET[self::$register]." lyckades, du loggades in automatiskt !";
         }
         return False;
     }
@@ -47,6 +58,7 @@ class MemberView extends GuestView {
     }
     public function userSaveToZip(){
         if(isset($_POST[self::$saveToZip])){
+            $this->SetInputValue($_POST[self::$textArea]);
             return $_POST[self::$textArea];
         }
         return false;
@@ -62,10 +74,6 @@ class MemberView extends GuestView {
             return($_POST[self::$textArea]);
         }
         return false;
-    }
-
-    public function cookieSuccessMSG() {
-        $this->message = "Inloggningen lyckades och vi kommer ihåg dig i 7 dagar.";
     }
 
     public function SetUser($userName){
@@ -106,6 +114,11 @@ class MemberView extends GuestView {
         ";
         return $string;
     }
+
+    public function cookieSuccessMSG() {
+        $this->message = "Inloggningen lyckades och vi kommer ihåg dig i 7 dagar.";
+    }
+
     public function badCharInputValueMSG($value){
         $this->SetInputValue($value);
         $this->message[] = " Modell texten $value innehöll tidigare ogiltiga tecken, dom är nu borttagna.";
@@ -166,6 +179,11 @@ class MemberView extends GuestView {
     public function deleteMSG($name)
     {
         $this->message[] = "Projektet $name togs bort.";
+    }
+
+    public function savedZipMSG()
+    {
+        $this->message = "Det gick bra att skapa filer, nedladdning startar strax.";
     }
 }
 

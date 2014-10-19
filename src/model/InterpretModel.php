@@ -3,42 +3,44 @@ namespace model;
 
 use objectModel\ClassModel;
 
-//require_once(__DIR__ . "/objectModel/ClassModel.php");
-
-
 class InterpretModel {
-    //Each pair of square brackets represent a class.
+    //Each valid signs in certain order between pair of square brackets give match and represent a class.
     const MATCHBETWEENSQUAREBRACKETS = '/\[(\w+)((?:\|\+?\w+)*)((?:\|\+?\w+\(\))*)\]/';
-    // only match 1 time atm.
+    // Match for associations between classes.
     const CHECKASSOCIATIONS ='/\[(\w+)((?:\|\+?\w+)*)((?:\|\+?\w+\(\))*)\]\-\[(\w+)((?:\|\+?\w+)*)((?:\|\+?\w+\(\))*)\]/';
 
-    private $inputString ='';
+    const CLASSNAMEPOS = 1;
+    const RELATIONPOS = 4;
+//    private $inputString ='';
     /**
      * @var ClassModel[]
      */
     private $classArray =[];
 
     public function validate($string){
-        $this->inputString = $string;
+//        $this->inputString = $string;
 
-        $classArray = $this->find(self::MATCHBETWEENSQUAREBRACKETS,$string);
-        $relations = $this->find(self::CHECKASSOCIATIONS,$string);
+        // Compare string to the 2 regex and save a class/relation for each match.
+        $classArray = $this->findMatch(self::MATCHBETWEENSQUAREBRACKETS,$string);
+        $relations = $this->findMatch(self::CHECKASSOCIATIONS,$string);
+
+        // Make sure a class can only exist once with same name before setting the array of classes
+        // to avoid duplicates.
         foreach ($classArray as $class){
             $eachClass = new ClassModel($class);
-            if (!$this->getClassByName($eachClass->GetClassName())) {
+            if (!$this->GetClassByName($eachClass->GetClassName())) {
                 $this->classArray[] = $eachClass;
             }
         }
         foreach ($relations as $relation){
-            //var_dump('From '.$relation[1].' to '.$relation[4]);
-            $class = $this->getClassByName($relation[1]);
+            $class = $this->GetClassByName($relation[self::CLASSNAMEPOS]);
             if ($class) {
-                $class->SetRelations($relation[4]);
+                $class->SetRelations($relation[self::RELATIONPOS]);
             }
         }
         return ($this->classArray);
     }
-    private function getClassByName($className){
+    private function GetClassByName($className){
         foreach ($this->classArray as $class){
             if ($class->GetClassName() === $className) {
                 return $class;
@@ -47,13 +49,9 @@ class InterpretModel {
         return null;
     }
 
-    private function find($regex,$string){
+    private function findMatch($regex,$string){
         preg_match_all($regex,$string,$classArray, PREG_SET_ORDER);
         return $classArray;
-    }
-
-    public function GetClassArray(){
-        return $this->inputString;
     }
 
 }

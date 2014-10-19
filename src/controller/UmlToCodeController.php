@@ -1,5 +1,6 @@
 <?php
 namespace controller;
+use CookieView;
 use model\InterpretModel;
 use model\repository\UMLRepository;
 use model\repository\UserRepository;
@@ -36,6 +37,8 @@ class UmlToCodeController {
 
         $this->umlToCodeModel = new UmlToCodeModel();
     }
+
+
     public function showGuestView(){
         if($this->guestView->userSubmitUml()){
             $this->guestView->handleInput();
@@ -43,12 +46,17 @@ class UmlToCodeController {
         return $this->guestView->show() ;
     }
 
+
     /**
      * @param SessionModel $sessionModel
      * @return string
      */
     public function showMemberView($sessionModel){
         $this->memberView->SetUser($sessionModel->GetUser());
+        $cookieView = New CookieView();
+        if($cookieView->cookieExist()){
+            $this->memberView->cookieWelcome();
+        }
         $this->memberView->loginWelcome();
         $this->memberView->registerWelcome();
 
@@ -61,9 +69,9 @@ class UmlToCodeController {
         else if($umlPost = $this->memberView->userSaveToZip()){
             $classArray = $this->interpretModel->validate($umlPost);
             $saveToZipView = New SaveToZipView($classArray);
+            $this->memberView->savedZipMSG();
 
         }
-
         return $this->memberView->showMemberContents();
     }
     public function saveUML(){
@@ -95,6 +103,7 @@ class UmlToCodeController {
         }
     }
 
+    // Generate list of server stored projects by that user..
     public function projectsView()
     {
         $projectView = New ProdjectsView();

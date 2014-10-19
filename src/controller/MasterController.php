@@ -4,88 +4,64 @@ namespace controller;
 
 use model\SessionModel;
 use src\view\nav\NavView;
+use SweDateView;
 
 class MasterController {
 
     public function render(){
         $sessionModel = New SessionModel();
         $loginController = new LoginController($sessionModel);
+        $isLoggedIn = $loginController->checkLogin();
+        $umlToCodeController = new UmlToCodeController();
+        $sweDateView = new SweDateView();
 
         switch(NavView::getAction()){
             case NavView::$umlSubmit;
-                $umlToCodeController = new UmlToCodeController();
-                if($loginController->checkLogin()){
-                    return $umlToCodeController->showMemberView($sessionModel);
+                if($isLoggedIn){
+                    return $umlToCodeController->showMemberView($sessionModel) .$sweDateView->show();
                 }
-                else
-                {
-                    return  $umlToCodeController->showGuestView();
-                }
-            case NavView::$umlSave;
-                var_dump("case umlSave");
-                break;
+                    return  $umlToCodeController->showGuestView() .$loginController->login() .$sweDateView->show();
             case NavView::$umlGetLists;
                 var_dump("case umlGetLists");
-                $umlToCodeController = new UmlToCodeController();
-                if($loginController->checkLogin()){
-                    return $umlToCodeController->showMemberView($sessionModel) . $umlToCodeController->projectsView()   ;
+                if($isLoggedIn){
+                    return $umlToCodeController->showMemberView($sessionModel) . $umlToCodeController->projectsView() .$sweDateView->show()  ;
                 }
-                else
-                {
-                    return  $umlToCodeController->showGuestView() .$loginController->login();
-                }
+                    return  $umlToCodeController->showGuestView() .$loginController->login() .$sweDateView->show();
             case NavView::$showProject;
                var_dump("case showproject");
-                $umlToCodeController = new UmlToCodeController();
-                if($loginController->checkLogin()){
-                    return $umlToCodeController->getUmlProject() . $umlToCodeController->showMemberView($sessionModel)  ;
+                if($isLoggedIn){
+                    return $umlToCodeController->getUmlProject() . $umlToCodeController->showMemberView($sessionModel) .$sweDateView->show() ;
                 }
-                else
-                {
-                    return  $umlToCodeController->showGuestView();
-                }
+                    return  $umlToCodeController->showGuestView() .$loginController->login() .$sweDateView->show();
             case NavView::$deleteProject;
                 var_dump("case deleteproject");
-                $umlToCodeController = new UmlToCodeController();
-                if($loginController->checkLogin()){
-                    return $umlToCodeController->deleteUmlProject().  $umlToCodeController->showMemberView($sessionModel)  ;
+                if($isLoggedIn){
+                    return $umlToCodeController->deleteUmlProject().  $umlToCodeController->showMemberView($sessionModel) .$sweDateView->show() ;
                 }
-                else
-                {
-                    return  $umlToCodeController->showGuestView();
-                }
+                    return  $umlToCodeController->showGuestView() .$loginController->login() .$sweDateView->show();
             case NavView::$saveToDisk;
                 var_dump("case savetodisk");
-                $umlToCodeController = new UmlToCodeController();
-                if($loginController->checkLogin()){
-                    return $umlToCodeController->deleteUmlProject().  $umlToCodeController->showMemberView($sessionModel)  ;
+                if($isLoggedIn){
+                    return $umlToCodeController->deleteUmlProject().  $umlToCodeController->showMemberView($sessionModel) .$sweDateView->show()  ;
                 }
-                else
-                {
-                    return  $umlToCodeController->showGuestView();
-                }
+                    return  $umlToCodeController->showGuestView() .$loginController->login() .$sweDateView->show();
             case NavView::$registerView;
                 var_dump("case registerview");
                 $registerController = new RegisterController();
-                return $registerController->body();
+                return $registerController->body() .$sweDateView->show();
             case NavView::$login;
                var_dump("case login");
-                $umlToCodeController = new UmlToCodeController();
-                return  $loginController->login() . $umlToCodeController->showGuestView();
+                return    $umlToCodeController->showGuestView() . $loginController->login() .$sweDateView->show();
             case NavView::$logoutView;
                 var_dump("case logoutview");
                 $loginController->logout();
                 break;
             default:
                 var_dump("case default");
-                $umlToCodeController = new UmlToCodeController();
-                if($loginController->checkLogin()){
-                    return $umlToCodeController->showMemberView($sessionModel);
+                if($isLoggedIn){
+                    return $umlToCodeController->showMemberView($sessionModel) .$sweDateView->show();
                 }
-                else
-                {
-                    return  $umlToCodeController->showGuestView();
-                }
+                    return  $umlToCodeController->showGuestView() .$loginController->login() .$sweDateView->show();
         }
 
         return "error";

@@ -9,7 +9,6 @@ class NavView {
     private static $action = "action";
 
     public static $umlSubmit = "umlsubmit";
-    public static $umlSave = "umlsave";
     public static $umlGetLists = "umlgetlists";
     public static $showProject = "showproject";
     public static $deleteProject = "deleteproject";
@@ -26,8 +25,8 @@ class NavView {
         return self::$umlSubmit;
     }
 
-    public static function redirectHome() {
-        header('Location: /' . \Settings::$ROOT_PATH. '/');
+    public static function redirectHome($string) {
+        header('Location: /' . \Settings::$ROOT_PATH. '/?'.self::$action.'='.self::$umlSubmit.'&logout='.$string);
     }
 
     public static function redirectToUMLMSG($string) {
@@ -36,9 +35,6 @@ class NavView {
     public static function redirectToUMLRegisterMSG($string) {
         header('Location: /' . \Settings::$ROOT_PATH. '/?'.self::$action.'='.self::$umlSubmit.'&register='.$string);
     }
-
-
-
 
 }
 /**
