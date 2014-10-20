@@ -69,7 +69,6 @@ class LoginView {
         $password = $this->GetPassword();
         return "
          <div class='formcontent'>
-            <h2>Ej Inloggad</h2>
             <form enctype=multipart/form-data method=post action='?action=" . NavView::$login . "' id='loginform' >
 
                 <fieldset>

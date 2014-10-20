@@ -47,13 +47,17 @@ class RegisterView {
         }
         $message = $this->renderMessages();
         $ret ="
-         <div class='formcontent'>
+        <header>
+        <h3>UML->Code : Registrering</h3>
+    <a href='?action=" . NavView::$umlSubmit . "'>Till UML->Code</a>
+    <a href='?action=" . NavView::$login . "'>Logga in</a>
+    </header>
+         <div class='formcontent' content='Code->UML'>
         <h2>
     Ej Inloggad, Registrerar användare
 </h2>
 <form enctype=multipart/form-data method=post action='?action=" . NavView::$registerView . "'>
-    <a href='?action=" . NavView::$umlSubmit . "'>Till UML->Code</a>
-    <a href='?action=" . NavView::$login . "'>Logga in.</a>
+
     <fieldset>
         <legend>
             Registrera ny användare -Skriv in användarnamn och lösenord

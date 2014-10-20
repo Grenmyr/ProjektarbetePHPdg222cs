@@ -5,20 +5,118 @@ body{
 a{
     text-decoration: none;
 }
+ul{
+    margin: 0;
+    padding: 0;
+}
+/* above is reset */
 
-a{
+.formcontent{
+    padding-bottom: 75px;
+}
+
+#loginform{
+    height: 50px;
+    padding-bottom: 75px;
+}
+
+header a{
    border: 1px solid;
     height: 30px;
     font-size: 25px;
-    margin-top: 5px;
+    display: inline-block;
+    margin-top: 10px;
+    color: lightgoldenrodyellow;
+    margin-right: 5px;
+    float: right;
 }
+a:hover{
+    color: red;
+}
+textarea{
+    width: 99%;
+    resize: none;
+}
+input[type=text]{
+    height: 24px;
+}
+input[type=password]{
+    height: 24px;
+}
+input[type=submit]{
+    background-color: black;
+    color: lightgoldenrodyellow;
+    height: 32px;
+    box-shadow:-1px 2px #6E6B6A inset;border-radius: 5px;
+
+}
+input[type=submit]:hover{
+color: red;
+
+}
+
 header{
-    background-color: lightgray;
+    background-color: black;
     height: 50px;
     width: 100%;
+}
+footer{
+    position:fixed;
+    left:0px;
+    bottom:0px;
+    width:100%;
+    background-color: black;
+    height: 50px;
+
+}
+footer p{
+    float: left;
+    margin-left: 5px;
+    color: lightgoldenrodyellow;
+    margin-right: 5px;
+
+}
+#clock{
+    float: right;
+}
+h3{
+    height: 30px;
+    display: inline-block;
+    float: left;
+    font-size: 25px;
+    margin-top: 10px;
+    margin-left: 5px;
+    color: lightgoldenrodyellow;
 }
 
 .formcontent{
     width: 90%;
     margin: auto auto;
+}
+
+ul{
+
+    list-style-type: none;
+}
+ul h4{
+    color: lightgoldenrodyellow;
+    margin-left: 30px;
+}
+ul div{
+    margin-bottom: 2%;
+    border-radius: 5px;
+    color: red;
+    border: 5px solid;
+    background-color: black;
+}
+ul li a{
+    display: inline-block;
+    color: lightgoldenrodyellow;
+    margin-left: 30px;
+    margin-bottom: 10px;
+}
+.delete{
+    display: inline-block;
+
+
 }

@@ -23,7 +23,7 @@ class SweDateView
         $sweDay = $days[$WeekDayInt - 1];
         $sweMonth = $month[$monthInt - 1];
 
-        $ret = "<p id='clock'>$sweDay $currDate $sweMonth $clock</p>";
+        $ret = "<footer><p id='clock'>$sweDay $currDate $sweMonth $clock</p></footer>";
         return $ret;
     }
 }

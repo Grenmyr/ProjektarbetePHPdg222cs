@@ -7,6 +7,7 @@ use src\exceptions\umltocodecontrollerexceptions\UmlStringToShortException;
 class InterpretModel {
     //Each valid signs in certain order between pair of square brackets give match and represent a class.
     const MATCHBETWEENSQUAREBRACKETS = '/\[(\w+)((?:\|\+?\w+)*)((?:\|\+?\w+\(\))*)\]/';
+    const CHECKERRORS = '/\[(\w+)((?:\|\+?\w+)*)((?:\|\+?\w+\(\))*)\]-?/';
     // Match for associations between classes.
     const CHECKASSOCIATIONS ='/\[(\w+)((?:\|\+?\w+)*)((?:\|\+?\w+\(\))*)\]\-\[(\w+)((?:\|\+?\w+)*)((?:\|\+?\w+\(\))*)\]/';
     const WHITESPACE = '/\s+/';
@@ -70,8 +71,9 @@ class InterpretModel {
     
     // used to present string with errors to view.
     public function errors(){
-        $invalidChars = preg_replace(self::MATCHBETWEENSQUAREBRACKETS,'',$this->inputString);
-        $invalidChars = preg_replace(self::CHECKASSOCIATIONS,'',$this->inputString);
+        $invalidChars = preg_replace(self::CHECKERRORS,'',$this->inputString);
+
+        //$invalidChars = preg_replace(self::CHECKASSOCIATIONS,'',$this->inputString);
 
         return $invalidChars;
     }

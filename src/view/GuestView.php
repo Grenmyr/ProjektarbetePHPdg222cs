@@ -123,7 +123,7 @@ class GuestView {
         }
         return $dom;
     }
-
+    //TODO here i am
     // Render dom from for guestView. Also Form to submit post from user.
     public function show (){
         $result = $this->showInterpret();
@@ -131,6 +131,7 @@ class GuestView {
 
         $string = "
          <header>
+          <h3>UML->Code : Gäst, inte inloggad.</h3>
            <a href='?action=" . NavView::$registerView . "'>Registrera</a>
          </header>
          <div class='formcontent'>
@@ -147,8 +148,8 @@ class GuestView {
         Fyll i domän modellen i textfält under.
         </legend>
         <textarea  cols='50' rows='5' name='" .self::$textArea. "'>$this->input</textarea>
-         <input type='submit' value='Get example code' name='" .self::$exampleUMLButton. "'>
-        <input type='submit' value='Get Code' name='" .self::$submitUMLButton. "'>
+         <input type='submit' value='Ladda uml exempel' name='" .self::$exampleUMLButton. "'>
+        <input type='submit' value='Generera kod' name='" .self::$submitUMLButton. "'>
         <div ></div>
          <div> $result </div>
     </fieldset>

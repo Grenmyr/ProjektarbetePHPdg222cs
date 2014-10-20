@@ -85,12 +85,12 @@ class MemberView extends GuestView {
         $message = $this->renderMessages();
 
         $string = "
-
-         <div class='formcontent'>
-        <h1>UML->Code</h1>
+        <header>
+         <h3>UML->Code : $this->username är inloggad.</h3>>
         <a href='?action=" . NavView::$logoutView . "'>Logga ut</a>
         <a href='?action=" . NavView::$umlGetLists . "'>Hämta sparade projekt</a>
-            <h2>$this->username är inloggad.</h2>
+        </header>
+         <div class='formcontent'>
             <p>$message<p>
              <form  method=post action='?action=" . NavView::$umlSubmit . "'  id='memberviewform' class='formclass'>
     <fieldset>
@@ -105,9 +105,9 @@ class MemberView extends GuestView {
         Fyll i domän modellen i textfält under.
         </legend>
         <textarea cols='50' rows='5' name='" .self::$textArea. "'>$this->input</textarea>
-        <input type='submit' value='Get example code' name='" .self::$exampleUMLButton. "'>
-        <input type='submit' value='Rendera kod' name='" .self::$submitUMLButton. "'>
-        <input type='submit' value='Download code' name='" .self::$saveToZip. "'>
+        <input type='submit' value='Ladda uml exempel' name='" .self::$exampleUMLButton. "'>
+        <input type='submit' value='Generera kod' name='" .self::$submitUMLButton. "'>
+        <input type='submit' value='Ladda ner kod' name='" .self::$saveToZip. "'>
          <div> $result </div>
     </fieldset>
     </form>
