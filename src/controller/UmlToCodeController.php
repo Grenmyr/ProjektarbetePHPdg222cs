@@ -87,6 +87,7 @@ class UmlToCodeController {
             }
             else{
                 New SaveToZipView($classArray);
+                //TODO remove message?
                 $this->memberView->savedZipMSG();
                 $this->memberView->errorInterpretMSG();
             }

@@ -1,5 +1,8 @@
 <?php
 namespace src\view\subview;
+use RecursiveDirectoryIterator;
+use RecursiveIteratorIterator;
+use ZipArchive;
 
 /**
  * Created by PhpStorm.
@@ -22,7 +25,12 @@ class SaveToZipView {
         $this->CreatePHPFiles($classes);
     }
 
-    public function CreatePHPFiles($classes){
+    public function CreatePHPFiles($classes) {
+
+        $zip = new ZipArchive();
+        $name ="/".rand().".zip";
+        $zip->open(realpath(self::$path).$name, ZipArchive::CREATE);
+
         if(is_array($classes)){
             foreach ($classes as $value){
 
@@ -56,9 +64,12 @@ class SaveToZipView {
                     $classContent .= "".$this->phpFactory->GetFunctionSyntax($functionObject)."\n";
                 }
                 $classContent .="}";
-                file_put_contents("".self::$path."".$className.".php","$classContent");
+                $file = realpath(self::$path).DIRECTORY_SEPARATOR.$className.".php";
+
+                $zip->addFromString($className.".php", $classContent);
             }
         }
+        $zip->close();
+        header("Location: ".self::$path.$name."");
     }
-
 } 
