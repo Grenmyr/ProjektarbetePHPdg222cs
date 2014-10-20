@@ -21,8 +21,6 @@ class PHPFactory {
     }
 
     public function GetRequireOnce($class){
-        //var_dump("'require_once(__DIR__./". $class . ".php.)'");
-        //var_dump("test");
         return 'require_once(__DIR__."/'. $class . '.php");';
     }
 

@@ -70,7 +70,9 @@ class InterpretModel {
     
     // used to present string with errors to view.
     public function errors(){
+        $invalidChars = preg_replace(self::MATCHBETWEENSQUAREBRACKETS,'',$this->inputString);
         $invalidChars = preg_replace(self::CHECKASSOCIATIONS,'',$this->inputString);
+
         return $invalidChars;
     }
 }

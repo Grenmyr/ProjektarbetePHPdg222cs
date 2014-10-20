@@ -11,7 +11,11 @@ class GuestView {
     protected  $phpFactory;
 
     protected  static $submitUMLButton = "submitumlbutton";
+    protected  static $exampleUMLButton = "exampleumlbutton";
     protected  static $textArea = "textarea";
+
+    protected  static $exampleUML = "[Domain|name|+surname|stair()|+wood()]-[Line][Domain]-[Chair|leg|+backSeat()]-[Pair]
+    [Another|+plastic|kitchen()]-[LastClassExample][Domain|name|+surname|stair()|+wood()]-[road]";
 
     /**
      * @var ClassModel[]
@@ -37,6 +41,15 @@ class GuestView {
        };
         return false;
     }
+    public function exampleSubmitUml(){
+        if (isset($_POST[self::$exampleUMLButton])){
+            $this->SetInputValue(self::$exampleUML);
+            return true;
+        };
+        return false;
+    }
+
+
     // Return output as string;
     public function handleInput(){
         $interpret = $this->interpretModel->validate($this->input);
@@ -58,9 +71,9 @@ class GuestView {
     }
     }
 
-    public function SetMSG($message){
+/*    public function SetMSG($message){
         $this->message[] = $message;
-    }
+    }*/
 
     public function showInterpret(){
         $dom = '';
@@ -100,26 +113,48 @@ class GuestView {
         return $dom;
 
     }
+
+    public function renderMessages(){
+        $dom = '';
+        if(is_array($this->message )){
+            foreach ($this->message as $messages){
+                $dom .= "<p>$messages</p>";
+            }
+        }
+        return $dom;
+    }
+
     // Render dom from for guestView. Also Form to submit post from user.
     public function show (){
         $result = $this->showInterpret();
+        $message = $this->renderMessages();
 
-        $string = "<h1>UML->Code</h1>
-         <a href='?action=" . NavView::$registerView . "'>Registrera</a>
-    <form  method=post action='?action=" . NavView::$umlSubmit . "'>
+        $string = "
+         <header>
+           <a href='?action=" . NavView::$registerView . "'>Registrera</a>
+         </header>
+         <div class='formcontent'>
+            <h1>UML->Code</h1>
+
+
+    <form  method=post action='?action=" . NavView::$umlSubmit . "' id='guestviewform' class='formclass'>
     <fieldset>
         <legend>
             Write your UML here
         </legend>
-        <p>$this->message<p>
-        <label>Fill in existing domain model to textarea.</label>
+        <p>$message<p>
+        <legend>
+        Fyll i domän modellen i textfält under.
+        </legend>
         <textarea  cols='50' rows='5' name='" .self::$textArea. "'>$this->input</textarea>
+         <input type='submit' value='Get example code' name='" .self::$exampleUMLButton. "'>
         <input type='submit' value='Get Code' name='" .self::$submitUMLButton. "'>
         <div ></div>
          <div> $result </div>
     </fieldset>
 
     </form>
+    </div>
         ";
         return $string;
     }
@@ -131,7 +166,7 @@ class GuestView {
 
     public function umlToShortMSG()
     {
-        $$this->message[] = "Uml är för kort minst tre tecken behövs.";
+        $this->message[] = "Uml är för kort minst tre tecken behövs.";
     }
 
 

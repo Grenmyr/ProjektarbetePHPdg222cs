@@ -42,6 +42,7 @@ class UmlToCodeController {
 
 
     public function showGuestView(){
+        $this->guestView->exampleSubmitUml();
         try{
         if($this->guestView->userSubmitUml()){
 
@@ -71,6 +72,8 @@ class UmlToCodeController {
         $this->memberView->loginWelcome();
         $this->memberView->registerWelcome();
 
+        $this->memberView->exampleSubmitUml();
+        try{
         if($this->memberView->userSubmitUml()){
             $this->memberView->handleInput();
         }
@@ -87,6 +90,10 @@ class UmlToCodeController {
                 $this->memberView->savedZipMSG();
                 $this->memberView->errorInterpretMSG();
             }
+        }
+        }
+        catch(UmlStringToShortException $e){
+            $this->memberView->umlToShortMSG();
         }
         return $this->memberView->showMemberContents();
     }

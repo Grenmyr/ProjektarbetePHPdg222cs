@@ -63,13 +63,15 @@ class LoginView {
     /**
      * @return string
      */
+    //  <a href='?action=" . NavView::$registerView . "'>Registrera ny användare</a>
     public function show (){
         $username = $this->GetUsername();
         $password = $this->GetPassword();
         return "
+         <div class='formcontent'>
             <h2>Ej Inloggad</h2>
-            <form enctype=multipart/form-data method=post action='?action=" . NavView::$login . "'>
-                   <a href='?action=" . NavView::$registerView . "'>Registrera ny användare</a>
+            <form enctype=multipart/form-data method=post action='?action=" . NavView::$login . "' id='loginform' >
+
                 <fieldset>
                     <legend>
                         Login - Skriv in användarnamn och lösenord
@@ -86,6 +88,7 @@ class LoginView {
                     <input type='submit' value='Logga in' name='loginButton'>
                 </fieldset>
             </form>
+            </div>
         ";
     }
 }

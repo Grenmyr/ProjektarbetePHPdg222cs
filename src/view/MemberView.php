@@ -19,8 +19,7 @@ class MemberView extends GuestView {
     private static $saveName = "savename";
     private static $saveToZip = "savetozip";
 
-    private static $exampleUML = "[Domain|name|+surname|stair()|+wood()]-[Line][Domain]-[Chair|leg|+backSeat()]-[Pair]
-    [Another|+plastic|kitchen()]-[LastClassExample][Domain|name|+surname|stair()|+wood()]-[road]";
+
 
     public  function SetSaveNameValue($saveName){
         $this->saveNameValue = $saveName;
@@ -28,7 +27,6 @@ class MemberView extends GuestView {
 
     public function loginWelcome(){
         if(isset($_GET[self::$welcome])){
-            $this->SetInputValue(self::$exampleUML);
             $this->message[] = "Välkommen tillbaka " .$_GET[self::$welcome]." !";
         }
         return False;
@@ -42,7 +40,6 @@ class MemberView extends GuestView {
 
     public function registerWelcome(){
         if(isset($_GET[self::$register])){
-            $this->SetInputValue(self::$exampleUML);
             $this->message[] = "Registreringen av användarnamnet " .$_GET[self::$register]." lyckades, du loggades in automatiskt !";
         }
         return False;
@@ -87,17 +84,19 @@ class MemberView extends GuestView {
 
         $message = $this->renderMessages();
 
-        $string = "<h1>UML->Code</h1>
+        $string = "
+
+         <div class='formcontent'>
+        <h1>UML->Code</h1>
         <a href='?action=" . NavView::$logoutView . "'>Logga ut</a>
         <a href='?action=" . NavView::$umlGetLists . "'>Hämta sparade projekt</a>
             <h2>$this->username är inloggad.</h2>
             <p>$message<p>
-             <form  method=post action='?action=" . NavView::$umlSubmit . "'>
+             <form  method=post action='?action=" . NavView::$umlSubmit . "'  id='memberviewform' class='formclass'>
     <fieldset>
         <legend>
             Fyll i namn för spara UML->Code projekt på server.
         </legend>
-        <label></label>
          <input type='text' size='20' value='$this->saveNameValue' name='" .self::$saveName."'>
         <input type='submit' value='Spara project server' name='" .self::$saveToDatabaseButton."'>
     </fieldset>
@@ -105,13 +104,14 @@ class MemberView extends GuestView {
         <legend>
         Fyll i domän modellen i textfält under.
         </legend>
-        <label></label>
         <textarea cols='50' rows='5' name='" .self::$textArea. "'>$this->input</textarea>
+        <input type='submit' value='Get example code' name='" .self::$exampleUMLButton. "'>
         <input type='submit' value='Rendera kod' name='" .self::$submitUMLButton. "'>
-        <input type='submit' value='Spara till Zip' name='" .self::$saveToZip. "'>
+        <input type='submit' value='Download code' name='" .self::$saveToZip. "'>
          <div> $result </div>
     </fieldset>
     </form>
+    </div>
         ";
         return $string;
     }
@@ -127,15 +127,6 @@ class MemberView extends GuestView {
     public function badCharSaveNameValueMSG($value){
         $this->SetSaveNameValue($value);
         $this->message[] = " SaveName $value innehöll tidigare ogiltiga tecken, dom är nu borttagna.";
-    }
-    public function renderMessages(){
-        $dom = '';
-        if(is_array($this->message )){
-            foreach ($this->message as $messages){
-                $dom .= "<p>$messages</p>";
-            }
-        }
-        return $dom;
     }
 
     public function saveNameLengthMSG()

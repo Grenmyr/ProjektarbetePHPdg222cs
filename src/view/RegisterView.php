@@ -46,7 +46,8 @@ class RegisterView {
             $this->userName = $this->GetUsername();
         }
         $message = $this->renderMessages();
-        $ret ="<h1>Laborationskod dg222cs</h1>
+        $ret ="
+         <div class='formcontent'>
         <h2>
     Ej Inloggad, Registrerar användare
 </h2>
@@ -69,7 +70,7 @@ class RegisterView {
         <input type='submit' value='Registrera' name='registerButton'>
     </fieldset>
 </form>
-
+</div>
         ";
         return $ret;
     }

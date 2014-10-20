@@ -12,6 +12,7 @@ class HTMLView {
         <head>
             <meta charset='UTF-8' />
             <title>Projekt PHP</title>
+            <link rel='stylesheet' href='style/style.css' type='text/css'>
         </head>
         <body>
         <div class='content'>
