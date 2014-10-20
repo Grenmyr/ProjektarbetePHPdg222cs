@@ -139,11 +139,12 @@ class GuestView {
 
 
     <form  method=post action='?action=" . NavView::$umlSubmit . "' id='guestviewform' class='formclass'>
+    <div class='message'>$message</div>
     <fieldset>
         <legend>
             Write your UML here
         </legend>
-        <p>$message<p>
+
         <legend>
         Fyll i domän modellen i textfält under.
         </legend>

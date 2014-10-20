@@ -9,15 +9,34 @@ ul{
     margin: 0;
     padding: 0;
 }
+.registermessage{
+    margin: 0;
+    padding: 0;
+}
 /* above is reset */
 
 .formcontent{
     padding-bottom: 75px;
+
 }
 
+.registermessage{
+    font-size: 25px;
+}
+
+.message{
+    font-size: 25px;
+    max-width: 80%;
+    word-wrap: break-word;
+}
+
+
 #loginform{
+    margin-top: -50px;
     height: 50px;
     padding-bottom: 75px;
+
+
 }
 
 header a{
@@ -92,6 +111,10 @@ h3{
 .formcontent{
     width: 90%;
     margin: auto auto;
+}
+
+FIELDSET{
+    max-width: 90%;
 }
 
 ul{

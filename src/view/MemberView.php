@@ -91,7 +91,7 @@ class MemberView extends GuestView {
         <a href='?action=" . NavView::$umlGetLists . "'>Hämta sparade projekt</a>
         </header>
          <div class='formcontent'>
-            <p>$message<p>
+             <div class='message'>$message</div>
              <form  method=post action='?action=" . NavView::$umlSubmit . "'  id='memberviewform' class='formclass'>
     <fieldset>
         <legend>
