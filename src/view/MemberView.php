@@ -90,9 +90,11 @@ class MemberView extends GuestView {
         <a href='?action=" . NavView::$logoutView . "'>Logga ut</a>
         <a href='?action=" . NavView::$umlGetLists . "'>Hämta sparade projekt</a>
         </header>
+
          <div class='formcontent'>
-             <div class='message'>$message</div>
+            <h1>UML->Code</h1>
              <form  method=post action='?action=" . NavView::$umlSubmit . "'  id='memberviewform' class='formclass'>
+            <div class='message'>$message</div>
     <fieldset>
         <legend>
             Fyll i namn för spara UML->Code projekt på server.
