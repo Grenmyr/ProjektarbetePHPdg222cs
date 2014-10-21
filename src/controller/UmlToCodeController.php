@@ -143,7 +143,7 @@ class UmlToCodeController {
     }
 
 
-    public  function getUmlProject(){
+    public  function selectProject(){
         $projectView = New ProdjectsView();
         $dbUml = null;
         if($data = $projectView->GetProjectData()){

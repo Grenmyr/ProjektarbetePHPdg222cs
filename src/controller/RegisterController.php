@@ -40,7 +40,7 @@ class RegisterController {
         $this->registerView = new RegisterView( $this->registerModel);
     }
 
-    public function body(){
+    public function registerView(){
         if($this->registerView->submit()){
             $this->onSubmit();
         }

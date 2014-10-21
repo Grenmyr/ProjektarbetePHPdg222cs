@@ -17,6 +17,7 @@ require_once(__DIR__ . "/../src/view/GuestView.php");
 require_once(__DIR__ . "/../src/view/RegisterView.php");
 require_once(__DIR__ . "/../src/view/LoginView.php");
 require_once(__DIR__ . "/../src/view/MemberView.php");
+require_once(__DIR__ . "/../src/view/MasterView.php");
 
 //src/view/subview
 require_once(__DIR__ . "/../src/view/subview/SweDateView.php");

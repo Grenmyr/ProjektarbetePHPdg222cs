@@ -84,7 +84,7 @@ class LoginController {
     }
 
 
-    public function login(){
+    public function loginView(){
         // If user submit login. Then log in.
         if($this->loginView->userSubmit()){
             // Retrieve username and password string from LoginView from user post.
