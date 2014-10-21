@@ -19,7 +19,6 @@ class MasterView {
     private $loginView;
     private $projectsView;
     private $registerView;
-    private $logoutView;
 
     public function __construct(){
         $this->sweDateView = new \SweDateView();
@@ -40,15 +39,12 @@ class MasterView {
     public function SetRegisterView($registerView){
         $this->registerView = $registerView;
     }
-    public function SetLogoutView($logoutView){
-        $this->logoutView = $logoutView;
-    }
 
 
     public function render(){
         return $this->guestView
         . $this->memberView .$this->projectsView . $this->loginView
-        .$this->registerView .$this->logoutView .$this->sweDateView->show();
+        .$this->registerView .$this->sweDateView->show();
     }
 
 

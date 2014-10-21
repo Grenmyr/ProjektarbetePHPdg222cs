@@ -69,6 +69,8 @@ require_once(__DIR__ . "/../src/exceptions/umltocodecontrollerexceptions/DeleteP
 require_once(__DIR__ . "/../src/exceptions/umltocodecontrollerexceptions/SaveNameMaxLengthException.php");
 require_once(__DIR__ . "/../src/exceptions/umltocodecontrollerexceptions/UmlMaxLengthException.php");
 require_once(__DIR__ . "/../src/exceptions/umltocodecontrollerexceptions/UmlStringToShortException.php");
+require_once(__DIR__ . "/../src/exceptions/umltocodecontrollerexceptions/NoHTMLAllowedException.php");
+
 
 
 /**

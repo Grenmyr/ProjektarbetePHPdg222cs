@@ -62,7 +62,7 @@ class RegisterView {
         <legend>
             Registrera ny användare -Skriv in användarnamn och lösenord
         </legend>
-        <div class='registermessage'> $message </div>
+        <div class='message'> $message </div>
         <label>
         Namn:
         </label>

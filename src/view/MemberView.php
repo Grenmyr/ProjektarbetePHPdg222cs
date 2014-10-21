@@ -83,6 +83,7 @@ class MemberView extends GuestView {
         $result = $this->showInterpret();
 
         $message = $this->renderMessages();
+        $input = $this->interpretModel->cleanTags($this->input);
 
         $string = "
         <header>
@@ -106,7 +107,7 @@ class MemberView extends GuestView {
         <legend>
         Fyll i domän modellen i textfält under.
         </legend>
-        <textarea cols='50' rows='5' name='" .self::$textArea. "'>$this->input</textarea>
+        <textarea cols='50' rows='5' name='" .self::$textArea. "'>$input</textarea>
         <input type='submit' value='Ladda uml exempel' name='" .self::$exampleUMLButton. "'>
         <input type='submit' value='Generera kod' name='" .self::$submitUMLButton. "'>
         <input type='submit' value='Ladda ner kod' name='" .self::$saveToZip. "'>

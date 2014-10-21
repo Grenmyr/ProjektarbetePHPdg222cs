@@ -2,6 +2,7 @@
 namespace model;
 
 use objectModel\ClassModel;
+use src\exceptions\umltocodecontrollerexceptions\NoHTMLAllowedException;
 use src\exceptions\umltocodecontrollerexceptions\UmlStringToShortException;
 
 class InterpretModel {
@@ -12,6 +13,8 @@ class InterpretModel {
     const CHECKASSOCIATIONS ='/\[(\w+)((?:\|\+?\w+)*)((?:\|\+?\w+\(\))*)\]\-\[(\w+)((?:\|\+?\w+)*)((?:\|\+?\w+\(\))*)\]/';
     const WHITESPACE = '/\s+/';
 
+    const TAGS = '/(&lt;)|(gt;)/';
+
 
     const CLASSNAMEPOS = 1;
     const RELATIONPOS = 4;
@@ -21,7 +24,19 @@ class InterpretModel {
      */
     private $classArray =[];
 
+
+   public function cleanTags($string){
+       // replace tags.
+       $string = str_replace('<','&lt;',$string);
+       $string = str_replace('>','&gt;',$string);
+
+
+       return $string;
+   }
+
    public function validate($string){
+       // Remove all whitespace.
+       $string = preg_replace(self::WHITESPACE, '', $string);
 
        if(strlen($string)>1000){
            return null;
@@ -29,11 +44,13 @@ class InterpretModel {
        if(strlen($string)< 3){
            throw new UmlStringToShortException();
        }
+       $cleanString =$this->cleanTags($string);
 
-       // Remove all whitespace.
-       $string = preg_replace(self::WHITESPACE, '', $string);
+       if(preg_match(self::TAGS,$cleanString)){
+           throw new NoHTMLAllowedException();
+       }
 
-       $this->inputString = $string;
+       $this->inputString = $cleanString;
 
         // Compare string to the 2 regex and save a class/relation for each match.
         $classArray = $this->findMatch(self::MATCHBETWEENSQUAREBRACKETS,$string);

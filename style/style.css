@@ -20,14 +20,15 @@ ul{
 
 }
 
-.registermessage{
-    font-size: 25px;
-}
-
 .message{
+
     font-size: 25px;
     max-width: 80%;
     word-wrap: break-word;
+}
+
+.message p{
+    text-shadow: 2px 2px 3px red;
 }
 
 

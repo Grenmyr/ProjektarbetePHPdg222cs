@@ -2,6 +2,8 @@
 namespace src\view;
 use model\InterpretModel;
 use objectModel\ClassModel;
+use src\exceptions\umltocodecontrollerexceptions\NoHTMLAllowedException;
+use src\exceptions\umltocodecontrollerexceptions\UmlStringToShortException;
 use src\view\nav\NavView;
 use src\view\subview\PHPFactory;
 
@@ -128,6 +130,9 @@ class GuestView {
     public function show (){
         $result = $this->showInterpret();
         $message = $this->renderMessages();
+        $input = $this->interpretModel->cleanTags($this->input);
+
+
 
         $string = "
          <header>
@@ -148,7 +153,7 @@ class GuestView {
         <legend>
         Fyll i domän modellen i textfält under.
         </legend>
-        <textarea  cols='50' rows='5' name='" .self::$textArea. "'>$this->input</textarea>
+        <textarea  cols='50' rows='5' name='" .self::$textArea. "'>$input</textarea>
          <input type='submit' value='Ladda uml exempel' name='" .self::$exampleUMLButton. "'>
         <input type='submit' value='Generera kod' name='" .self::$submitUMLButton. "'>
         <div ></div>
@@ -169,6 +174,11 @@ class GuestView {
     public function umlToShortMSG()
     {
         $this->message[] = "Uml är för kort minst tre tecken behövs.";
+    }
+
+    public function noHTMLMSG()
+    {
+        $this->message[] = 'HTML taggar ">" "<" är inte giltig syntax';
     }
 
 

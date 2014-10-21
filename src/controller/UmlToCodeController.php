@@ -7,6 +7,7 @@ use model\SessionModel;
 use model\UML;
 use model\UmlToCodeModel;
 use src\exceptions\umltocodecontrollerexceptions\DeleteProjextException;
+use src\exceptions\umltocodecontrollerexceptions\NoHTMLAllowedException;
 use src\exceptions\umltocodecontrollerexceptions\ProjectExistException;
 use src\exceptions\umltocodecontrollerexceptions\RegexSaveNameException;
 use src\exceptions\umltocodecontrollerexceptions\RegexUmlStringException;
@@ -42,6 +43,7 @@ class UmlToCodeController {
 
 
     public function showGuestView(){
+
         $this->guestView->exampleSubmitUml();
         try{
         if($this->guestView->userSubmitUml()){
@@ -52,6 +54,12 @@ class UmlToCodeController {
         catch(UmlStringToShortException $e){
             $this->guestView->umlToShortMSG();
         }
+        catch(NoHTMLAllowedException $e){
+            $this->guestView->noHTMLMSG();
+        }
+
+
+
         return $this->guestView->show() ;
     }
 
@@ -95,6 +103,9 @@ class UmlToCodeController {
         }
         catch(UmlStringToShortException $e){
             $this->memberView->umlToShortMSG();
+        }
+        catch(NoHTMLAllowedException $e){
+            $this->memberView->noHTMLMSG();
         }
         return $this->memberView->showMemberContents();
     }
