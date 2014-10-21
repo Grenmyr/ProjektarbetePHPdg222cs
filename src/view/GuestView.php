@@ -16,7 +16,7 @@ class GuestView {
     protected  static $exampleUMLButton = "exampleumlbutton";
     protected  static $textArea = "textarea";
 
-    protected  static $exampleUML = "[Domain|name|+surname|stair()|+wood()]-[Line][Domain]-[Chair|leg|+backSeat()]-[Pair]
+    protected  static $exampleUML = "[Domain|name|+surname|stair()|+wood()]-[Line][Domain]-[Chair|leg|+backSeat()]
     [Another|+plastic|kitchen()]-[LastClassExample][Domain|name|+surname|stair()|+wood()]-[road]";
 
     /**

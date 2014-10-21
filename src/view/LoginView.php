@@ -21,7 +21,7 @@ class LoginView {
         }
         return false;
     }
-
+    //TODO fixa strängberoenden
     Public function wantCookie() {
         if(isset($_POST["LoginView::Checked"])){
             return true;
@@ -36,7 +36,7 @@ class LoginView {
 
     public function FailedMSG($username,$password) {
         if($username===""){
-        $this->message = 'Användarnamn saknas: ';
+        $this->message = 'Användarnamn saknas. ';
         }
         else if($password === ""){
             $this->message .= "Lösenord saknas";
@@ -63,25 +63,24 @@ class LoginView {
     /**
      * @return string
      */
-    //  <a href='?action=" . NavView::$registerView . "'>Registrera ny användare</a>
     public function show (){
         $username = $this->GetUsername();
-        $password = $this->GetPassword();
         return "
          <div class='formcontent'>
-            <form enctype=multipart/form-data method=post action='?action=" . NavView::$login . "' id='loginform' >
 
+            <form enctype=multipart/form-data method=post action='?action=" . NavView::$login . "' id='loginform' >
+                <div class='message'><p>$this->message</p></div>
                 <fieldset>
                     <legend>
                         Login - Skriv in användarnamn och lösenord
                     </legend>
-                    <p>$this->message<p>
+
                     <label>
                     Användarnamn:
                     </label>
                     <input type='text' size='20' name='username' value='$username'>
                     <label> Lösenord </label>
-                    <input type='password' size='20' name='password' value='$password'>
+                    <input type='password' size='20' name='password'>
                     <label>Håll mig inloggad</label>
                     <input type='checkbox' name='LoginView::Checked' id='AutologinID'/>
                     <input type='submit' value='Logga in' name='loginButton'>

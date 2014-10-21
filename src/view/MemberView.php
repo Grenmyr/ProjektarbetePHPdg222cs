@@ -129,16 +129,16 @@ class MemberView extends GuestView {
     }
     public function badCharSaveNameValueMSG($value){
         $this->SetSaveNameValue($value);
-        $this->message[] = " SaveName $value innehöll tidigare ogiltiga tecken, dom är nu borttagna.";
+        $this->message[] = " Namn $value innehöll tidigare ogiltiga tecken, dom är nu borttagna.";
     }
 
     public function saveNameLengthMSG()
     {
-        $this->message[] = " Savename är för kort, minst två tecken behövs. ";
+        $this->message[] = " Namn är för kort, minst två tecken behövs. ";
     }
     public function saveNameMaxLengthMSG()
     {
-        $this->message[] = " Savename är för långt, max 20 tecken tillåts. ";
+        $this->message[] = " Namn är för långt, max 20 tecken tillåts. ";
     }
 
     public function umlLengthMSG()
@@ -192,7 +192,7 @@ class MemberView extends GuestView {
 
     public function UmlMaxLengthExceptionMSG()
     {
-        $this->message[] = "Umlmodell är för lång, får ej vara mer än 1000 tecken.";
+        $this->message[] = "Uml modell är för lång, får ej vara mer än 1000 tecken.";
     }
 }
 

@@ -41,7 +41,10 @@ ul{
 }
 
 header a{
-   border: 1px solid;
+    padding: 3px;
+    margin-bottom: 3px;
+    border: 1px solid;
+    border-radius: 3px;
     height: 30px;
     font-size: 25px;
     display: inline-block;
@@ -76,6 +79,7 @@ color: red;
 }
 
 header{
+    padding-bottom: 6px;
     background-color: black;
     height: 50px;
     width: 100%;

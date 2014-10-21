@@ -46,11 +46,13 @@ class RegisterView {
             $this->userName = $this->GetUsername();
         }
         $message = $this->renderMessages();
+        //TODO ska ta bort eller ej?
+        // <a href='?action=" . NavView::$login . "'>Logga in</a>
         $ret ="
         <header>
         <h3>UML->Code : Registrering</h3>
     <a href='?action=" . NavView::$umlSubmit . "'>Till UML->Code</a>
-    <a href='?action=" . NavView::$login . "'>Logga in</a>
+
     </header>
          <div class='formcontent' content='Code->UML'>
         <h2>
@@ -83,7 +85,7 @@ class RegisterView {
         $this->message[] = "Användarnamn och lösenord måste ha minst 3 respektive sex tecken.";
     }
     public function msgUsernameLength(){
-        $this->message[] = "Användarnamnet har för få tecken. Minst 3 tecken";
+        $this->message[] = "Användarnamnet har för få tecken. Minst 3 tecken.";
     }
     public function msgUsernameWrongChar($name){
         $this->message[] = " Användarnamnet $name innehöll tidigare ogiltiga tecken, dom är nu borttagna.";
@@ -95,7 +97,17 @@ class RegisterView {
         $this->message[] = "Lösenorden är för korta, minst 6 tecken.";
     }
     public function msgUserExist(){
-        $this->message[] = "Användare existerar redan, försök med annat användarnamn..";
+        $this->message[] = "Användare existerar redan, försök med annat användarnamn.";
+    }
+
+    public function msgUsernameMaxLength()
+    {
+        $this->message[] =  "Användarnamnet har för många tecken. Max 20 tecken.";
+    }
+
+    public function msgPasswordMaxLength()
+    {
+        $this->message[] = "Lösenorden är för långa, max 20 tecken.";
     }
 }
 /**

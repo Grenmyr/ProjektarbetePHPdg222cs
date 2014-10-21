@@ -17,7 +17,9 @@ use model\User;
 use src\Exception\DbUserExistException;
 use src\Exception\RegexException;
 use src\Exception\RegisterException;
+use src\Exception\RegisterPasswordMaxLengthException;
 use src\Exception\RegisterUsernameLengthException;
+use src\Exception\RegisterUsernameMaxLengthException;
 use src\view\LoginView;
 use src\view\nav\NavView;
 use src\view\RegisterView;
@@ -89,6 +91,14 @@ class RegisterController {
         catch(DbUserExistException $e){
             $this->registerView->msgUserExist();
         }
+        catch(RegisterUsernameMaxLengthException $e){
+            $this->registerView->msgUsernameMaxLength();
+        }
+        catch(RegisterPasswordMaxLengthException $e){
+            $this->registerView->msgPasswordMaxLength();
+        }
+
+
 
     }
 } 

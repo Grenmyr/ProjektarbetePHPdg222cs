@@ -58,6 +58,10 @@ require_once(__DIR__ . "/../src/exceptions/registercontrollerexceptions/Register
 require_once(__DIR__ . "/../src/exceptions/registercontrollerexceptions/DbUserExistException.php");
 require_once(__DIR__ . "/../src/exceptions/registercontrollerexceptions/RegisterException.php");
 require_once(__DIR__ . "/../src/exceptions/registercontrollerexceptions/RegexException.php");
+require_once(__DIR__ . "/../src/exceptions/registercontrollerexceptions/RegisterUsernameMaxLengthException.php");
+require_once(__DIR__ . "/../src/exceptions/registercontrollerexceptions/RegisterPasswordMaxLengthException.php");
+
+
 
 //src/exceptions/umltocodecontrollerexceptions
 require_once(__DIR__ . "/../src/exceptions/umltocodecontrollerexceptions/RegexSaveNameException.php");

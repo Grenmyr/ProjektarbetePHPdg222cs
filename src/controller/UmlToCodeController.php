@@ -150,6 +150,11 @@ class UmlToCodeController {
         $userRepository = New UserRepository();
         $dbUser = $userRepository->getUserByUsername($userName);
         $umlArray =$this->umlRepository->getProjectsByUserID($dbUser->GetUserID());
+
+        if($projectView->Show($umlArray) === null){
+            //TODO implement message perhaps?
+            return null;
+        }
         return $projectView->Show($umlArray);
     }
 
