@@ -27,7 +27,6 @@ class UserRepository extends Repository {
         //}
     }
     public function getUserByUsername($username) {
-        //TODO bugg här vi uppladdning av första projekt
         //try {
             $db = $this -> connection();
             $sql = "SELECT * FROM " . self::$dbTable . " WHERE " . self::$userName . " = ?";

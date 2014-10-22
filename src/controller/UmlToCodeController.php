@@ -114,7 +114,7 @@ class UmlToCodeController {
         $umlString = $this->memberView->GetTextInput();
         $username = $this->memberView->GetUser();
         try{
-        $this->umlToCodeModel->validate($saveName,$umlString,$username);
+        $this->umlToCodeModel->CreateUML($saveName,$umlString,$username);
             $this->memberView->SaveMSG($saveName);
         }
         catch(RegexSaveNameException $e){
@@ -143,18 +143,19 @@ class UmlToCodeController {
     }
 
     // Generate list of server stored projects by that user..
-    public function projectsView()
+    public function projectsView($sessionModel)
     {
         $projectView = New ProdjectsView();
-        $userName = $this->memberView->GetUser();
+        $userName = $sessionModel->GetUser();
         $userRepository = New UserRepository();
         $dbUser = $userRepository->getUserByUsername($userName);
         $umlArray =$this->umlRepository->getProjectsByUserID($dbUser->GetUserID());
 
-        if($projectView->Show($umlArray) === null){
-            //TODO implement message perhaps?
+        if($umlArray === null){
+            $this->memberView->NoUmlExistMSG();
             return null;
         }
+
         return $projectView->Show($umlArray);
     }
 

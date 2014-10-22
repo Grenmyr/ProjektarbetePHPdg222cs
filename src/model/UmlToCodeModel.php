@@ -4,7 +4,7 @@ namespace model;
 use model\repository\UMLRepository;
 
 class UmlToCodeModel {
-    public function validate($saveName,$umlString,$username){
+    public function CreateUML($saveName,$umlString,$username){
 
         $uml = new UML();
         $uml->SetSaveName($saveName);

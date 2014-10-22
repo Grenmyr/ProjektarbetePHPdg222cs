@@ -43,7 +43,7 @@ class MasterView {
 
     public function render(){
         return $this->guestView
-        . $this->memberView .$this->projectsView . $this->loginView
+        . $this->memberView .$this->projectsView. $this->loginView
         .$this->registerView .$this->sweDateView->show();
     }
 

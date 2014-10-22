@@ -194,6 +194,10 @@ class MemberView extends GuestView {
     {
         $this->message[] = "Uml modell är för lång, får ej vara mer än 1000 tecken.";
     }
+    public function NoUmlExistMSG()
+    {
+        $this->message[] = "Det finns inga sparade projekt att hämta!";
+    }
 }
 
 

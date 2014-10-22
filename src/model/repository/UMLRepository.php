@@ -6,6 +6,7 @@ namespace model\repository;
 
 use model\UML;
 use src\Exception\DbUserExistException;
+use src\exceptions\umltocodecontrollerexceptions\dbProjectNotExistException;
 use src\exceptions\umltocodecontrollerexceptions\DeleteProjextException;
 use src\exceptions\umltocodecontrollerexceptions\ProjectExistException;
 
@@ -32,13 +33,14 @@ class UMLRepository extends Repository{
         }
         $userProjects = $this->getProjectsByUserID($dbUser->GetUserID());
 
-        foreach($userProjects as $projects){
-            if( $uml->GetSaveName() === $projects->GetSaveName()){
-                throw new ProjectExistException();
+
+        if($userProjects !== null){
+            foreach($userProjects as $projects){
+                if( $uml->GetSaveName() === $projects->GetSaveName()){
+                    throw new ProjectExistException();
+                }
             }
         }
-
-
 
        // try {
             $db = $this -> connection();

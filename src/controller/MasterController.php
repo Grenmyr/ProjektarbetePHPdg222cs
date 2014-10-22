@@ -28,8 +28,9 @@ class MasterController {
                     break;
             case NavView::$umlGetLists;
                 if($isLoggedIn){
+
+                    $masterView->SetProjectsView($umlToCodeController->projectsView($sessionModel));
                     $masterView->SetMemberVIew($umlToCodeController->showMemberView($sessionModel));
-                    $masterView->SetProjectsView($umlToCodeController->projectsView());
                     break;
                 }
                     $masterView->SetGuestView($umlToCodeController->showGuestView());
