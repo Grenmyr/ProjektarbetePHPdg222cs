@@ -151,6 +151,7 @@ class UmlToCodeController {
         $dbUser = $userRepository->getUserByUsername($userName);
         $umlArray =$this->umlRepository->getProjectsByUserID($dbUser->GetUserID());
 
+
         if($umlArray === null){
             $this->memberView->NoUmlExistMSG();
             return null;
@@ -159,18 +160,23 @@ class UmlToCodeController {
         return $projectView->Show($umlArray);
     }
 
-
-    public  function selectProject(){
+    public  function selectProject($sessionModel){
         $projectView = New ProdjectsView();
         $dbUml = null;
-        if($data = $projectView->GetProjectData()){
+        // Get projectname from view.
+        if($projectName = $projectView->GetProjectName()){
             $uml = New UML();
-            $uml->SetSaveName($data[1]);
-            $uml->SetUserID($data[0]);
+            $uml->SetSaveName($projectName);
 
+            // Get userID from UserTable and then populate to UML object.
+            $username = $sessionModel->GetUser();
+            $userRepository = new UserRepository();
+            $user = $userRepository->getUserByUsername($username);
+            $uml->SetUserID($user->GetUserID());
+
+            // Get project by UserID and projectName selected project
             $dbUml = $this->umlRepository->getProject($uml);
         }
-
         if($dbUml === null){
             $this->memberView->projectNotExistMSG();
         }
@@ -181,20 +187,27 @@ class UmlToCodeController {
         }
     }
 
-    public function deleteUmlProject(){
+    public function deleteUmlProject($sessionModel){
         $projectView = New ProdjectsView();
-
-        if($data =$projectView->GetProjectData() ){
+        // Get projectname from view.
+        if($projectName =$projectView->GetProjectName() ){
             try{
-            $uml = New UML();
-            $uml->SetSaveName($data[1]);
-            $uml->SetUserID($data[0]);
-            $this->umlRepository->deleteProject($uml);
-            $this->memberView->deleteMSG($uml->GetSaveName());
-            }
-            catch(DeleteProjextException $e){
-                $this->memberView->errorDeleteMSG();
-            }
+                $uml = New UML();
+                $uml->SetSaveName($projectName);
+
+                // Get userID from UserTable and then populate to UML object.
+                $username = $sessionModel->GetUser();
+                $userRepository = new UserRepository();
+                $user = $userRepository->getUserByUsername($username);
+                $uml->SetUserID($user->GetUserID());
+
+                // Delete project by UserID and projectName.
+                $this->umlRepository->deleteProject($uml);
+                $this->memberView->deleteMSG($uml->GetSaveName());
+                }
+                catch(DeleteProjextException $e){
+                    $this->memberView->errorDeleteMSG();
+                }
         }
     }
 }

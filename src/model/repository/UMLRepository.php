@@ -21,8 +21,11 @@ class UMLRepository extends Repository{
     private static $dbTable ='project';
 
     public  function __construct(){
+        parent::__construct();
         $this->userRepository = new UserRepository();
     }
+
+
 
     public function add(UML $uml) {
 

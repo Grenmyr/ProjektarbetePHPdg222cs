@@ -11,7 +11,6 @@ require_once(__DIR__."/../src/controller/MasterController.php");
 require_once(__DIR__."/../src/controller/RegisterController.php");
 require_once(__DIR__."/../src/controller/LoginController.php");
 
-
 //src/view
 require_once(__DIR__ . "/../src/view/GuestView.php");
 require_once(__DIR__ . "/../src/view/RegisterView.php");
@@ -32,7 +31,6 @@ require_once(__DIR__ . "/../src/view/subview/ProdjectsView.php");
 require_once(__DIR__ . "/../src/view/subview/SaveToZipView.php");
 require_once(__DIR__ . "/../src/view/subview/PHPFactory.php");
 
-
 //src/model
 require_once(__DIR__ . "/../src/model/repository/Repository.php");
 require_once(__DIR__ . "/../src/model/InterpretModel.php");
@@ -45,8 +43,6 @@ require_once(__DIR__ . "/../src/model/LoginModel.php");
 require_once(__DIR__ . "/../src/model/repository/CookieRepository.php");
 require_once(__DIR__ . "/../src/model/UML.php");
 require_once(__DIR__ . "/../src/model/UmlToCodeModel.php");
-
-
 
 //src/model/objectModel
 require_once(__DIR__ . "/../src/model/objectModel/VariableModel.php");
@@ -61,8 +57,6 @@ require_once(__DIR__ . "/../src/exceptions/registercontrollerexceptions/RegexExc
 require_once(__DIR__ . "/../src/exceptions/registercontrollerexceptions/RegisterUsernameMaxLengthException.php");
 require_once(__DIR__ . "/../src/exceptions/registercontrollerexceptions/RegisterPasswordMaxLengthException.php");
 
-
-
 //src/exceptions/umltocodecontrollerexceptions
 require_once(__DIR__ . "/../src/exceptions/umltocodecontrollerexceptions/RegexSaveNameException.php");
 require_once(__DIR__ . "/../src/exceptions/umltocodecontrollerexceptions/RegexUmlStringException.php");
@@ -74,8 +68,6 @@ require_once(__DIR__ . "/../src/exceptions/umltocodecontrollerexceptions/SaveNam
 require_once(__DIR__ . "/../src/exceptions/umltocodecontrollerexceptions/UmlMaxLengthException.php");
 require_once(__DIR__ . "/../src/exceptions/umltocodecontrollerexceptions/UmlStringToShortException.php");
 require_once(__DIR__ . "/../src/exceptions/umltocodecontrollerexceptions/NoHTMLAllowedException.php");
-
-
 
 /**
  * Created by PhpStorm.

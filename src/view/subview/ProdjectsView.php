@@ -14,14 +14,11 @@ use src\view\nav\NavView;
 class ProdjectsView {
 
 
-    public function GetProjectData(){
+    public function GetProjectName(){
         $urlString =$_SERVER['REQUEST_URI'];
-        $data = [];
-
-        if(preg_match('/id=(\d+)/',$urlString, $ID)&& preg_match('/name=(\w+)/',$urlString, $saveName)){
-            $data[]= $ID[1];
-            $data[] = $saveName[1];
-            return $data;
+        if(preg_match('/name=(\w+)/',$urlString, $saveName)){
+            $umlProjectName = $saveName[1];
+            return $umlProjectName;
         }
         return false;
     }
@@ -36,10 +33,10 @@ class ProdjectsView {
     public function Show($umlArray)
     {
         $dom ="<div class='formcontent'> <ul>";
-
+        //&id=".$uml->GetUserID()."
         foreach ($umlArray as $uml){
                 $dom .="<div><h4> Namn :  ".$uml->GetSaveName()."</h4>"
-                ."<li><a href='?action=".NavView::$showProject."&name=".$uml->GetSaveName()."&id=".$uml->GetUserID()."'>".$uml->GetUmlString()."</a>"
+                ."<li><a href='?action=".NavView::$showProject."&name=".$uml->GetSaveName()."'>".$uml->GetUmlString()."</a>"
                     ."<li>"    ."<a class='delete' href='?action=".NavView::$deleteProject."&name=".$uml->GetSaveName()."&id=".$uml->GetUserID()."'>Ta bort?</a>"."</li>"
                     ."</li></div>"
 

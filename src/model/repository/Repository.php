@@ -1,9 +1,20 @@
 <?php
 namespace model\repository;
+use Settings;
+
 abstract class Repository {
-    protected $dbUsername = 'root';
+    /*protected $dbUsername = 'root';
     protected $dbPassword = '';
-    protected $dbConnstring = 'mysql:host=127.0.0.1;dbname=logindb';
+    protected $dbConnstring = 'mysql:host=127.0.0.1;dbname=logindb';*/
+    protected $dbUsername;
+    protected $dbPassword;
+    protected $dbConnstring;
+
+    public function __construct(){
+        $this->dbUsername = Settings::$DB_USERNAME;
+        $this->dbPassword = Settings::$DB_PASSWORD;
+        $this->dbConnstring = Settings::$DB_CONNECTION;
+    }
 
     protected $dbConnection;
     protected function connection() {

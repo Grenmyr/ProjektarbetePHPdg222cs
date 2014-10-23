@@ -38,7 +38,7 @@ class MasterController {
                     break;
             case NavView::$showProject;
                 if($isLoggedIn){
-                    $umlToCodeController->selectProject();
+                    $umlToCodeController->selectProject($sessionModel);
                     $masterView->SetMemberVIew($umlToCodeController->showMemberView($sessionModel));
                     break;
                 }
@@ -47,7 +47,7 @@ class MasterController {
                     break;
             case NavView::$deleteProject;
                 if($isLoggedIn){
-                    $umlToCodeController->deleteUmlProject();
+                    $umlToCodeController->deleteUmlProject($sessionModel);
                     $masterView->SetMemberVIew($umlToCodeController->showMemberView($sessionModel));
                     break;
                 }
