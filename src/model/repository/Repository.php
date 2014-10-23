@@ -13,7 +13,8 @@ abstract class Repository {
     public function __construct(){
         $this->dbUsername = Settings::$DB_USERNAME;
         $this->dbPassword = Settings::$DB_PASSWORD;
-        $this->dbConnstring = Settings::$DB_CONNECTION;
+
+        $this->dbConnstring = 'mysql:host='.Settings::$DB_HOST.';dbname='.Settings::$DB_NAME;
     }
 
     protected $dbConnection;
