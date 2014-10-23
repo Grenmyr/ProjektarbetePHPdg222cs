@@ -65,7 +65,6 @@ class SaveToZipView
                     $classContent .= "" . $this->phpFactory->GetFunctionSyntax($functionObject) . "\n";
                 }
                 $classContent .= "}";
-                //$file = realpath(self::$path) . DIRECTORY_SEPARATOR . $className . ".php";
 
                 $zip->addFromString($className . ".php", $classContent);
             }

@@ -8,6 +8,11 @@ class LoginView {
     private $message;
     private $agent = "";
 
+    private static $loginButton = 'loginButton';
+    private static $checked = 'checked';
+    private static $userName = 'username';
+    private static $password = 'pass';
+
 
     public function GetAgent(){
         $this->agent = $_SERVER['HTTP_USER_AGENT'];
@@ -16,23 +21,17 @@ class LoginView {
 
     // Return true if submit.
     public function userSubmit(){
-        if  (isset($_POST['loginButton'])){
+        if  (isset($_POST[self::$loginButton])){
             return true;
         }
         return false;
     }
-    //TODO fixa strängberoenden
     Public function wantCookie() {
-        if(isset($_POST["LoginView::Checked"])){
+        if(isset($_POST[self::$checked])){
             return true;
         }
         return false;
     }
-
-    public  function logoutMSG(){
-        $this->message = "Du har nu loggat ut.";
-    }
-
 
     public function FailedMSG($username,$password) {
         if($username===""){
@@ -53,11 +52,11 @@ class LoginView {
     }
 
     public function GetUsername(){
-        return (isset($_POST["username"])) ? $_POST["username"] : '';
+        return (isset($_POST[self::$userName])) ? $_POST[self::$userName] : '';
     }
 
     Public function GetPassword(){
-        return (isset($_POST["password"])) ? $_POST["password"] : '';
+        return (isset($_POST[self::$password])) ? $_POST[self::$password] : '';
     }
 
     /**
@@ -78,12 +77,12 @@ class LoginView {
                     <label>
                     Användarnamn:
                     </label>
-                    <input type='text' size='20' name='username' value='$username'>
+                    <input type='text' size='20' name='".self::$userName."' value='$username'>
                     <label> Lösenord </label>
-                    <input type='password' size='20' name='password'>
+                    <input type='password' size='20' name='".self::$password."'>
                     <label>Håll mig inloggad</label>
-                    <input type='checkbox' name='LoginView::Checked' id='AutologinID'/>
-                    <input type='submit' value='Logga in' name='loginButton'>
+                    <input type='checkbox' name='".self::$checked."' id='AutologinID'/>
+                    <input type='submit' value='Logga in' name='".self::$loginButton."'>
                 </fieldset>
             </form>
             </div>

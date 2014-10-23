@@ -14,12 +14,12 @@ use src\view\nav\NavView;
 
 class ProdjectsView
 {
-
+    private static $nameRegex = '/name=(\w+)/';
 
     public function GetProjectName()
     {
         $urlString = $_SERVER['REQUEST_URI'];
-        if (preg_match('/name=(\w+)/', $urlString, $saveName)) {
+        if (preg_match(self::$nameRegex, $urlString, $saveName)) {
             $umlProjectName = $saveName[1];
             return $umlProjectName;
         }

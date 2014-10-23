@@ -71,10 +71,6 @@ class GuestView {
     }
     }
 
-/*    public function SetMSG($message){
-        $this->message[] = $message;
-    }*/
-
     public function showInterpret(){
         $dom = '';
         if(is_array($this->classModels)){
@@ -124,42 +120,32 @@ class GuestView {
         }
         return $dom;
     }
-    //TODO here i am
     // Render dom from for guestView. Also Form to submit post from user.
     public function show (){
         $result = $this->showInterpret();
         $message = $this->renderMessages();
         $input = $this->interpretModel->cleanTags($this->input);
 
-
-
         $string = "
          <header>
-          <h3>UML->Code : Gäst, inte inloggad.</h3>
-           <a href='?action=" . NavView::$registerView . "'>Registrera</a>
+            <h3>UML->Code : Gäst, inte inloggad.</h3>
+            <a href='?action=" . NavView::$registerView . "'>Registrera</a>
          </header>
          <div class='formcontent'>
             <h1>UML->Code</h1>
-
-
-    <form  method=post action='?action=" . NavView::$umlSubmit . "' id='guestviewform' class='formclass'>
-    <div class='message'>$message</div>
-    <fieldset>
-        <legend>
-            Write your UML here
-        </legend>
-
-        <p>
-        Fyll i domän modellen i textfält under.
-        </p>
-        <textarea  cols='50' rows='5' name='" .self::$textArea. "'>$input</textarea>
-         <input type='submit' value='Ladda uml exempel' name='" .self::$exampleUMLButton. "'>
-        <input type='submit' value='Generera kod' name='" .self::$submitUMLButton. "'>
-        <div ></div>
-         <div> $result </div>
-    </fieldset>
-
-    </form>
+            <form  method=post action='?action=" . NavView::$umlSubmit . "' id='guestviewform' class='formclass'>
+                <div class='message'>$message</div>
+                <fieldset>
+                    <legend>
+                        Write your UML here
+                    </legend>
+                    <p>Fyll i domän modellen i textfält under.</p>
+                    <textarea  cols='50' rows='5' name='" .self::$textArea. "'>$input</textarea>
+                    <input type='submit' value='Ladda uml exempel' name='" .self::$exampleUMLButton. "'>
+                    <input type='submit' value='Generera kod' name='" .self::$submitUMLButton. "'>
+                     <div> $result </div>
+                </fieldset>
+            </form>
     </div>
         ";
         return $string;
