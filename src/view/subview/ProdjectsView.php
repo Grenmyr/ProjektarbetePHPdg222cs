@@ -36,13 +36,12 @@ class ProdjectsView {
         //&id=".$uml->GetUserID()."
         foreach ($umlArray as $uml){
                 $dom .="<div><h4> Namn :  ".$uml->GetSaveName()."</h4>"
-                ."<li><a href='?action=".NavView::$showProject."&name=".$uml->GetSaveName()."'>".$uml->GetUmlString()."</a>"
-                    ."<li>"    ."<a class='delete' href='?action=".NavView::$deleteProject."&name=".$uml->GetSaveName()."&id=".$uml->GetUserID()."'>Ta bort?</a>"."</li>"
+                ."<li><a href='?action=".NavView::$showProject."&amp;name=".$uml->GetSaveName()."'>".$uml->GetUmlString()."</a>"."</li><li>"
+                    ."<a class='delete' href='?action=".NavView::$deleteProject."&amp;name=".$uml->GetSaveName()."'>Ta bort?</a>"
                     ."</li></div>"
-
                 ;
             }
-        $dom .="</ul>";
+        $dom .="</ul></div>";
        return $dom;
     }
 

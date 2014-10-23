@@ -104,9 +104,9 @@ class MemberView extends GuestView {
         <input type='submit' value='Spara project server' name='" .self::$saveToDatabaseButton."'>
     </fieldset>
     <fieldset>
-        <legend>
+        <p>
         Fyll i domän modellen i textfält under.
-        </legend>
+        </p>
         <textarea cols='50' rows='5' name='" .self::$textArea. "'>$input</textarea>
         <input type='submit' value='Ladda uml exempel' name='" .self::$exampleUMLButton. "'>
         <input type='submit' value='Generera kod' name='" .self::$submitUMLButton. "'>

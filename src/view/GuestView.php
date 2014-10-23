@@ -150,9 +150,9 @@ class GuestView {
             Write your UML here
         </legend>
 
-        <legend>
+        <p>
         Fyll i domän modellen i textfält under.
-        </legend>
+        </p>
         <textarea  cols='50' rows='5' name='" .self::$textArea. "'>$input</textarea>
          <input type='submit' value='Ladda uml exempel' name='" .self::$exampleUMLButton. "'>
         <input type='submit' value='Generera kod' name='" .self::$submitUMLButton. "'>
