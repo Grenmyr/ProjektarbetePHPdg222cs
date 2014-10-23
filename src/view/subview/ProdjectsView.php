@@ -33,7 +33,6 @@ class ProdjectsView {
     public function Show($umlArray)
     {
         $dom ="<div class='formcontent'> <ul>";
-        //&id=".$uml->GetUserID()."
         foreach ($umlArray as $uml){
                 $dom .="<div><h4> Namn :  ".$uml->GetSaveName()."</h4>"
                 ."<li><a href='?action=".NavView::$showProject."&amp;name=".$uml->GetSaveName()."'>".$uml->GetUmlString()."</a>"."</li><li>"

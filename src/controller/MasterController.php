@@ -2,6 +2,7 @@
 
 namespace controller;
 
+use Exception;
 use model\InterpretModel;
 use model\SessionModel;
 use src\view\MasterView;
@@ -11,6 +12,7 @@ use SweDateView;
 class MasterController {
 
     public function render(){
+        try{
         $sessionModel = New SessionModel();
         $masterView = new MasterView();
         $loginController = new LoginController($sessionModel);
@@ -75,6 +77,11 @@ class MasterController {
                 break;
         }
         return $masterView->render();
+        }
+        catch(Exception $e){
+                header('Location: /' . \Settings::$ROOT_PATH. '/common/error.html');
+            return null;
+        }
     }
 }
 /**

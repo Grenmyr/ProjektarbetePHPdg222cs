@@ -24,6 +24,7 @@ class NavView {
         return self::$umlSubmit;
     }
 
+
     public static function redirectHome($string) {
         header('Location: /' . \Settings::$ROOT_PATH. '/?'.self::$action.'='.self::$umlSubmit.'&logout='.$string);
     }

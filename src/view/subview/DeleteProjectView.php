@@ -1,4 +1,6 @@
 <?php
+use src\view\nav\NavView;
+
 /**
  * Created by PhpStorm.
  * User: dav

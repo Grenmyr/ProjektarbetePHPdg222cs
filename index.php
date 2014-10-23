@@ -10,6 +10,8 @@ $body =$masterController->render();
 
 $htmlView->echoHTML($body);
 
+
+
 /**
  * Created by PhpStorm.
  * User: dav
