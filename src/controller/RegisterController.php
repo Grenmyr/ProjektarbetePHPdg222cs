@@ -8,8 +8,6 @@
 
 namespace controller;
 
-
-use CookieView;
 use model\RegisterModel;
 use model\repository\UserRepository;
 use model\SessionModel;
@@ -23,7 +21,6 @@ use src\Exception\RegisterUsernameMaxLengthException;
 use src\view\LoginView;
 use src\view\nav\NavView;
 use src\view\RegisterView;
-use SweDateView;
 
 class RegisterController {
     /**

@@ -6,7 +6,6 @@ namespace model\repository;
 
 use model\UML;
 use src\Exception\DbUserExistException;
-use src\exceptions\umltocodecontrollerexceptions\dbProjectNotExistException;
 use src\exceptions\umltocodecontrollerexceptions\DeleteProjextException;
 use src\exceptions\umltocodecontrollerexceptions\ProjectExistException;
 

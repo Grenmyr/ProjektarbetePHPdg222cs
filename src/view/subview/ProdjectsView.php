@@ -11,18 +11,20 @@ namespace src\view\subview;
 
 use model\UML;
 use src\view\nav\NavView;
-class ProdjectsView {
+
+class ProdjectsView
+{
 
 
-    public function GetProjectName(){
-        $urlString =$_SERVER['REQUEST_URI'];
-        if(preg_match('/name=(\w+)/',$urlString, $saveName)){
+    public function GetProjectName()
+    {
+        $urlString = $_SERVER['REQUEST_URI'];
+        if (preg_match('/name=(\w+)/', $urlString, $saveName)) {
             $umlProjectName = $saveName[1];
             return $umlProjectName;
         }
         return false;
     }
-
 
 
     /**
@@ -32,16 +34,15 @@ class ProdjectsView {
      */
     public function Show($umlArray)
     {
-        $dom ="<div class='formcontent'> <ul>";
-        foreach ($umlArray as $uml){
-                $dom .="<div><h4> Namn :  ".$uml->GetSaveName()."</h4>"
-                ."<li><a href='?action=".NavView::$showProject."&amp;name=".$uml->GetSaveName()."'>".$uml->GetUmlString()."</a>"."</li><li>"
-                    ."<a class='delete' href='?action=".NavView::$deleteProject."&amp;name=".$uml->GetSaveName()."'>Ta bort?</a>"
-                    ."</li></div>"
-                ;
-            }
-        $dom .="</ul></div>";
-       return $dom;
+        $dom = "<div class='formcontent'> <ul>";
+        foreach ($umlArray as $uml) {
+            $dom .= "<div><h4> Namn :  " . $uml->GetSaveName() . "</h4>"
+                . "<li><a href='?action=" . NavView::$showProject . "&amp;name=" . $uml->GetSaveName() . "'>" . $uml->GetUmlString() . "</a>" . "</li><li>"
+                . "<a class='delete' href='?action=" . NavView::$deleteProject . "&amp;name=" . $uml->GetSaveName() . "'>Ta bort?</a>"
+                . "</li></div>";
+        }
+        $dom .= "</ul></div>";
+        return $dom;
     }
 
 }

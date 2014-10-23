@@ -17,7 +17,6 @@ use src\exceptions\umltocodecontrollerexceptions\UmlLengthException;
 use src\exceptions\umltocodecontrollerexceptions\UmlMaxLengthException;
 use src\exceptions\umltocodecontrollerexceptions\UmlStringToShortException;
 use src\view\GuestView;
-use src\view\LoginView;
 use src\view\MemberView;
 use src\view\subview\ProdjectsView;
 use src\view\subview\SaveToZipView;

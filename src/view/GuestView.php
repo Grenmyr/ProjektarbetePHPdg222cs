@@ -2,8 +2,6 @@
 namespace src\view;
 use model\InterpretModel;
 use objectModel\ClassModel;
-use src\exceptions\umltocodecontrollerexceptions\NoHTMLAllowedException;
-use src\exceptions\umltocodecontrollerexceptions\UmlStringToShortException;
 use src\view\nav\NavView;
 use src\view\subview\PHPFactory;
 
@@ -99,7 +97,6 @@ class GuestView {
 
                 $relations = $value->GetRelations();
                 $phpRelations="";
-
                 if(count($relations)>0){
                     $phpRelations .= "<p>".$this->phpFactory->GetEmptyConstruct()."</p>";
                     foreach ($relations  as $relation){
@@ -108,7 +105,9 @@ class GuestView {
                     $phpRelations .= "<p>".$this->phpFactory->GetEndBracket()."</p>";
                 }
 
-                $dom .= "<p>$phpClass</p> <p>".$phpRelations."</p> <p>".$phpVariables."</p><p>".$phpFunctions."}</p>"
+
+                $dom .= "<div class='classdiv'><p >$phpClass</p> <p>".$phpRelations."<p>".$phpVariables."<p>".$phpFunctions."}<p></p></div>"
+
                 ;
             }
         }

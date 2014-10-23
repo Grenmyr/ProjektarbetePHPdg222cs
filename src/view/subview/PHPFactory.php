@@ -7,53 +7,60 @@ namespace src\view\subview;
  * Time: 09:37
  */
 
-class PHPFactory {
+class PHPFactory
+{
 
-    public function GetClassNameSyntax($className){
+    public function GetClassNameSyntax($className)
+    {
         return "class $className {";
     }
 
-    public function GetEmptyConstruct(){
+    public function GetEmptyConstruct()
+    {
         return "public function __construct(){";
     }
-    public function GetEndBracket(){
+
+    public function GetEndBracket()
+    {
         return "}";
     }
 
-    public function GetRequireOnce($class){
-        return 'require_once(__DIR__."/'. $class . '.php");';
+    public function GetRequireOnce($class)
+    {
+        return 'require_once(__DIR__."/' . $class . '.php");';
     }
 
-    public function GetRelationSyntax($relationName){
-        $phpAsssociationSyntax ="";
+    public function GetRelationSyntax($relationName)
+    {
+        $phpAsssociationSyntax = "";
 
-            $lowCharRelationName = lcfirst($relationName);
-            $phpAsssociationSyntax .=" $$lowCharRelationName =  new $relationName(); ";
+        $lowCharRelationName = lcfirst($relationName);
+        $phpAsssociationSyntax .= " $$lowCharRelationName =  new $relationName(); ";
         return $phpAsssociationSyntax;
     }
 
 
-    public function GetVariableSyntax($variableObject){
-        $phpVariableSyntax ="";
-            $private = $variableObject->GetPrivate();
-            $name =$variableObject->GetName();
-            if($private){
-                $phpVariableSyntax .= "private $$name;";
-            }
-            else{
-                $phpVariableSyntax .= "public $$name;";
-            }
+    public function GetVariableSyntax($variableObject)
+    {
+        $phpVariableSyntax = "";
+        $private = $variableObject->GetPrivate();
+        $name = $variableObject->GetName();
+        if ($private) {
+            $phpVariableSyntax .= "private $$name;";
+        } else {
+            $phpVariableSyntax .= "public $$name;";
+        }
         return $phpVariableSyntax;
     }
 
-    public function GetFunctionSyntax($functionObject){
-        $phpVariableSyntax ="";
+    public function GetFunctionSyntax($functionObject)
+    {
+        $phpVariableSyntax = "";
         $private = $functionObject->GetPrivate();
-        $name =$functionObject->GetName();
-        if($private){
+        $name = $functionObject->GetName();
+        if ($private) {
             $phpVariableSyntax .= "private function $name (){}";
-        }
-        else{
+        } else {
             $phpVariableSyntax .= "public function $name (){}";
         }
         return $phpVariableSyntax;

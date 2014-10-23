@@ -39,6 +39,10 @@ ul{
 
 
 }
+.classdiv{
+    padding-bottom: 20px;
+    font-size: 1.3em;
+}
 
 header a{
     padding: 3px;
@@ -86,8 +90,8 @@ header{
 }
 footer{
     position:fixed;
-    left:0px;
-    bottom:0px;
+    left:0;
+    bottom:0;
     width:100%;
     background-color: black;
     height: 50px;

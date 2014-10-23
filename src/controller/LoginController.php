@@ -5,11 +5,8 @@ use CookieView;
 use model\LoginModel;
 use model\repository\CookieRepository;
 use model\SessionModel;
-use src\view\GuestView;
 use src\view\LoginView;
-use src\view\MemberView;
 use src\view\nav\NavView;
-use SweDateView;
 
 class LoginController {
 
@@ -28,12 +25,8 @@ class LoginController {
      */
     private $sessionModel;
 
-    //private $memberView;
-
     private $loginModel;
 
-
-    //private $guestView;
 
 
     public  function __construct($sessionModel){

@@ -19,7 +19,6 @@ use src\Exception\RegisterUsernameMaxLengthException;
 
 class RegisterModel {
     private $username;
-    private $password;
 
     const  REGEX = '/[^a-z0-9\-]+/i';
 

@@ -3,10 +3,6 @@
 
 namespace src\view;
 
-
-use model\InterpretModel;
-use objectModel\FunctionModel;
-use objectModel\VariableModel;
 use src\view\nav\NavView;
 
 class MemberView extends GuestView {

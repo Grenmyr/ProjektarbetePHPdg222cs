@@ -7,7 +7,6 @@ use model\InterpretModel;
 use model\SessionModel;
 use src\view\MasterView;
 use src\view\nav\NavView;
-use SweDateView;
 
 class MasterController {
 
