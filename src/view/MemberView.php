@@ -176,11 +176,6 @@ class MemberView extends GuestView {
         $this->message[] = "Projektet $name togs bort.";
     }
 
-    public function savedZipMSG()
-    {
-        $this->message[] = "Det gick bra att skapa filer av tolkningsbar UML, nedladdning startar strax.";
-    }
-
     public function umlLengthExceptionMSG()
     {
         $this->message[] = "Din UML modell är för kort, måste vara minst 3 tecken.";

@@ -1,10 +1,6 @@
 <?php
 namespace model\repository;
 
-
-
-
-
 use model\User;
 
 class CookieRepository extends Repository{

@@ -47,9 +47,6 @@ class LoginView {
     public function failedCookieMSG(){
         $this->message = "Felaktig information i cookie.";
     }
-    public function registrationMSG(){
-        $this->message = "Registrering av ny användare lyckades.";
-    }
 
     public function GetUsername(){
         return (isset($_POST[self::$userName])) ? $_POST[self::$userName] : '';

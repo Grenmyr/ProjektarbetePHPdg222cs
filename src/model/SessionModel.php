@@ -1,6 +1,13 @@
 <?php
 namespace model;
 class SessionModel {
+
+    private static $userName = 'userName';
+    private static $validSession = 'validSession';
+    private static $agent = 'agent';
+
+
+
    // Set a new session.
    public function __construct(){
        if(session_status() !== PHP_SESSION_ACTIVE){
@@ -8,11 +15,11 @@ class SessionModel {
        }
    }
     public function SetUser($username){
-        $_SESSION["userName"]=$username;
+        $_SESSION[self::$userName]=$username;
     }
     public function GetUser(){
-        if(isset($_SESSION["userName"])){
-                return $_SESSION['userName'];
+        if(isset($_SESSION[self::$userName])){
+                return $_SESSION[self::$userName];
         }
         return false;
     }
@@ -22,8 +29,8 @@ class SessionModel {
      * Then it return true to controller.
      */
     public  function CheckValidSession($agent){
-        if(isset($_SESSION["validSession"])&& isset($_SESSION['agent'])){
-            if($_SESSION['agent']=== $agent )
+        if(isset($_SESSION[self::$validSession])&& isset($_SESSION[self::$agent])){
+            if($_SESSION[self::$agent]=== $agent )
             return true;
         }
         return false;
@@ -31,21 +38,12 @@ class SessionModel {
 
     // used to set session and and agent(string) into session.
     public function SetValidSession($agent){
-        $_SESSION["validSession"]=true;
-        $_SESSION["agent"] = $agent;
+        $_SESSION[self::$validSession]=true;
+        $_SESSION[self::$agent] = $agent;
     }
     // Remove session.
     public function logout(){
-        unset($_SESSION['validSession']);
-    }
-
-   // Not implemented in application
-   public function SetUMLText($string){
-       $_SESSION["model"]= $string;
-   }
-    // Not implemented in application
-    public function GetUMLText(){
-        return $_SESSION["model"];
+        unset($_SESSION[self::$validSession]);
     }
 }
 /**

@@ -30,10 +30,7 @@ class LoginController {
 
 
     public  function __construct($sessionModel){
-
-        //$this->memberView = new MemberView();
         $this->loginView = new LoginView();
-        //$this->guestView = new GuestView();
 
         $this->sessionModel = $sessionModel;
 

@@ -6,6 +6,10 @@ use src\view\nav\NavView;
 class RegisterView {
     private $message =[];
     private $userName;
+    private static $usrName = 'username';
+    private static $pWord1 = 'password1';
+    private static $pWord2 = 'password2';
+    private static $registerButton = 'registerButton';
 
     public function renderMessages(){
         $dom = '';
@@ -17,20 +21,20 @@ class RegisterView {
         return $dom;
     }
     public function GetUsername(){
-        if(isset($_POST["username"])){
-            return($_POST["username"]);
+        if(isset($_POST[self::$usrName])){
+            return($_POST[self::$usrName]);
         }
         return false;
     }
     Public function GetPassword1(){
-        if(isset($_POST["password1"])){
-            return($_POST["password1"]);
+        if(isset($_POST[self::$pWord1])){
+            return($_POST[self::$pWord1]);
         }
         return false;
     }
     Public function GetPassword2(){
-        if(isset($_POST["password2"])){
-            return($_POST["password2"]);
+        if(isset($_POST[self::$pWord2])){
+            return($_POST[self::$pWord2]);
         }
         return false;
     }
@@ -38,7 +42,7 @@ class RegisterView {
         $this->userName = $username;
     }
     public function submit(){
-        return(isset($_POST['registerButton']));
+        return(isset($_POST[self::$registerButton]));
     }
 
     public function show(){
@@ -46,8 +50,6 @@ class RegisterView {
             $this->userName = $this->GetUsername();
         }
         $message = $this->renderMessages();
-        //TODO ska ta bort eller ej?
-        // <a href='?action=" . NavView::$login . "'>Logga in</a>
         $ret ="
         <header>
         <h3>UML->Code : Registrering</h3>
@@ -68,12 +70,12 @@ class RegisterView {
         <label>
         Namn:
         </label>
-        <input type='text' size='20' name='username' value='$this->userName'>
+        <input type='text' size='20' name='".self::$usrName."' value='$this->userName'>
         <label> Lösenord </label>
-        <input type='password' size='20' name='password1' >
+        <input type='password' size='20' name='".self::$pWord1."' >
         <label> Repetera Lösenord</label>
-        <input type='password' size='20' name='password2' >
-        <input type='submit' value='Registrera' name='registerButton'>
+        <input type='password' size='20' name='".self::$pWord2."' >
+        <input type='submit' value='Registrera' name='".self::$registerButton."'>
     </fieldset>
 </form>
 </div>
