@@ -27,7 +27,6 @@ class UMLRepository extends Repository{
 
 
     public function add(Uml $uml) {
-
         // If Empty user submit throw Exception.
         $dbUser = $this->userRepository->getUserByUsername($uml->GetUsername());
         if($dbUser === null){

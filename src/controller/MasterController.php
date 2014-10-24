@@ -12,6 +12,7 @@ class MasterController {
 
     public function render(){
         try{
+
         $sessionModel = New SessionModel();
         $masterView = new MasterView();
         $loginController = new LoginController($sessionModel);
@@ -19,6 +20,7 @@ class MasterController {
         $umlToCodeController = new UmlToCodeController(new InterpretModel());
 
         switch(NavView::getAction()){
+
             case NavView::$umlSubmit;
                 if($isLoggedIn){
                     $masterView->SetMemberVIew($umlToCodeController->showMemberView($sessionModel));
@@ -77,6 +79,7 @@ class MasterController {
         }
         return $masterView->render();
         }
+
         catch(Exception $e){
                 header('Location: /' . \Settings::$ROOT_PATH. '/common/error.html');
             return null;
