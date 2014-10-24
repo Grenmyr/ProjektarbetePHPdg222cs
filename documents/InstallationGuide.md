@@ -9,9 +9,9 @@ Publish it on web hotel
 
 
 #### Step: 2
-configure the root path in settings.php variable named "$ROOT_PATH"
+Configure the root path in settings.php variable named "$ROOT_PATH"
 #### Step: 3
-configure the database password and username by fill in $DB_PASSWORD and $DB_USERNAME in settings.php
+Configure the database password and username by fill in $DB_PASSWORD and $DB_USERNAME in settings.php
 
 
 #### Step: 4a

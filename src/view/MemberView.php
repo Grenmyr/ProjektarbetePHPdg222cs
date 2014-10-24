@@ -8,8 +8,8 @@ use src\view\nav\NavView;
 class MemberView extends GuestView {
     private $username;
     private $saveNameValue;
-    private static $welcome="welcome";
-    private static $register="register";
+    public  static $welcome="welcome";
+    public  static $register="register";
 
     private static $saveToDatabaseButton = "savetodatabase";
     private static $saveName = "savename";

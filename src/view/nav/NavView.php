@@ -5,6 +5,8 @@ namespace src\view\nav;
 
 
 
+use src\view\MemberView;
+
 class NavView {
     private static $action = "action";
 
@@ -30,10 +32,10 @@ class NavView {
     }
 
     public static function redirectToUMLMSG($string) {
-        header('Location: /' . \Settings::$ROOT_PATH. '/?'.self::$action.'='.self::$umlSubmit.'&welcome='.$string);
+        header('Location: /' . \Settings::$ROOT_PATH. '/?'.self::$action.'='.self::$umlSubmit.'&'.MemberView::$welcome.'='.$string);
     }
     public static function redirectToUMLRegisterMSG($string) {
-        header('Location: /' . \Settings::$ROOT_PATH. '/?'.self::$action.'='.self::$umlSubmit.'&register='.$string);
+        header('Location: /' . \Settings::$ROOT_PATH. '/?'.self::$action.'='.self::$umlSubmit.'&'.MemberView::$register.'='.$string);
     }
 
 }
