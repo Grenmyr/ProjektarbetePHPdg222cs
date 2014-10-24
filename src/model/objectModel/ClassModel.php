@@ -34,7 +34,7 @@ class ClassModel{
         $functionNames = $this->findNames(self::pipeOrPlusRegex,$classArray[self::functionNamePos]);
         foreach ($functionNames as $name){
             $functionName = $name[self::namesPos];
-            $this->functions[] = new FunctionModel($functionName);
+            $this->functions[] = new FuncModel($functionName);
         }
     }
     private  function findNames($regex,$array){

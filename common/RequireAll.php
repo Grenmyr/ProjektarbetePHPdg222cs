@@ -47,6 +47,7 @@ require_once(__DIR__ . "/../src/model/UmlToCodeModel.php");
 //src/model/objectModel
 require_once(__DIR__ . "/../src/model/objectModel/VariableModel.php");
 require_once(__DIR__ . "/../src/model/objectModel/FunctionModel.php");
+require_once(__DIR__ . "/../src/model/objectModel/FuncModel.php");
 require_once(__DIR__ . "/../src/model/objectModel/ClassModel.php");
 
 //src/exceptions/registercontrollerexceptions
