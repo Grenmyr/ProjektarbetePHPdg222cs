@@ -131,15 +131,16 @@ ul h4{
     color: lightgoldenrodyellow;
     margin-left: 30px;
 }
-ul div{
+ul li{
     margin-bottom: 2%;
     border-radius: 5px;
     color: red;
     border: 5px solid;
     background-color: black;
+
 }
 ul li a{
-    display: inline-block;
+    display: block;
     color: lightgoldenrodyellow;
     margin-left: 30px;
     margin-bottom: 10px;
