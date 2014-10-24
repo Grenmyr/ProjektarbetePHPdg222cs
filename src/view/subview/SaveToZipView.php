@@ -29,6 +29,9 @@ class SaveToZipView
     //lastly delete old php files and redirect to zip for download
     public function CreatePHPFiles($classes)
     {
+        if (!file_exists(self::$path)) {
+            mkdir(self::$path, 0777, true);
+        }
 
         $zip = new ZipArchive();
         $name = "/" . rand() . ".zip";
