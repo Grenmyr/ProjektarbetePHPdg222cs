@@ -49,8 +49,30 @@ särskilt koden från laboration 2hade mycket konstiga lösningar.
 
 TIDEN TIDEN var värst, man blir ju aldrig klar.
 ```
+###### Testning
+Att skriva testfall la jag kanske ner för mycket krut på, samtidigt så har jag hittat flera buggar tack vare dom.
+Jag hoppas att om det finns buggar i mitt projekt att testerna i allafall visar att jag försökt testa och hitta fel.
+
+###### Vad som stinker i min kod
+Min UmlToCodeController är ganska lång, och särskilt funktionen showMemberView() är för lång.
+Jag hade om jag fått refaktorera gått loss på den klassen.
+
+Jag vet in inte gillar exceptions, men jag tog bort alla meddelanden från mina custom exceptions. Och istället bara
+fångar jag undantagen i kontrollerna och kallar bara på funktioner i vyn som skriver egna meddelanden. Förutom enstaka
+gånger då jag skickar med som nån sträng i nått exception som representerar User eller namn.
+
+Min prodjectsView stinker inte bara i stavning, utan ganska äcklig generering av lista. Men den validerar i HTML och
+jag ger mig inte på att refaktorera den nu.
+
+###### Vad som är bra
+Symbiosen MasterController/Navview/MasterView för hålla ihop trådarna. Ger bra grund för bygga på min app.
+
+Min InterpretModel/ClassModel/FuncModel/VariableModel för mig svår kod, och snyggt med hur CLassModel äger
+sina variabler och funktioner var kul att få skriva i kod. InterPretModel blir ett mellanlager mellan vyerna
+och de klassrepresenterande klasserna.
+
 
 ###### OM ... jag haft mer tid....
 *Hade jag skrivit mer i modellen och implementerat argument
 *fler tolkningar av associationer/dependencys
-*Kanske typer och kod för fler språk 
+*Kanske typer och kod för fler språk

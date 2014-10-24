@@ -45,10 +45,10 @@ class UmlToCodeController {
 
         $this->guestView->exampleSubmitUml();
         try{
-        if($this->guestView->userSubmitUml()){
+            if($this->guestView->userSubmitUml()){
 
-            $this->guestView->handleInput();
-        }
+                $this->guestView->handleInput();
+            }
         }
         catch(UmlStringToShortException $e){
             $this->guestView->umlToShortMSG();
@@ -81,24 +81,24 @@ class UmlToCodeController {
 
         $this->memberView->exampleSubmitUml();
         try{
-        if($this->memberView->userSubmitUml()){
-            $this->memberView->handleInput();
-        }
-        else if($this->memberView->userSaveToServer()){
+            if($this->memberView->userSubmitUml()){
+                $this->memberView->handleInput();
+            }
+            else if($this->memberView->userSaveToServer()){
                 $this->saveUML();
-        }
-        else if($umlPost = $this->memberView->userSaveToZip()){
-            $classArray = $this->interpretModel->validate($umlPost);
-            if(count($classArray) === 0 ){
-                $this->memberView->canNotIntepretMSG();
             }
-            else if( $classArray === null){
-                $this->guestView->toLongInputMSG();
+            else if($umlPost = $this->memberView->userSaveToZip()){
+                $classArray = $this->interpretModel->validate($umlPost);
+                if(count($classArray) === 0 ){
+                    $this->memberView->canNotIntepretMSG();
+                }
+                else if( $classArray === null){
+                    $this->guestView->toLongInputMSG();
+                }
+                else{
+                    New SaveToZipView($classArray);
+                }
             }
-            else{
-                New SaveToZipView($classArray);
-            }
-        }
         }
         catch(UmlStringToShortException $e){
             $this->memberView->umlToShortMSG();
@@ -113,7 +113,7 @@ class UmlToCodeController {
         $umlString = $this->memberView->GetTextInput();
         $username = $this->memberView->GetUser();
         try{
-        $this->umlToCodeModel->CreateUML($saveName,$umlString,$username);
+            $this->umlToCodeModel->CreateUML($saveName,$umlString,$username);
             $this->memberView->SaveMSG($saveName);
         }
         catch(RegexSaveNameException $e){
@@ -203,10 +203,10 @@ class UmlToCodeController {
                 // Delete project by UserID and projectName.
                 $this->umlRepository->deleteProject($uml);
                 $this->memberView->deleteMSG($uml->GetSaveName());
-                }
-                catch(DeleteProjextException $e){
-                    $this->memberView->errorDeleteMSG();
-                }
+            }
+            catch(DeleteProjextException $e){
+                $this->memberView->errorDeleteMSG();
+            }
         }
     }
 }
