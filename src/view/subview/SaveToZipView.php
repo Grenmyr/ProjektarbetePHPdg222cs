@@ -25,6 +25,8 @@ class SaveToZipView
         $this->CreatePHPFiles($classes);
     }
 
+    //Create files, populate with php code, then zip then *.php files.
+    //lastly delete old php files and redirect to zip for download
     public function CreatePHPFiles($classes)
     {
 
