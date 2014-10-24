@@ -45,6 +45,12 @@ I vyerna var det bara Min SavetoZipView som var svårt, då jag var tvungen att 
 Under projektets tid har jag också fått refaktorera extremt mycket.
 Särksilt eftersom jag valde att lyfta in laboration 2 och 4 gav det mig
 väldigt mycket jobb. Jag tror i efterhand det hade varit smartare att bara skriva om dom,
-särskilt koden från laboration 2
-hade mycket konstiga lösningar.
+särskilt koden från laboration 2hade mycket konstiga lösningar.
+
+TIDEN TIDEN var värst, man blir ju aldrig klar.
 ```
+
+###### OM ... jag haft mer tid....
+*Hade jag skrivit mer i modellen och implementerat argument
+*fler tolkningar av associationer/dependencys
+*Kanske typer och kod för fler språk 
