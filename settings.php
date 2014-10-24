@@ -9,14 +9,14 @@ class Settings {
         * model/repository/Repository
 
     */
-
+    /*
     //Test Settings
     public static $DB_USERNAME = "root";
     public static $DB_PASSWORD = '';
     public static $DB_HOST = '127.0.0.1';
     public static $DB_NAME = 'logindb';
     public static $ROOT_PATH = 'ProjektPHP/ProjektarbetePHPdg222cs';
-    /*
+    */
     //Published Settings
 
     public static $DB_USERNAME = 'dgrenmyr_nu';
@@ -25,7 +25,7 @@ class Settings {
     public static $DB_NAME = 'dgrenmyr_nu';
     //public static $DB_CONNECTION = 'mysql:host=dgrenmyr.nu.mysql;dbname=dgrenmyr_nu';
     public static $ROOT_PATH = 'ProjektarbetePHPdg222cs';
-*/
+
 }
 
 /**

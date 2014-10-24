@@ -51,7 +51,7 @@ class UMLRepository extends Repository{
             $query = $db -> prepare($sql);
             $query -> execute($params);
         } catch (\PDOException $e) {
-             die('An unknown error have occured.');
+           throw new \Exception();
        }
     }
 
@@ -81,7 +81,7 @@ class UMLRepository extends Repository{
                 return NULL;
             }
         } catch (\PDOException $e) {
-           die('An unknown error have occured.');
+            throw new \Exception();
        }
     }
 

@@ -23,7 +23,7 @@ class UserRepository extends Repository {
             $query = $db -> prepare($sql);
             $query -> execute($params);
         } catch (\PDOException $e) {
-            die('An unknown error have occured.');
+            throw new \Exception();
         }
     }
     public function getUserByUsername($username) {
@@ -45,7 +45,7 @@ class UserRepository extends Repository {
             return NULL;
         }
         } catch (\PDOException $e) {
-            die('An unknown error have occured.');
+            throw new \Exception();
         }
     }
     public function getUsernameByUserID($userID) {
@@ -63,7 +63,7 @@ class UserRepository extends Repository {
             return NULL;
         }
         } catch (\PDOException $e) {
-           die('An unknown error have occured.');
+            throw new \Exception();
         }
     }
 }

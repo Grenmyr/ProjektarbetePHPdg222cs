@@ -17,7 +17,7 @@ class CookieRepository extends Repository{
             $query = $db -> prepare($sql);
             $query -> execute($params);
         } catch (\PDOException $e) {
-            die('An unknown error have occured.');
+            throw new \Exception();
         }
     }
     public function GetUniqueKey($uniqueKey) {
@@ -39,7 +39,7 @@ class CookieRepository extends Repository{
                 return NULL;
             }
         } catch (\PDOException $e) {
-            die('An unknown error have occured.');
+            throw new \Exception();
         }
     }
 

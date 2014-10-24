@@ -1,6 +1,6 @@
 <?php
 //rootpath
-require_once(__DIR__ . "/../Settings.php");
+require_once(__DIR__ . "/../settings.php");
 
 //commmon
 require_once(__DIR__."/HTMLView.php");
