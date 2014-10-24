@@ -3,7 +3,7 @@
 ######Dokumentation
 [All dokumentation är samlad i documents](documents/)
 
-[Klassdiagram](https://raw.githubusercontent.com/Grenmyr/ProjektarbetePHPdg222cs/master/documents/Klassdiagram.png)
+[Klassdiagram-Bild](https://raw.githubusercontent.com/Grenmyr/ProjektarbetePHPdg222cs/master/documents/Klassdiagram.png)
 
 ######Use Cases
 [Use-Cases Code->UML](https://github.com/Grenmyr/ProjektarbetePHPdg222cs/blob/master/documents/Use-Cases%20Projekt%20PHP.docx?raw=true)
