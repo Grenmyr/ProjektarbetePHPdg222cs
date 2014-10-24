@@ -189,6 +189,11 @@ class MemberView extends GuestView {
     {
         $this->message[] = "Det finns inga sparade projekt att hämta!";
     }
+
+    public function canNotIntepretMSG()
+    {
+        $this->message[] = "Det finns inget att tolka som kod ifrån din uml!";
+    }
 }
 
 

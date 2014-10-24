@@ -89,7 +89,10 @@ class UmlToCodeController {
         }
         else if($umlPost = $this->memberView->userSaveToZip()){
             $classArray = $this->interpretModel->validate($umlPost);
-            if( $classArray === null){
+            if(count($classArray) === 0 ){
+                $this->memberView->canNotIntepretMSG();
+            }
+            else if( $classArray === null){
                 $this->guestView->toLongInputMSG();
             }
             else{
