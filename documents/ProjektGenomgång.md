@@ -76,3 +76,5 @@ och de klassrepresenterande klasserna.
 *Hade jag skrivit mer i modellen och implementerat argument
 *fler tolkningar av associationer/dependencys
 *Kanske typer och kod för fler språk
+
+#######David Grenmyr
