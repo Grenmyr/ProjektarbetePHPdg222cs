@@ -4,8 +4,10 @@
 Mitt mål med applikationen var att få kunskap i den andra kursen medans jag läste php. Genom nicha mig mot yuml
 som vi hade arbetat med i workshop 1 OoAoD kursen.
 
-Därför nichade jag mitt projekt mot att försöka skapa "psudo" kod med yuml syntax. Pseudo blev ju längre projektet gick
-riktigt php syntax. Och det är högre än vad jag vågade hoppas på innan start. Det var även stimulerande att få försöka efterlikna objektstrukturer
+Därför nichade jag mitt projekt mot att försöka skapa "psudo" kod med yuml syntax.
+Pseudo blev ju längre projektet gickriktigt php syntax.
+Och det är högre än vad jag vågade hoppas på innan start.
+Det var även stimulerande att få försöka efterlikna objektstrukturer
 med klasser variabler funktioner och relationer.
 ```
 
@@ -30,14 +32,17 @@ SaveToZipView skapar körbara phpfiler.
 
 ###### Problem
 ```
-Jag hade väldigt lång tid att förstå hur jag skulle använda pagineringen och minska strängberoenden. Även skriva
-de reguljära uttrycken för tolka yuml syntax var extremt hög svårighetsgrad.
+Jag hade väldigt lång tid att förstå hur jag skulle använda pagineringen och minska strängberoenden.
+Även skrivade reguljära uttrycken för tolka yuml syntax var extremt hög svårighetsgrad.
 
 Förstå hur jag skulle bygga upp strukturen för tolka yuml syntax rent klassmässigt var också utmanande.
 
-I vyerna var det bara Min SavetoZipView som var svårt, då jag var tvungen att skapa filer, zippa och skapa redirect för download.
+I vyerna var det bara Min SavetoZipView som var svårt, då jag var tvungen att skapa filer,
+ zippa och skapa redirect för download.
 
-Under projektets tid har jag också fått refaktorera extremt mycket. Särksilt eftersom jag valde att lyfta in laboration 2 och 4 gav det mig
-väldigt mycket jobb. Jag tror i efterhand det hade varit smartare att bara skriva om dom, särskilt koden från laboration 2
+Under projektets tid har jag också fått refaktorera extremt mycket.
+Särksilt eftersom jag valde att lyfta in laboration 2 och 4 gav det mig
+väldigt mycket jobb. Jag tror i efterhand det hade varit smartare att bara skriva om dom,
+särskilt koden från laboration 2
 hade mycket konstiga lösningar.
 ```
