@@ -1,7 +1,9 @@
 ### Projektgenomgång
 
 ```
-Mitt mål med applikationen var att få kunskap i den andra kursen medans jag läste php. Genom nicha mig mot yuml
+Mitt mål med applikationen var att få kunskap i den andra kursen medans jag läste php.
+
+Genom nicha mig mot yuml
 som vi hade arbetat med i workshop 1 OoAoD kursen.
 
 Därför nichade jag mitt projekt mot att försöka skapa "psudo" kod med yuml syntax.
