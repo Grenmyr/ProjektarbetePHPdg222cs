@@ -57,7 +57,7 @@ Jag hoppas att om det finns buggar i mitt projekt att testerna i allafall visar 
 Min UmlToCodeController är ganska lång, och särskilt funktionen showMemberView() är för lång.
 Jag hade om jag fått refaktorera gått loss på den klassen.
 
-Jag vet in inte gillar exceptions, men jag tog bort alla meddelanden från mina custom exceptions. Och istället bara
+Jag vet ni inte gillar exceptions, men jag tog bort alla meddelanden från mina custom exceptions. Och istället bara
 fångar jag undantagen i kontrollerna och kallar bara på funktioner i vyn som skriver egna meddelanden. Förutom enstaka
 gånger då jag skickar med som nån sträng i nått exception som representerar User eller namn.
 
