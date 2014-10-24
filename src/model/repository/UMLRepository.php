@@ -4,7 +4,7 @@ namespace model\repository;
 
 
 
-use model\UML;
+use model\UmlModel;
 use src\Exception\DbUserExistException;
 use src\exceptions\umltocodecontrollerexceptions\DeleteProjextException;
 use src\exceptions\umltocodecontrollerexceptions\ProjectExistException;
@@ -26,7 +26,7 @@ class UMLRepository extends Repository{
 
 
 
-    public function add(UML $uml) {
+    public function add(UmlModel $uml) {
 
         // If Empty user submit throw Exception.
         $dbUser = $this->userRepository->getUserByUsername($uml->GetUsername());
@@ -68,7 +68,7 @@ class UMLRepository extends Repository{
             if($result){
                 $umlArray = [];
                 foreach($result as $project){
-                    $uml= new UML();
+                    $uml= new UmlModel();
                     $uml->SetUmlString($project[self::$projectString]);
                     $uml->SetSaveName($project[self::$projectName]);
                     $uml->SetUserID($project[self::$userID]);
@@ -85,7 +85,7 @@ class UMLRepository extends Repository{
       //  }
     }
 
-    public function getProject(UML $uml)
+    public function getProject(UmlModel $uml)
     {
         $db = $this -> connection();
         $sql = "SELECT * FROM " . self::$dbTable . " WHERE " . self::$userID . " = ? AND ". self::$projectName ." = ?";
@@ -94,7 +94,7 @@ class UMLRepository extends Repository{
         $query -> execute($params);
         $result = $query -> fetch();
         if($result){
-                $uml= new UML();
+                $uml= new UmlModel();
                 $uml->SetUmlString($result[self::$projectString]);
                 $uml->SetSaveName($result[self::$projectName]);
                 $uml->SetUserID($result[self::$userID]);
@@ -105,7 +105,7 @@ class UMLRepository extends Repository{
         }
 
     }
-    public function deleteProject(UML $uml)
+    public function deleteProject(UmlModel $uml)
     {
         try{
         $db = $this -> connection();

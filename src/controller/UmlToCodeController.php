@@ -4,7 +4,7 @@ use CookieView;
 use model\repository\UMLRepository;
 use model\repository\UserRepository;
 use model\SessionModel;
-use model\UML;
+use model\UmlModel;
 use model\UmlToCodeModel;
 use src\exceptions\umltocodecontrollerexceptions\DeleteProjextException;
 use src\exceptions\umltocodecontrollerexceptions\NoHTMLAllowedException;
@@ -161,7 +161,7 @@ class UmlToCodeController {
         $dbUml = null;
         // Get projectname from view.
         if($projectName = $projectView->GetProjectName()){
-            $uml = New UML();
+            $uml = New UmlModel();
             $uml->SetSaveName($projectName);
 
             // Get userID from UserTable and then populate to UML object.
@@ -188,7 +188,7 @@ class UmlToCodeController {
         // Get projectname from view.
         if($projectName =$projectView->GetProjectName() ){
             try{
-                $uml = New UML();
+                $uml = New UmlModel();
                 $uml->SetSaveName($projectName);
 
                 // Get userID from UserTable and then populate to UML object.

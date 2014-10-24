@@ -6,7 +6,7 @@ use model\repository\UMLRepository;
 class UmlToCodeModel {
     public function CreateUML($saveName,$umlString,$username){
 
-        $uml = new UML();
+        $uml = new UmlModel();
         $uml->SetSaveName($saveName);
         $uml->SetUmlString($umlString);
         $uml->SetUsername($username);
