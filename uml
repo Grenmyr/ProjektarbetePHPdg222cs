@@ -2,7 +2,7 @@
 [install]
 [error]
 [index]-.->[requireAll{bg:red}]
-[index]-.->[Mastercontroller]
+[index]-.->[MasterController]
 [index]-.->[HTMLView]
 [MasterController]-.->[SessionModel]
 [MasterController]-.->[MasterView]
