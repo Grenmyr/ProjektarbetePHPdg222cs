@@ -15,7 +15,7 @@ class ClassModel{
      */
     private $variables = [];
     /**
-     * @var FunctionModel[]
+     * @var FuncModel[]
      */
     private $functions = [];
 
