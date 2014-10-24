@@ -36,12 +36,12 @@ require_once(__DIR__ . "/../src/model/repository/Repository.php");
 require_once(__DIR__ . "/../src/model/InterpretModel.php");
 require_once(__DIR__ . "/../src/model/repository/UMLRepository.php");
 require_once(__DIR__ . "/../src/model/RegisterModel.php");
-require_once(__DIR__ . "/../src/model/UserModel.php");
+require_once(__DIR__ . "/../src/model/User.php");
 require_once(__DIR__ . "/../src/model/SessionModel.php");
 require_once(__DIR__ . "/../src/model/repository/UserRepository.php");
 require_once(__DIR__ . "/../src/model/LoginModel.php");
 require_once(__DIR__ . "/../src/model/repository/CookieRepository.php");
-require_once(__DIR__ . "/../src/model/UmlModel.php");
+require_once(__DIR__ . "/../src/model/UML.php");
 require_once(__DIR__ . "/../src/model/UmlToCodeModel.php");
 
 //src/model/objectModel

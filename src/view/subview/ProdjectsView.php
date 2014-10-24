@@ -9,7 +9,7 @@
 namespace src\view\subview;
 
 
-use model\UmlModel;
+use model\Uml;
 use src\view\nav\NavView;
 
 class ProdjectsView
@@ -29,7 +29,7 @@ class ProdjectsView
 
     /**
      * @param $umlArray
-     * @param UmlModel $umlArray
+     * @param Uml $umlArray
      * @return string
      */
     public function Show($umlArray)

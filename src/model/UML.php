@@ -8,7 +8,7 @@ use src\exceptions\umltocodecontrollerexceptions\SaveNameMaxLengthException;
 use src\exceptions\umltocodecontrollerexceptions\UmlLengthException;
 use src\exceptions\umltocodecontrollerexceptions\UmlMaxLengthException;
 
-class UmlModel {
+class Uml {
     private $saveName;
     private $umlString;
     private $userID;
