@@ -4,7 +4,7 @@ namespace model;
  * Created by PhpStorm.
  * User: dav
  * Date: 2014-10-10
- * Time: 16:08
+ * Time: 16:06
  */
 
 class User {
