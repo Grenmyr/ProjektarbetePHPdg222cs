@@ -44,20 +44,20 @@ class UMLRepository extends Repository{
             }
         }
 
-       // try {
+       try {
             $db = $this -> connection();
             $sql = "INSERT INTO  " . self::$dbTable . "  (" . self::$userID . ", " . self::$projectString . ",". self::$projectName .") VALUES (?, ?,?)";
             $params = array($dbUser->GetUserID(), $uml->GetUmlString(), $uml->GetSaveName());
             $query = $db -> prepare($sql);
             $query -> execute($params);
-        //} catch (\PDOException $e) {
-          //   die('An unknown error have occured.');
-      //  }
+        } catch (\PDOException $e) {
+             die('An unknown error have occured.');
+       }
     }
 
     public function getProjectsByUserID($userID)
     {
-       // try {
+        try {
 
             $db = $this -> connection();
             $sql = "SELECT * FROM " . self::$dbTable . " WHERE " . self::$userID . " = ?";
@@ -80,9 +80,9 @@ class UMLRepository extends Repository{
             else{
                 return NULL;
             }
-       // } catch (\PDOException $e) {
-        //    die('An unknown error have occured.');
-      //  }
+        } catch (\PDOException $e) {
+           die('An unknown error have occured.');
+       }
     }
 
     public function getProject(Uml $uml)

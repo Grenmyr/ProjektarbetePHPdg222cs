@@ -3,9 +3,7 @@ namespace model\repository;
 use Settings;
 
 abstract class Repository {
-    /*protected $dbUsername = 'root';
-    protected $dbPassword = '';
-    protected $dbConnstring = 'mysql:host=127.0.0.1;dbname=logindb';*/
+
     protected $dbUsername;
     protected $dbPassword;
     protected $dbConnstring;
