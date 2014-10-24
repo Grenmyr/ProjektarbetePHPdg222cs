@@ -10,7 +10,7 @@
 Import the database manually by importing the dg222csproject.sql located in documents folder then the database will be named logindb.
 
 #### Step: 2
-Configure the root path in settings.php variable named "$ROOT_PATH"
+Configure the root path in settings.php variable named "$ROOT_PATH" in settings.php
 
 #### Step: 3
 Configure the database password and username by fill in $DB_PASSWORD and $DB_USERNAME in settings.php
@@ -24,14 +24,14 @@ Configure the database password and username by fill in $DB_PASSWORD and $DB_USE
 Upload project
 
 #### Step: 2
-Configure the root path in settings.php variable named "$ROOT_PATH"
+Configure the root path in settings.php variable named "$ROOT_PATH" in settings.php
 
 #### Step: 3
 Configure the database password and username by fill in $DB_PASSWORD and $DB_USERNAME in settings.php
 
 #### Step: 4
 You can run my awesome installation script. just type install.php in browser at root directory and it runs.
-It will create a database named after what your $DB_NAME is set to, it will create a database named logindb by default.
+It will create a database named after what your $DB_NAME in settings.php is set to, it will create a database named logindb by default.
 If you wish to change name, change variable $DB_Name to prefered name.
 
 Don't forgett to remove install.php after you run it.
