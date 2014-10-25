@@ -3,6 +3,7 @@ class CookieView {
     private $cookieName = "Umltocodecookie";
     private $cookieTime;
 
+    // Change time here to extend or reduce cookietime.
     public function save($unique) {
         $this->cookieTime = time()+3000;
         setcookie( $this->cookieName, $unique, $this->cookieTime);

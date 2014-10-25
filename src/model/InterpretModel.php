@@ -38,6 +38,7 @@ class InterpretModel {
        // Remove all whitespace.
        $string = preg_replace(self::WHITESPACE, '', $string);
 
+       // if null Controller tell view to present to longmsg.
        if(strlen($string)>1000){
            return null;
        }
@@ -86,7 +87,7 @@ class InterpretModel {
         return $classArray;
         }
     
-    // used to present string with errors to view.
+    // used to present string with yuml syntax errors to views.
     public function errors(){
         $invalidChars = preg_replace(self::CHECKERRORS,'',$this->inputString);
         return $invalidChars;

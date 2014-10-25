@@ -7,6 +7,7 @@ namespace src\view\subview;
  * Time: 09:37
  */
 
+// Create php syntax for both SavetoZipView and GuestView.
 class PHPFactory
 {
 
@@ -39,7 +40,14 @@ class PHPFactory
         return $phpAsssociationSyntax;
     }
 
-
+    //TODO Some refaktoring?
+    /*
+     * Refaktor so this class ask model for how classes are built up
+     * and then populate the views acording to what user want?
+     *
+     * Atm SaveToZipView and GuestView do that and populate this functions. Which is not so good
+     * i realised now just before deadline.
+     * */
     public function GetVariableSyntax($variableObject)
     {
         $phpVariableSyntax = "";

@@ -13,7 +13,6 @@ use src\exceptions\umltocodecontrollerexceptions\ProjectExistException;
 class UMLRepository extends Repository{
 
     private $userRepository;
-
     private static $projectName = "projectname";
     private static $projectString = "projectstring";
     private static $userID="userID";
@@ -24,8 +23,6 @@ class UMLRepository extends Repository{
         $this->userRepository = new UserRepository();
     }
 
-
-
     public function add(Uml $uml) {
         // If Empty user submit throw Exception.
         $dbUser = $this->userRepository->getUserByUsername($uml->GetUsername());
@@ -34,7 +31,7 @@ class UMLRepository extends Repository{
         }
         $userProjects = $this->getProjectsByUserID($dbUser->GetUserID());
 
-
+        // If project exist by user throw exception that controller catch.
         if($userProjects !== null){
             foreach($userProjects as $projects){
                 if( $uml->GetSaveName() === $projects->GetSaveName()){
@@ -57,7 +54,6 @@ class UMLRepository extends Repository{
     public function getProjectsByUserID($userID)
     {
         try {
-
             $db = $this -> connection();
             $sql = "SELECT * FROM " . self::$dbTable . " WHERE " . self::$userID . " = ?";
             $params = array($userID);
@@ -74,7 +70,6 @@ class UMLRepository extends Repository{
                  $umlArray []= $uml;
                 }
                 return $umlArray;
-
             }
             else{
                 return NULL;

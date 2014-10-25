@@ -10,13 +10,18 @@ use src\view\nav\NavView;
 
 class MasterController {
 
+    // MasterController handle all controllers, and user input.
+    // It is dependant on NavView to handle paginating and MasterView to handle render settings of HTML.
     public function render(){
         try{
 
         $sessionModel = New SessionModel();
         $masterView = new MasterView();
+
+        // Dependency injection of sessionModel to make sure they all user same.
         $loginController = new LoginController($sessionModel);
         $isLoggedIn = $loginController->checkLogin();
+
         $umlToCodeController = new UmlToCodeController(new InterpretModel());
 
         switch(NavView::getAction()){

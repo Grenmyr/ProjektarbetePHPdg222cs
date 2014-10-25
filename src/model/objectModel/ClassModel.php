@@ -1,6 +1,7 @@
 <?php
 namespace objectModel;
 
+//Class to hold its own name and arrays of variables and functions. To represent yuml syntax from view.
 class ClassModel{
     const pipeOrPlusRegex = '/(\w+)|(\+\w+)/';
 
@@ -41,6 +42,8 @@ class ClassModel{
         preg_match_all($regex,$array,$classArray, PREG_SET_ORDER);
         return $classArray;
     }
+
+    // Getters for views.
     public function GetClassName(){
         return $this->className;
     }

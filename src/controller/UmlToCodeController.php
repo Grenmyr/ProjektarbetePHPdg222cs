@@ -36,17 +36,15 @@ class UmlToCodeController {
         $this->guestView = new GuestView($interpretModel);
         $this->umlRepository = new UMLRepository();
         $this->memberView = new MemberView($interpretModel);
-
         $this->umlToCodeModel = new UmlToCodeModel();
     }
 
-
+    // Check for user input in guestView and return dom.
     public function showGuestView(){
 
         $this->guestView->exampleSubmitUml();
         try{
             if($this->guestView->userSubmitUml()){
-
                 $this->guestView->handleInput();
             }
         }
@@ -56,9 +54,6 @@ class UmlToCodeController {
         catch(NoHTMLAllowedException $e){
             $this->guestView->noHTMLMSG();
         }
-
-
-
         return $this->guestView->show() ;
     }
 
@@ -81,6 +76,7 @@ class UmlToCodeController {
 
         $this->memberView->exampleSubmitUml();
         try{
+            //TODO Break out userSaveToZip to own function to remove nested IF.
             if($this->memberView->userSubmitUml()){
                 $this->memberView->handleInput();
             }
@@ -141,7 +137,7 @@ class UmlToCodeController {
         }
     }
 
-    // Generate list of server stored projects by that user..
+    // Generate list of server stored projects by that user.
     public function projectsView($sessionModel)
     {
         $projectView = New ProdjectsView();
@@ -149,7 +145,6 @@ class UmlToCodeController {
         $userRepository = New UserRepository();
         $dbUser = $userRepository->getUserByUsername($userName);
         $umlArray =$this->umlRepository->getProjectsByUserID($dbUser->GetUserID());
-
 
         if($umlArray === null){
             $this->memberView->NoUmlExistMSG();
@@ -194,7 +189,7 @@ class UmlToCodeController {
                 $uml = New Uml();
                 $uml->SetSaveName($projectName);
 
-                // Get userID from UserTable and then populate to UML object.
+                // Get userID from UserRepository and then populate to UML object.
                 $username = $sessionModel->GetUser();
                 $userRepository = new UserRepository();
                 $user = $userRepository->getUserByUsername($username);

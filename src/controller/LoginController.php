@@ -31,9 +31,7 @@ class LoginController {
 
     public  function __construct($sessionModel){
         $this->loginView = new LoginView();
-
         $this->sessionModel = $sessionModel;
-
         $this->loginModel = new LoginModel();
         $this->cookieView = new CookieView();
     }
@@ -93,12 +91,12 @@ class LoginController {
                 NavView::redirectToUMLMSG($username);
             }
             else{
-                //Present error msg if failed login.
                 $this->loginView->FailedMSG($username,$password);
             }
         }
         return   $this->loginView->show();
     }
+
     public function setCookie(){
         $uniqueString = $this->loginModel->createUniqueKey();
         $cookieTime = $this->cookieView->save($uniqueString);

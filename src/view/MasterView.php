@@ -8,6 +8,7 @@
 
 namespace src\view;
 
+// Return dom and handle order of it.
 class MasterView {
 
     /**

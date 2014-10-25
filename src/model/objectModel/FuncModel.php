@@ -11,7 +11,7 @@ class FuncModel {
     //TODO implement code for returnType
     private $returnType;
 
-    // If variable has + in name, its public otherwise private.
+    // If function has + in name, its public otherwise private.
     public function __construct($name){
         if(preg_match($this->publicRegex,$name)){
             $this->name = str_replace('+','',$name);

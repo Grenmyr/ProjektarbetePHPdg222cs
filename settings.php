@@ -2,7 +2,7 @@
 
 class Settings {
 
-    /* IMPORTANT to change between local and published settings Just out comment selected choise.
+    /* IMPORTANT to change between local and published settings Just change settings here.
 
      TWO PHP CLASSES READ FROM THIS SETTINGS:
         * view/nav/NavView.php

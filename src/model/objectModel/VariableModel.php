@@ -11,8 +11,8 @@ class VariableModel {
     //TODO implement code for type;
     private $type;
 
+    // If variable has + in name, its public otherwise private.
     public function __construct($name){
-
         if(preg_match($this->publicRegex,$name)){
             $this->name = str_replace('+','',$name);
             $this->private = false;

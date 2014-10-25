@@ -31,6 +31,7 @@ class Uml {
 
         $this->username = $username;
     }
+    //Check savename break no rules, if it does throw exception that is caught in controller.
     public function SetSaveName($saveName){
         if(!preg_match(self::SAVENAMEREGEX, "$saveName" )){
             if(strlen($saveName) < self::SAVENAMEMINLENGTH){
@@ -46,6 +47,7 @@ class Uml {
             throw new RegexSaveNameException($saveName);
         }
     }
+    //Check UmlString break no rules, if it does throw exception that is caught in controller.
     public function SetUmlString($umlString){
         if(!preg_match(self::UMLSTRINGREGEX, "$umlString" )){
             if(strlen($umlString) < self::UMLSTRINGMINLENGTH){

@@ -31,6 +31,7 @@ class ProdjectsView
      * @param $umlArray
      * @param Uml $umlArray
      * @return string
+     * Generate list of projects saved by that user.
      */
     public function Show($umlArray)
     {

@@ -40,7 +40,6 @@ class RegisterModel {
         }
     }
     public function sanitizeName($string){
-        //http://stackoverflow.com/questions/3022185/regular-expression-sanitize-php
         if(!preg_match(self::REGEX, "$string" )){
             return true;
         }

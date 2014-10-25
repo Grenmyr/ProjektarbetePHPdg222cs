@@ -6,8 +6,6 @@ class SessionModel {
     private static $validSession = 'validSession';
     private static $agent = 'agent';
 
-
-
    // Set a new session.
    public function __construct(){
        if(session_status() !== PHP_SESSION_ACTIVE){
@@ -26,7 +24,6 @@ class SessionModel {
 
     /*
      * This check if a valid Session, and a valid agent which it compare to stored agent in session.
-     * Then it return true to controller.
      */
     public  function CheckValidSession($agent){
         if(isset($_SESSION[self::$validSession])&& isset($_SESSION[self::$agent])){

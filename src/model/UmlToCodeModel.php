@@ -4,6 +4,7 @@ namespace model;
 use model\repository\UMLRepository;
 
 class UmlToCodeModel {
+    //TODO More code here if i add update functionality? Like Update atm i have CRD :-)
     public function CreateUML($saveName,$umlString,$username){
 
         $uml = new Uml();

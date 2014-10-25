@@ -8,13 +8,13 @@ abstract class Repository {
     protected $dbPassword;
     protected $dbConnstring;
 
+    //Dependancy to Settings::$DB_USERNAME, Settings::$DB_PASSWORD, Settings::$DB_HOST, Settings::$DB_NAME;
     public function __construct(){
         $this->dbUsername = Settings::$DB_USERNAME;
         $this->dbPassword = Settings::$DB_PASSWORD;
 
         $this->dbConnstring = 'mysql:host='.Settings::$DB_HOST.';dbname='.Settings::$DB_NAME;
     }
-
     protected $dbConnection;
     protected function connection() {
         if ($this->dbConnection == NULL){
